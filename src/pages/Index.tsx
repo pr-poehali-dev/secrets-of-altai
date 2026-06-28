@@ -70,14 +70,13 @@ function TourCard({ tour }: { tour: typeof tours[0] }) {
   const slides = ['Обложка', 'Маршрут', 'Легенда', 'Программа'];
 
   return (
-    <div className="min-w-[300px] sm:min-w-[380px] snap-center rounded-2xl overflow-hidden border border-border bg-card shadow-2xl shadow-black/50 flex flex-col">
-      <div className="relative h-56 overflow-hidden">
+    <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-2xl shadow-black/50 flex flex-col">
+      <div className="relative overflow-hidden" style={{ height: '220px' }}>
         {slide === 0 && (
           <img src={tour.cover} alt={tour.title} className="w-full h-full object-cover animate-scale-in" />
         )}
         {slide === 1 && (
           <div className="w-full h-full parchment relative flex items-center justify-center animate-scale-in">
-            <Icon name="Route" size={40} className="text-bloodred" />
             <div className="absolute inset-0 flex items-center justify-center p-6">
               <p className="text-[hsl(150_40%_15%)] text-sm font-medium text-center leading-relaxed">{tour.route}</p>
             </div>
@@ -108,7 +107,7 @@ function TourCard({ tour }: { tour: typeof tours[0] }) {
 
       <div className="p-5 flex flex-col gap-3 flex-1">
         <div className="flex items-baseline justify-between">
-          <h3 className="text-2xl text-primary">{tour.title}</h3>
+          <h3 className="font-display text-2xl text-primary">{tour.title}</h3>
           <span className="text-sm text-muted-foreground">{tour.days}</span>
         </div>
         <div className="flex gap-1.5">
@@ -155,11 +154,17 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+
       {/* HEADER */}
       <header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-background/70 border-b border-border">
         <div className="container flex items-center justify-between py-3">
           <a href="#" className="flex items-center gap-3 group">
-            <img src={LOGO_IMG} alt="Тайны Алтая" className="h-12 w-auto object-contain drop-shadow-lg transition-transform group-hover:scale-105" />
+            <img
+              src={LOGO_IMG}
+              alt="Тайны Алтая"
+              className="w-auto object-contain drop-shadow-lg transition-transform group-hover:scale-105"
+              style={{ maxHeight: '52px' }}
+            />
             <span className="hidden sm:block font-display text-base text-foreground/70 leading-tight max-w-[140px]">
               Мистические экспедиции по Горному Алтаю
             </span>
@@ -177,16 +182,30 @@ export default function Index() {
       </header>
 
       {/* HERO */}
-      <section className="relative h-screen flex items-end justify-center">
-        <img src={HERO_IMGS[bgIndex]} alt="Горный Алтай в сумерках" className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000" style={{ objectPosition: 'center 30%' }} />
+      <section className="relative overflow-hidden" style={{ height: '100svh', minHeight: '500px' }}>
+        <img
+          src={HERO_IMGS[bgIndex]}
+          alt="Горный Алтай в сумерках"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          style={{ objectPosition: 'center 30%' }}
+        />
         <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow" />
-        <div className="relative z-10 text-center px-6 pb-24 animate-fade-in">
+        <div
+          className="relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in"
+          style={{ paddingBottom: 'clamp(60px, 8vh, 120px)', paddingLeft: 'clamp(16px, 5vw, 80px)', paddingRight: 'clamp(16px, 5vw, 80px)' }}
+        >
           <p className="text-primary uppercase tracking-[0.4em] text-xs mb-5">Авторские экспедиции</p>
-          <img src={LOGO_IMG} alt="Тайны Алтая" className="w-72 sm:w-[420px] mx-auto mb-6 drop-shadow-2xl animate-float cursor-pointer select-none" onClick={handleLogоClick} />
+          <img
+            src={LOGO_IMG}
+            alt="Тайны Алтая"
+            className="mx-auto mb-6 drop-shadow-2xl animate-float cursor-pointer select-none"
+            style={{ width: 'clamp(200px, 30vw, 420px)', maxWidth: '420px' }}
+            onClick={handleLogоClick}
+          />
           <h1 className="sr-only">Тайны Алтая</h1>
-          <p className="max-w-xl mx-auto text-foreground/80 text-lg mb-8">
+          <p className="max-w-xl mx-auto text-foreground/80 mb-8" style={{ fontSize: 'clamp(15px, 1.8vw, 20px)' }}>
             Шаманские маршруты, древние плато и мистические озёра. Прикоснись к легендам, что старше времён.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -198,7 +217,7 @@ export default function Index() {
             </Button>
           </div>
         </div>
-        <a href="#map" className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary animate-float">
+        <a href="#map" className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary animate-float z-10">
           <Icon name="ChevronDown" size={28} />
         </a>
       </section>
@@ -208,13 +227,13 @@ export default function Index() {
         <div className="container">
           <div className="text-center mb-12">
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Карта странствий</p>
-            <h2 className="font-display text-4xl sm:text-5xl font-semibold mb-4">Земля легенд</h2>
+            <h2 className="font-display font-semibold mb-4" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Земля легенд</h2>
             <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
 
-          <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-center">
-            <div className="relative rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-black/50 bg-[hsl(40_30%_80%)]">
-              <img src={MAP_IMG} alt="Карта Алтая" className="w-full object-contain" />
+          <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-start">
+            <div className="relative rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-black/50 bg-[hsl(40_30%_80%)]" style={{ aspectRatio: '4/3' }}>
+              <img src={MAP_IMG} alt="Карта Алтая" className="w-full h-full object-contain" />
               {landmarks.map((lm) => (
                 <button
                   key={lm.id}
@@ -237,7 +256,7 @@ export default function Index() {
                     <div className="animate-fade-in">
                       <div className="flex items-center gap-2 mb-3">
                         <Icon name="MapPin" size={20} className="text-bloodred" />
-                        <h3 className="text-2xl text-primary">{lm.name}</h3>
+                        <h3 className="font-display text-2xl text-primary">{lm.name}</h3>
                       </div>
                       <p className="text-foreground/80 leading-relaxed">{lm.desc}</p>
                     </div>
@@ -262,23 +281,20 @@ export default function Index() {
         </div>
       </section>
 
-      {/* TOURS CAROUSEL */}
+      {/* TOURS GRID */}
       <section id="tours" className="py-20 sm:py-28">
         <div className="container">
           <div className="flex items-end justify-between mb-10">
             <div>
               <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Экспедиции</p>
-              <h2 className="font-display text-4xl sm:text-5xl font-semibold">Маршруты тайн</h2>
+              <h2 className="font-display font-semibold" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Маршруты тайн</h2>
             </div>
-            <p className="hidden sm:flex items-center gap-2 text-muted-foreground text-sm">
-              <Icon name="MousePointerClick" size={16} /> листай карточки
-            </p>
           </div>
-        </div>
-        <div className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-6 sm:px-[max(1.5rem,calc((100vw-1336px)/2))] pb-4">
-          {tours.map((t) => (
-            <TourCard key={t.title} tour={t} />
-          ))}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {tours.map((t) => (
+              <TourCard key={t.title} tour={t} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -287,7 +303,7 @@ export default function Index() {
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">О проекте</p>
-            <h2 className="font-display text-4xl sm:text-5xl font-semibold mb-6">Хранители<br />алтайских легенд</h2>
+            <h2 className="font-display font-semibold mb-6" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Хранители<br />алтайских легенд</h2>
             <p className="text-foreground/80 leading-relaxed mb-4">
               «Тайны Алтая» — это не просто туры. Мы собираем предания старейшин, изучаем древние писаницы и ведём путешественников туда, где обычные карты заканчиваются.
             </p>
@@ -315,7 +331,7 @@ export default function Index() {
       {/* FAQ */}
       <section id="faq" className="py-20 sm:py-28">
         <div className="container max-w-3xl">
-          <h2 className="font-display text-4xl sm:text-5xl font-semibold text-center mb-12">Частые вопросы</h2>
+          <h2 className="font-display font-semibold text-center mb-12" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Частые вопросы</h2>
           <div className="space-y-4">
             {faqs.map((f) => (
               <div key={f.q} className="rounded-xl border border-border bg-card p-6">
@@ -335,8 +351,8 @@ export default function Index() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-primary/20 animate-glow" />
         <div className="container relative text-center max-w-2xl">
           <Icon name="PhoneCall" size={36} className="text-primary mx-auto mb-5" />
-          <h2 className="font-display text-4xl sm:text-5xl font-semibold mb-5">Консультация по туру</h2>
-          <p className="text-foreground/80 text-lg mb-8">
+          <h2 className="font-display font-semibold mb-5" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Консультация по туру</h2>
+          <p className="text-foreground/80 mb-8" style={{ fontSize: 'clamp(15px, 1.8vw, 20px)' }}>
             Расскажем о маршрутах, подберём даты и ответим на любые вопросы. Менеджер свяжется с вами в течение часа.
           </p>
           <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-10 h-14">
@@ -367,7 +383,7 @@ export default function Index() {
 
       {/* MODAL */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="bg-card border-border max-w-lg max-h-[90vh] overflow-y-auto">
+        <DialogContent className="bg-card border-border max-h-[90vh] overflow-y-auto" style={{ width: '90%', maxWidth: '500px' }}>
           <DialogHeader>
             <DialogTitle className="font-display text-3xl text-primary text-glow-gold">Оставить заявку</DialogTitle>
           </DialogHeader>
