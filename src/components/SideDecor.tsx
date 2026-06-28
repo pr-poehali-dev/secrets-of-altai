@@ -53,7 +53,7 @@ function Panel({ side, legend, img }: { side: 'left' | 'right'; legend: string; 
           }}
         >
           <span style={{ display: 'block', fontSize: 34, marginBottom: 16, filter: 'drop-shadow(0 0 8px rgba(245,197,66,0.7))' }}>
-            {side === 'left' ? '🌑' : '🌕'}
+            {side === 'left' ? '🌑' : '☀️'}
           </span>
           <p style={{
             color: 'hsl(45 40% 90%)',
