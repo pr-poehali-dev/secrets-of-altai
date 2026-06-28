@@ -156,7 +156,7 @@
   align-items: stretch;
 }
 
-/* ─── Side decor with Altai symbols (wide screens) ─── */
+/* ─── Side decor (wide screens ≥1500px) ─── */
 .side-decor {
   display: none;
   position: fixed;
@@ -174,51 +174,79 @@
   right: 0;
 }
 
+.side-decor-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
 .side-decor-symbols {
   position: absolute;
   inset: 0;
-  background-repeat: repeat-y;
-  background-size: 130% auto;
-  opacity: 0.55;
-  z-index: 1;
+  z-index: 2;
+}
+.side-decor-symbol {
+  position: absolute;
+  left: 50%;
+  color: hsl(var(--primary));
+  user-select: none;
+  line-height: 1;
+  text-shadow: 0 0 12px hsl(var(--gold) / 0.4);
+  animation-name: symbolTwinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes symbolTwinkle {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: translateX(-50%) scale(0.94);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1.06);
+  }
 }
 
 .side-decor-vignette {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 }
 .side-decor-vignette--left {
   background:
     linear-gradient(
       to bottom,
-      hsl(155 28% 14%) 0%,
-      transparent 14%,
-      transparent 86%,
-      hsl(155 28% 14%) 100%
+      hsl(155 28% 14% / 0.5) 0%,
+      transparent 22%,
+      transparent 78%,
+      hsl(155 28% 11% / 0.6) 100%
     ),
     linear-gradient(
       to right,
       transparent 0%,
-      transparent 50%,
-      hsl(155 28% 14% / 0.85) 100%
+      transparent 55%,
+      hsl(155 28% 14% / 0.5) 100%
     );
 }
 .side-decor-vignette--right {
   background:
     linear-gradient(
       to bottom,
-      hsl(155 28% 14%) 0%,
-      transparent 14%,
-      transparent 86%,
-      hsl(155 28% 14%) 100%
+      hsl(155 28% 14% / 0.5) 0%,
+      transparent 22%,
+      transparent 78%,
+      hsl(155 28% 11% / 0.6) 100%
     ),
     linear-gradient(
       to left,
       transparent 0%,
-      transparent 50%,
-      hsl(155 28% 14% / 0.85) 100%
+      transparent 55%,
+      hsl(155 28% 14% / 0.5) 100%
     );
 }
 
