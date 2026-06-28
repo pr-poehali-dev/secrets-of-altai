@@ -384,7 +384,7 @@ export default function Index() {
               src="https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/44ed9bc2-348a-4ab9-b299-b0b26d63bfe3.png"
               alt="Эмблема Тайны гор"
               className="shrink-0 drop-shadow-lg animate-float"
-              style={{ width: 'clamp(64px, 9vw, 110px)', height: 'auto' }}
+              style={{ width: 'clamp(100px, 14vw, 180px)', height: 'auto' }}
             />
             <div>
               <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Экспедиции</p>
