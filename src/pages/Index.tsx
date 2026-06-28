@@ -12,9 +12,9 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO_IMGS = [
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/c52cfbf2-6419-41e1-8b42-a4e8369fcc69.jpg',
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/fc8d0789-1348-4ecb-97d9-9a1ac0813e60.jpg',
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/5ad82dd7-1b41-4c34-87a0-175bd0f59957.jpg',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/a4542008-dc81-4ee4-8a7a-e36a001a6366.jpg',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/59745d79-3c56-4280-9167-165662f5c634.jpg',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/399d026e-9540-47a7-8ab5-eeca660f2ef9.jpg',
 ];
 const HERO_IMG = HERO_IMGS[0];
 const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';
@@ -176,12 +176,17 @@ export default function Index() {
 
       {/* HERO */}
       <section className="hero-section relative overflow-hidden">
-        {/* Background: cover, no stretch */}
-        <img
-          src={HERO_IMGS[bgIndex]}
-          alt="Горный Алтай в сумерках"
-          className="absolute inset-0 w-full h-full transition-opacity duration-1000"
-          style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+        {/* Background via CSS — guarantees cover, no stretch on any screen */}
+        <div
+          className="absolute inset-0 transition-all duration-1000"
+          style={{
+            backgroundImage: `url(${HERO_IMGS[bgIndex]})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 20%',
+            backgroundRepeat: 'no-repeat',
+            imageRendering: 'auto',
+          }}
+          aria-hidden="true"
         />
         <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
