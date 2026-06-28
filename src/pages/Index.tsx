@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-const HERO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/34bd7e24-fd3e-43d7-8eae-57cc1a1eff34.jpg';
+const HERO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/ea9b7d18-064e-4ce9-8f3c-3901fccdea31.jpg';
 const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';
 const TOUR_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/0a186228-adb5-49dd-9f7a-76ce5509bb6a.jpg';
 const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/82e4363e-4520-48ab-9564-1c624825319d.png';
