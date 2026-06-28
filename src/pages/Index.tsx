@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import HeroAtmosphere from '@/components/HeroAtmosphere';
 import SideDecor from '@/components/SideDecor';
-import RuneWhisper from '@/components/RuneWhisper';
 import FloatingRunes from '@/components/FloatingRunes';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import Icon from '@/components/ui/icon';
@@ -319,10 +318,8 @@ export default function Index() {
         <div className="site-container reveal">
           <div className="text-center mb-12">
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Карта странствий</p>
-            <h2 className="font-display font-semibold mb-4 flex items-center justify-center gap-3" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
-              <RuneWhisper rune="ᚦ" hint="Турс — руна великанов и древних сил гор" />
+            <h2 className="font-display font-semibold mb-4" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
               Земля легенд
-              <RuneWhisper rune="ᛉ" hint="Альгиз — оберег путника, защита духов" />
             </h2>
             <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
@@ -390,9 +387,8 @@ export default function Index() {
             />
             <div>
               <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Экспедиции</p>
-              <h2 className="font-display font-semibold flex items-center gap-3" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
+              <h2 className="font-display font-semibold" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
                 Маршруты «Тайна гор»
-                <RuneWhisper rune="ᚱ" hint="Райдо — руна странствий и верной дороги" />
               </h2>
             </div>
           </div>
@@ -409,9 +405,8 @@ export default function Index() {
         <div className="site-container reveal grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">О проекте</p>
-            <h2 className="font-display font-semibold mb-6 flex items-start gap-3" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
-              <span>Хранители<br />алтайских легенд</span>
-              <RuneWhisper rune="ᛟ" hint="Одал — руна рода, наследия и связи с предками" />
+            <h2 className="font-display font-semibold mb-6" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
+              Хранители<br />алтайских легенд
             </h2>
             <p className="text-foreground/80 leading-relaxed mb-4" style={{ fontSize: 'clamp(14px, 1.4vw, 17px)' }}>
               «Тайны Алтая» — это не просто туры. Мы собираем предания старейшин, изучаем древние писаницы и ведём путешественников туда, где обычные карты заканчиваются.

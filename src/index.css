@@ -169,6 +169,8 @@
   display: flex;
   align-items: center;
   animation: floatingRuneIn 0.8s ease-out;
+  pointer-events: auto;
+  cursor: help;
 }
 .floating-rune__glyph {
   color: hsl(var(--primary));
@@ -178,6 +180,10 @@
     0 0 10px hsl(var(--gold) / 0.6),
     0 0 22px hsl(var(--gold) / 0.3);
   animation: runeBreathe 3.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+.floating-rune:hover .floating-rune__glyph {
+  transform: scale(1.18);
 }
 .floating-rune__tip {
   position: absolute;
@@ -194,7 +200,11 @@
   line-height: 1.45;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
   opacity: 0;
-  animation: floatingTipIn 0.5s ease-out 0.5s forwards;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.floating-rune:hover .floating-rune__tip {
+  opacity: 1;
 }
 /* Rune near the LEFT edge → tip opens to the RIGHT */
 .floating-rune__tip--left {
@@ -215,15 +225,6 @@
     transform: translate(-50%, -50%) scale(1);
   }
 }
-@keyframes floatingTipIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 /* ─── Scroll reveal ─── */
 .reveal {
   opacity: 0;

@@ -35,11 +35,11 @@ export default function FloatingRunes() {
 
       setActive({ rune: data.rune, hint: data.hint, top, left, side });
 
-      // Hide after a while, then schedule next
+      // Stay on screen much longer, then schedule next
       timeoutId = setTimeout(() => {
         setActive(null);
-        timeoutId = setTimeout(spawn, 4000 + Math.random() * 6000);
-      }, 6000);
+        timeoutId = setTimeout(spawn, 5000 + Math.random() * 6000);
+      }, 18000);
     };
 
     timeoutId = setTimeout(spawn, 3000);
@@ -49,10 +49,12 @@ export default function FloatingRunes() {
   if (!active) return null;
 
   return (
-    <div className="floating-rune-layer" aria-hidden="true">
+    <div className="floating-rune-layer">
       <div
         className="floating-rune"
         style={{ top: `${active.top}%`, left: `${active.left}%` }}
+        title={active.hint}
+        role="note"
       >
         <span className="floating-rune__glyph">{active.rune}</span>
         <span className={`floating-rune__tip floating-rune__tip--${active.side}`}>
