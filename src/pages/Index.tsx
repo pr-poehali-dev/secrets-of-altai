@@ -11,7 +11,11 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-const HERO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/02978227-8939-41e3-899b-696c6e4bc615.jpg';
+const HERO_IMGS = [
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/02978227-8939-41e3-899b-696c6e4bc615.jpg',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/ca6202b5-4554-40e4-8e52-f5423515c62d.jpg',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/4f2474ab-defa-4784-8696-857ad778edcd.jpg',
+];
 const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';
 const TOUR_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/0a186228-adb5-49dd-9f7a-76ce5509bb6a.jpg';
 const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/82e4363e-4520-48ab-9564-1c624825319d.png';
@@ -135,6 +139,18 @@ function TourCard({ tour }: { tour: typeof tours[0] }) {
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeLandmark, setActiveLandmark] = useState<number | null>(2);
+  const [bgIndex, setBgIndex] = useState(0);
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleLogоClick = () => {
+    const next = clickCount + 1;
+    if (next >= 4) {
+      setBgIndex(i => (i + 1) % HERO_IMGS.length);
+      setClickCount(0);
+    } else {
+      setClickCount(next);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -161,13 +177,13 @@ export default function Index() {
 
       {/* HERO */}
       <section className="relative h-screen flex items-end justify-center">
-        <img src={HERO_IMG} alt="Горный Алтай в сумерках" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 30%' }} />
+        <img src={HERO_IMGS[bgIndex]} alt="Горный Алтай в сумерках" className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000" style={{ objectPosition: 'center 30%' }} />
         <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow" />
         <div className="relative z-10 text-center px-6 pb-24 animate-fade-in">
           <p className="text-primary uppercase tracking-[0.4em] text-xs mb-5">Авторские экспедиции</p>
-          <img src={LOGO_IMG} alt="Тайны Алтая" className="w-72 sm:w-[420px] mx-auto mb-6 drop-shadow-2xl animate-float" />
+          <img src={LOGO_IMG} alt="Тайны Алтая" className="w-72 sm:w-[420px] mx-auto mb-6 drop-shadow-2xl animate-float cursor-pointer select-none" onClick={handleLogоClick} />
           <h1 className="sr-only">Тайны Алтая</h1>
           <p className="max-w-xl mx-auto text-foreground/80 text-lg mb-8">
             Шаманские маршруты, древние плато и мистические озёра. Прикоснись к легендам, что старше времён.
