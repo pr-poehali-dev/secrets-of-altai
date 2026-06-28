@@ -188,12 +188,11 @@ export default function Index() {
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow pointer-events-none" />
 
         <div className="hero-content relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in">
-          <p className="text-primary uppercase tracking-[0.4em] text-xs mb-4">Авторские экспедиции</p>
           <img
             src={LOGO_IMG}
             alt="Тайны Алтая"
             className="mx-auto mb-6 drop-shadow-2xl animate-float cursor-pointer select-none"
-            style={{ width: 'clamp(160px, 28vw, 420px)', maxWidth: '420px', height: 'auto', objectFit: 'contain' }}
+            style={{ width: 'clamp(220px, 36vw, 560px)', maxWidth: '560px', height: 'auto', objectFit: 'contain' }}
             onClick={handleLogоClick}
           />
           <h1 className="sr-only">Тайны Алтая</h1>
