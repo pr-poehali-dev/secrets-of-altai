@@ -105,7 +105,7 @@ export default function Index() {
             <img
               src={LOGO_IMG}
               alt="Тайны Алтая"
-              className="w-72 sm:w-[420px] mx-auto relative z-10 animate-float mix-blend-multiply"
+              className="w-72 sm:w-[420px] mx-auto relative z-10 animate-float"
               style={{ filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.6))' }}
             />
           </div>
