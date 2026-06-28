@@ -12,9 +12,9 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO_IMGS = [
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/02978227-8939-41e3-899b-696c6e4bc615.jpg',
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/ca6202b5-4554-40e4-8e52-f5423515c62d.jpg',
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/4f2474ab-defa-4784-8696-857ad778edcd.jpg',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/c52cfbf2-6419-41e1-8b42-a4e8369fcc69.jpg',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/fc8d0789-1348-4ecb-97d9-9a1ac0813e60.jpg',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/5ad82dd7-1b41-4c34-87a0-175bd0f59957.jpg',
 ];
 const HERO_IMG = HERO_IMGS[0];
 const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';
