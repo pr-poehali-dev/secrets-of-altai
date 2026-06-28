@@ -156,6 +156,73 @@
   align-items: stretch;
 }
 
+/* ─── Side decor (wide screens ≥1500px) ─── */
+.side-decor {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: calc((100vw - 1400px) / 2);
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+.side-decor--left {
+  left: 0;
+}
+.side-decor--right {
+  right: 0;
+}
+
+.side-decor-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.side-decor-symbols {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.side-decor-symbol {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: hsl(var(--primary));
+  user-select: none;
+  line-height: 1;
+}
+
+.side-decor-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.side-decor-vignette--left {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    hsl(155 28% 14% / 0.55) 100%
+  );
+}
+.side-decor-vignette--right {
+  background: linear-gradient(
+    to left,
+    transparent 0%,
+    hsl(155 28% 14% / 0.55) 100%
+  );
+}
+
+@media (min-width: 1500px) {
+  .side-decor {
+    display: block;
+  }
+}
+
 /* ─── Hero side panels ─── */
 .hero-side-panel {
   display: none;
