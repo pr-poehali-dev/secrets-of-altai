@@ -342,18 +342,6 @@
   background-attachment: local;
 }
 
-.side-decor-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  opacity: 0.8;
-}
-
 /* Fade: transparent on outer edge, solid bg on inner edge — kills the seam */
 .side-decor-fade {
   position: absolute;
@@ -361,16 +349,18 @@
   pointer-events: none;
 }
 .side-decor-fade--left {
-  background:
-    /* uniform dark overlay */
-    rgba(12, 28, 18, 0.45),
-    /* soft blend into main content on the inner edge */
-      linear-gradient(to right, transparent 60%, hsl(155 28% 14%) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(17, 40, 25, 0) 0%,
+    hsl(155 28% 14%) 100%
+  );
 }
 .side-decor-fade--right {
-  background:
-    rgba(12, 28, 18, 0.45),
-    linear-gradient(to left, transparent 60%, hsl(155 28% 14%) 100%);
+  background: linear-gradient(
+    to left,
+    rgba(17, 40, 25, 0) 0%,
+    hsl(155 28% 14%) 100%
+  );
 }
 
 @media (min-width: 1500px) {
