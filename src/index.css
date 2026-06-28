@@ -156,11 +156,12 @@
   align-items: stretch;
 }
 
-/* ─── Side decor: fixed panels outside 1400px content ─── */
+/* ─── Side decor: absolute panels outside 1400px content ─── */
 .side-decor {
   display: none;
-  position: fixed;
-  top: 0;
+  position: absolute;
+  /* starts below the fixed header (~68px) */
+  top: 68px;
   bottom: 0;
   width: calc((100vw - 1400px) / 2);
   pointer-events: none;
@@ -179,6 +180,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  /* tall enough to cover the full page */
   height: 100%;
   object-fit: cover;
   object-position: center top;

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import HeroAtmosphere from '@/components/HeroAtmosphere';
+import SideDecor from '@/components/SideDecor';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -164,7 +165,8 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+      <SideDecor />
 
       {/* HEADER */}
       <header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-background/70 border-b border-border">
