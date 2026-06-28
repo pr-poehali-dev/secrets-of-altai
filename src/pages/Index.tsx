@@ -135,15 +135,6 @@ function TourCard({ tour }: { tour: typeof tours[0] }) {
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeLandmark, setActiveLandmark] = useState<number | null>(2);
-  const [parallax, setParallax] = useState({ x: 0, y: 0 });
-
-  const handleParallax = (e: React.MouseEvent<HTMLElement>) => {
-    const { innerWidth, innerHeight } = window;
-    setParallax({
-      x: (e.clientX / innerWidth - 0.5) * 40,
-      y: (e.clientY / innerHeight - 0.5) * 40,
-    });
-  };
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -169,14 +160,9 @@ export default function Index() {
       </header>
 
       {/* HERO */}
-      <section className="relative h-screen flex items-end justify-center" onMouseMove={handleParallax}>
-        <img
-          src={HERO_IMG}
-          alt="Горный Алтай в сумерках"
-          className="absolute inset-0 w-full h-full object-cover scale-110"
-          style={{ transform: `translate(${parallax.x * 0.3}px, ${parallax.y * 0.3}px) scale(1.1)`, transition: 'transform 0.3s ease-out' }}
-        />
-        <HeroAtmosphere offset={parallax} />
+      <section className="relative h-screen flex items-end justify-center">
+        <img src={HERO_IMG} alt="Горный Алтай в сумерках" className="absolute inset-0 w-full h-full object-cover" />
+        <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow" />
         <div className="relative z-10 text-center px-6 pb-24 animate-fade-in">
