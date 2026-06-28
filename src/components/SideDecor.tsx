@@ -56,17 +56,17 @@ function Panel({ side, legend, img }: { side: 'left' | 'right'; legend: string; 
             {side === 'left' ? (
               <span style={{ fontSize: 34, filter: 'drop-shadow(0 0 8px rgba(245,197,66,0.7))' }}>🌑</span>
             ) : (
-              <svg width="36" height="36" viewBox="0 0 36 36" style={{ display: 'inline-block', filter: 'drop-shadow(0 0 8px rgba(245,197,66,0.8))' }}>
-                <circle cx="18" cy="18" r="9" fill="#f5c542" />
-                {[0,45,90,135,180,225,270,315].map((deg, i) => (
+              <svg width="44" height="44" viewBox="0 0 44 44" style={{ display: 'inline-block', filter: 'drop-shadow(0 0 8px rgba(245,197,66,0.8))' }}>
+                <circle cx="22" cy="22" r="11" fill="#f5c542" />
+                {[0,30,60,90,120,150,180,210,240,270,300,330].map((deg, i) => (
                   <line
                     key={i}
-                    x1={18 + Math.cos(deg * Math.PI / 180) * 12}
-                    y1={18 + Math.sin(deg * Math.PI / 180) * 12}
-                    x2={18 + Math.cos(deg * Math.PI / 180) * 16}
-                    y2={18 + Math.sin(deg * Math.PI / 180) * 16}
+                    x1={22 + Math.cos(deg * Math.PI / 180) * 14}
+                    y1={22 + Math.sin(deg * Math.PI / 180) * 14}
+                    x2={22 + Math.cos(deg * Math.PI / 180) * 20}
+                    y2={22 + Math.sin(deg * Math.PI / 180) * 20}
                     stroke="#f5c542"
-                    strokeWidth="2.5"
+                    strokeWidth="3"
                     strokeLinecap="round"
                   />
                 ))}
