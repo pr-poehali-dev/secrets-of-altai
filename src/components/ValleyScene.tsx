@@ -1,21 +1,23 @@
 export default function ValleyScene() {
-  // Pine trees that sway in the wind (center-left dense forest)
-  const forest = [
-    { x: 70, y: 560, s: 1.5, c: '#16301a', d: 0 },
-    { x: 140, y: 600, s: 1.2, c: '#1d3d22', d: 0.7 },
-    { x: 30, y: 620, s: 1.7, c: '#102612', d: 1.3 },
-    { x: 210, y: 610, s: 1.1, c: '#234a28', d: 0.4 },
-    { x: 120, y: 660, s: 1.4, c: '#16301a', d: 1.0 },
-    { x: 270, y: 640, s: 1.0, c: '#1d3d22', d: 0.2 },
-    { x: 190, y: 690, s: 1.3, c: '#102612', d: 1.5 },
-    { x: 330, y: 600, s: 0.9, c: '#234a28', d: 0.9 },
-    { x: 360, y: 660, s: 1.1, c: '#16301a', d: 0.5 },
-    { x: 420, y: 630, s: 0.8, c: '#1d3d22', d: 1.2 },
-    // far thin forest line
-    { x: 300, y: 470, s: 0.5, c: '#2a4e2e', d: 0.3 },
-    { x: 360, y: 480, s: 0.45, c: '#305836', d: 0.8 },
-    { x: 420, y: 475, s: 0.5, c: '#2a4e2e', d: 1.1 },
-    { x: 480, y: 485, s: 0.45, c: '#305836', d: 0.6 },
+  // Generate fir trees with sway animation
+  const trees = [
+    // left ridge foreground
+    { x: 60, y: 540, s: 1.4, c: '#1d3a1d', d: 0 },
+    { x: 130, y: 580, s: 1.1, c: '#244a24', d: 0.6 },
+    { x: 30, y: 600, s: 1.6, c: '#162e16', d: 1.2 },
+    { x: 200, y: 600, s: 1.0, c: '#2a552a', d: 0.3 },
+    { x: 110, y: 640, s: 1.3, c: '#1d3a1d', d: 0.9 },
+    // right ridge foreground
+    { x: 1180, y: 560, s: 1.4, c: '#1d3a1d', d: 0.4 },
+    { x: 1110, y: 600, s: 1.1, c: '#244a24', d: 1.0 },
+    { x: 1230, y: 610, s: 1.5, c: '#162e16', d: 0.2 },
+    { x: 1050, y: 630, s: 1.2, c: '#2a552a', d: 0.7 },
+    { x: 1170, y: 660, s: 1.3, c: '#1d3a1d', d: 1.3 },
+    // scattered mid trees
+    { x: 350, y: 470, s: 0.7, c: '#2f5e2f', d: 0.5 },
+    { x: 420, y: 500, s: 0.6, c: '#356935', d: 1.1 },
+    { x: 870, y: 480, s: 0.7, c: '#2f5e2f', d: 0.8 },
+    { x: 940, y: 510, s: 0.6, c: '#356935', d: 0.2 },
   ];
 
   return (
@@ -27,179 +29,172 @@ export default function ValleyScene() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Twilight sky */}
-          <linearGradient id="vsky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#3a3a6e" />
-            <stop offset="40%" stopColor="#8a5a8e" />
-            <stop offset="70%" stopColor="#e09a6a" />
-            <stop offset="100%" stopColor="#f5c98a" />
+          {/* Sky gradient */}
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#bfe3f0" />
+            <stop offset="45%" stopColor="#dceef2" />
+            <stop offset="100%" stopColor="#eef6ec" />
           </linearGradient>
-          {/* Golden glow behind mountains */}
-          <radialGradient id="vglow" cx="50%" cy="75%" r="55%">
-            <stop offset="0%" stopColor="#ffe6a0" stopOpacity="0.9" />
-            <stop offset="50%" stopColor="#ffcf6a" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#ffcf6a" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="vriver" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#5fe0d8" />
-            <stop offset="100%" stopColor="#2a9aa0" />
+          {/* River gradient */}
+          <linearGradient id="river" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#7fd4d8" />
+            <stop offset="100%" stopColor="#3a9aa8" />
           </linearGradient>
-          <linearGradient id="vRidgeL" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#2e4a30" />
-            <stop offset="100%" stopColor="#162c18" />
+          {/* Mountain shades */}
+          <linearGradient id="ridgeLeft" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#4a6e3a" />
+            <stop offset="100%" stopColor="#2e4a24" />
           </linearGradient>
-          <linearGradient id="vRidgeR" x1="1" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#6a5a6e" />
-            <stop offset="100%" stopColor="#3a2c44" />
+          <linearGradient id="ridgeRight" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#5a7a44" />
+            <stop offset="100%" stopColor="#3a5a2c" />
           </linearGradient>
-          <linearGradient id="vFar" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#9a8ab0" />
-            <stop offset="100%" stopColor="#6a6a90" />
+          <linearGradient id="farMtn" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#8fb0c0" />
+            <stop offset="100%" stopColor="#6a8a9a" />
           </linearGradient>
-          <linearGradient id="vRoad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#d6b078" />
-            <stop offset="100%" stopColor="#a07840" />
+          {/* Waterfall */}
+          <linearGradient id="fall" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#eaffff" />
+            <stop offset="100%" stopColor="#9fe0e6" />
           </linearGradient>
-          <filter id="vsoft"><feGaussianBlur stdDeviation="3" /></filter>
         </defs>
 
         {/* SKY */}
-        <rect width="1280" height="720" fill="url(#vsky)" />
-        <rect width="1280" height="720" fill="url(#vglow)" />
+        <rect width="1280" height="720" fill="url(#sky)" />
 
-        {/* Drifting twilight clouds */}
-        <g opacity="0.8">
-          <ellipse cx="280" cy="90" rx="110" ry="20" fill="#f5b88a">
-            <animate attributeName="cx" values="-120;1400" dur="55s" repeatCount="indefinite" />
+        {/* Drifting clouds */}
+        <g opacity="0.85">
+          <ellipse cx="300" cy="80" rx="90" ry="22" fill="#ffffff">
+            <animate attributeName="cx" values="300;340;300" dur="22s" repeatCount="indefinite" />
           </ellipse>
-          <ellipse cx="700" cy="60" rx="80" ry="16" fill="#f5cf9a">
-            <animate attributeName="cx" values="-200;1480" dur="70s" repeatCount="indefinite" />
+          <ellipse cx="950" cy="60" rx="70" ry="18" fill="#ffffff">
+            <animate attributeName="cx" values="950;910;950" dur="26s" repeatCount="indefinite" />
           </ellipse>
-          <ellipse cx="1000" cy="120" rx="90" ry="18" fill="#e8a87a" opacity="0.7">
-            <animate attributeName="cx" values="-300;1580" dur="62s" repeatCount="indefinite" />
+          <ellipse cx="640" cy="110" rx="60" ry="15" fill="#ffffff" opacity="0.7">
+            <animate attributeName="cx" values="640;680;640" dur="30s" repeatCount="indefinite" />
           </ellipse>
         </g>
 
-        {/* FAR MOUNTAIN RANGES in mist */}
-        <path d="M380 230 L470 150 L540 210 L620 130 L710 200 L800 150 L860 230 L860 360 L380 360 Z" fill="url(#vFar)" opacity="0.55" />
-        <path d="M420 270 L520 200 L600 260 L690 210 L780 270 L780 360 L420 360 Z" fill="#8a82a8" opacity="0.5" />
-        {/* Mist between layers */}
-        <rect x="380" y="300" width="480" height="60" fill="#cabbd8" opacity="0.3" filter="url(#vsoft)">
-          <animate attributeName="opacity" values="0.2;0.4;0.2" dur="8s" repeatCount="indefinite" />
-        </rect>
+        {/* FAR MOUNTAINS in canyon gap */}
+        <path d="M430 150 L500 70 L560 130 L620 60 L700 120 L760 80 L830 160 L830 320 L430 320 Z" fill="url(#farMtn)" opacity="0.8" />
+        <path d="M470 200 L540 130 L610 190 L690 140 L770 200 L770 320 L470 320 Z" fill="#7a9aaa" opacity="0.7" />
 
-        {/* RIGHT massive snowy mountain */}
-        <path d="M1280 90 L1130 50 L980 160 L860 320 L820 460 L820 720 L1280 720 Z" fill="url(#vRidgeR)" />
-        {/* Snow cap */}
-        <path d="M1130 50 L1080 120 L1110 130 L1150 95 L1190 140 L1220 110 L1170 70 Z" fill="#f4f0ff" opacity="0.95" />
-        <path d="M1130 50 L1100 95 L1130 105 L1160 80 Z" fill="#d8d0ee" opacity="0.7" />
-        {/* Rock facets */}
-        <path d="M980 160 L860 320 L920 340 L1020 220 Z" fill="#4a3a52" opacity="0.5" />
+        {/* LEFT RIDGE */}
+        <path d="M0 80 L120 60 L260 140 L380 260 L460 380 L480 720 L0 720 Z" fill="url(#ridgeLeft)" />
+        {/* Left ridge shadow facets */}
+        <path d="M0 80 L120 60 L260 140 L300 260 L180 300 L60 220 Z" fill="#3a5a2e" opacity="0.5" />
+        <path d="M380 260 L460 380 L480 720 L380 720 Z" fill="#1e3618" opacity="0.6" />
 
-        {/* Hidden Bill Cipher symbol carved on rock (right) */}
-        <g opacity="0.35" transform="translate(1090,430)">
-          <polygon points="0,-22 -20,16 20,16" fill="none" stroke="#f5c542" strokeWidth="2" />
-          <circle cx="0" cy="2" r="5" fill="none" stroke="#f5c542" strokeWidth="1.5" />
-          <circle cx="0" cy="2" r="1.5" fill="#f5c542" />
-          <line x1="-10" y1="-4" x2="-4" y2="-2" stroke="#f5c542" strokeWidth="1" />
-          <line x1="10" y1="-4" x2="4" y2="-2" stroke="#f5c542" strokeWidth="1" />
-          <animate attributeName="opacity" values="0.2;0.5;0.2" dur="6s" repeatCount="indefinite" />
+        {/* RIGHT RIDGE */}
+        <path d="M1280 80 L1160 60 L1000 150 L860 300 L800 420 L800 720 L1280 720 Z" fill="url(#ridgeRight)" />
+        <path d="M1280 80 L1160 60 L1000 150 L1060 280 L1200 240 Z" fill="#4a6a38" opacity="0.5" />
+
+        {/* Right mountain switchback road (заезд на гору) */}
+        <g stroke="#d8cda8" strokeWidth="5" fill="none" strokeLinecap="round" opacity="0.85">
+          <path d="M860 660 L1010 560 L900 510 L1040 440 L940 400 L1080 340 L1000 300 L1120 250" />
+        </g>
+        <g stroke="#b8a878" strokeWidth="1.5" fill="none" opacity="0.5">
+          <path d="M860 660 L1010 560 L900 510 L1040 440 L940 400 L1080 340 L1000 300 L1120 250" />
         </g>
 
-        {/* LEFT ridge with forest */}
-        <path d="M0 100 L130 70 L280 160 L400 300 L470 440 L490 720 L0 720 Z" fill="url(#vRidgeL)" />
-        <path d="M0 100 L130 70 L280 160 L300 280 L160 320 L40 230 Z" fill="#1e3a22" opacity="0.5" />
+        {/* VALLEY FLOOR */}
+        <path d="M460 380 L560 320 L720 320 L800 420 L800 720 L480 720 Z" fill="#5a7a3a" />
+        <path d="M480 400 L580 350 L700 350 L760 430 L760 720 L500 720 Z" fill="#6a8a44" opacity="0.6" />
 
-        {/* VALLEY floor */}
-        <path d="M470 440 L580 360 L740 360 L820 460 L820 720 L490 720 Z" fill="#3a5a2e" />
-        <path d="M500 470 L600 400 L720 400 L770 480 L770 720 L520 720 Z" fill="#4a6e38" opacity="0.6" />
-
-        {/* WINDING ROAD up the right slope */}
+        {/* RIVER with flowing animation */}
         <g>
+          {/* River body */}
           <path
-            d="M780 700 Q900 640 1000 600 Q920 560 1010 520 Q940 480 1050 440 Q980 400 1080 360 Q1020 330 1110 290"
-            fill="none" stroke="url(#vRoad)" strokeWidth="14" strokeLinecap="round"
+            d="M610 300 Q600 360 640 420 Q680 480 650 540 Q620 600 660 680 L700 720 L600 720 Q570 620 590 540 Q610 460 580 400 Q560 350 580 300 Z"
+            fill="url(#river)"
           />
-          <path
-            d="M780 700 Q900 640 1000 600 Q920 560 1010 520 Q940 480 1050 440 Q980 400 1080 360 Q1020 330 1110 290"
-            fill="none" stroke="#c8a868" strokeWidth="2" strokeDasharray="6 10" strokeLinecap="round" opacity="0.6"
-          />
-          {/* Road dust particles */}
-          {[[850,660],[960,590],[1000,510],[1060,430]].map(([x,y],i)=>(
-            <circle key={i} cx={x} cy={y} r="3" fill="#e8d8b0">
-              <animate attributeName="cy" values={`${y};${y-20}`} dur={`${2+i*0.4}s`} repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0.6;0;0.6" dur={`${2+i*0.4}s`} repeatCount="indefinite" />
+          {/* Flowing current lines */}
+          <g stroke="#d8f8fa" strokeWidth="3" fill="none" opacity="0.7" strokeLinecap="round">
+            <path d="M615 320 Q605 380 645 440 Q685 500 655 560 Q625 620 665 700">
+              <animate attributeName="stroke-dashoffset" values="0;-40" dur="1.2s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" />
+            </path>
+          </g>
+          <g stroke="#ffffff" strokeWidth="2" strokeDasharray="12 18" fill="none" opacity="0.6" strokeLinecap="round">
+            <path d="M600 340 Q592 400 630 460 Q668 520 640 580 Q612 640 650 715">
+              <animate attributeName="stroke-dashoffset" values="0;-60" dur="1.5s" repeatCount="indefinite" />
+            </path>
+            <path d="M630 340 Q622 400 660 460 Q698 520 670 580 Q642 640 680 715">
+              <animate attributeName="stroke-dashoffset" values="0;-60" dur="1.8s" repeatCount="indefinite" />
+            </path>
+          </g>
+          {/* River foam sparkles */}
+          {[[620,400],[645,470],[635,540],[655,610]].map(([x,y],i)=>(
+            <circle key={i} cx={x} cy={y} r="2.5" fill="#ffffff">
+              <animate attributeName="opacity" values="0;1;0" dur={`${1.5+i*0.3}s`} repeatCount="indefinite" begin={`${i*0.4}s`} />
             </circle>
           ))}
         </g>
 
-        {/* RIVER turquoise with rapids */}
+        {/* WATERFALL on right cliff */}
         <g>
-          <path d="M620 360 Q605 430 645 500 Q690 570 655 640 Q635 690 670 720 L590 720 Q560 650 585 580 Q615 510 580 450 Q565 405 590 360 Z" fill="url(#vriver)" />
-          {/* Moving current streaks */}
-          <g stroke="#eafffe" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.75">
-            <path d="M615 380 Q600 450 640 520 Q685 590 650 660 Q632 695 660 720" strokeDasharray="16 20">
-              <animate attributeName="stroke-dashoffset" values="0;-72" dur="1.1s" repeatCount="indefinite" />
-            </path>
-            <path d="M598 380 Q585 450 622 520 Q662 590 632 660" strokeDasharray="10 24">
-              <animate attributeName="stroke-dashoffset" values="0;-68" dur="1.4s" repeatCount="indefinite" />
-            </path>
-            <path d="M635 380 Q622 450 660 520 Q700 590 668 660" strokeDasharray="12 22">
-              <animate attributeName="stroke-dashoffset" values="0;-68" dur="0.9s" repeatCount="indefinite" />
-            </path>
+          {/* Falling water */}
+          <path d="M1020 320 Q1018 420 1024 520 L1044 520 Q1050 420 1048 320 Z" fill="url(#fall)" opacity="0.9" />
+          {/* Animated streaks */}
+          <g stroke="#ffffff" strokeWidth="2.5" fill="none" opacity="0.8" strokeLinecap="round">
+            <line x1="1026" y1="320" x2="1026" y2="520" strokeDasharray="14 22">
+              <animate attributeName="stroke-dashoffset" values="0;-72" dur="0.7s" repeatCount="indefinite" />
+            </line>
+            <line x1="1034" y1="320" x2="1034" y2="520" strokeDasharray="10 26">
+              <animate attributeName="stroke-dashoffset" values="0;-72" dur="0.55s" repeatCount="indefinite" />
+            </line>
+            <line x1="1042" y1="320" x2="1042" y2="520" strokeDasharray="14 22">
+              <animate attributeName="stroke-dashoffset" values="0;-72" dur="0.8s" repeatCount="indefinite" />
+            </line>
           </g>
-          {/* White rapids foam */}
-          {[[615,420],[645,490],[632,560],[660,630],[640,680]].map(([x,y],i)=>(
-            <ellipse key={i} cx={x} cy={y} rx="6" ry="3" fill="#ffffff">
-              <animate attributeName="opacity" values="0;0.9;0" dur={`${1.2+i*0.25}s`} repeatCount="indefinite" begin={`${i*0.3}s`} />
-              <animate attributeName="rx" values="3;8;3" dur={`${1.2+i*0.25}s`} repeatCount="indefinite" begin={`${i*0.3}s`} />
-            </ellipse>
+          {/* Splash pool */}
+          <ellipse cx="1034" cy="528" rx="26" ry="8" fill="#dffafa" opacity="0.8">
+            <animate attributeName="rx" values="22;30;22" dur="1.2s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.5;0.9;0.5" dur="1.2s" repeatCount="indefinite" />
+          </ellipse>
+          {/* Mist particles */}
+          {[0,1,2,3].map(i=>(
+            <circle key={i} cx={1024+i*7} cy={520} r="3" fill="#ffffff">
+              <animate attributeName="cy" values="520;505;520" dur={`${1.4+i*0.2}s`} repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.8;0;0.8" dur={`${1.4+i*0.2}s`} repeatCount="indefinite" />
+            </circle>
           ))}
         </g>
 
-        {/* SWAYING FOREST */}
-        {forest.map((t, i) => (
-          <g key={i} transform={`translate(${t.x},${t.y}) scale(${t.s})`}>
-            <g>
+        {/* SWAYING FIR TREES */}
+        {trees.map((t, i) => (
+          <g key={i} transform={`translate(${t.x},${t.y}) scale(${t.s})`} style={{ transformOrigin: 'bottom' }}>
+            <g style={{ transformBox: 'fill-box', transformOrigin: 'bottom center' }}>
               <animateTransform
                 attributeName="transform"
                 attributeType="XML"
                 type="rotate"
-                values="-2.5 0 50; 2.5 0 50; -2.5 0 50"
-                dur={`${4 + (i % 4)}s`}
+                values="-2 0 50; 2 0 50; -2 0 50"
+                dur={`${4 + (i % 3)}s`}
                 begin={`${t.d}s`}
                 repeatCount="indefinite"
+                additive="sum"
               />
-              <rect x="-3" y="42" width="6" height="16" fill="#3a2410" />
-              <polygon points="0,-54 -20,2 20,2" fill={t.c} />
-              <polygon points="0,-36 -23,14 23,14" fill={t.c} />
-              <polygon points="0,-16 -26,30 26,30" fill={t.c} />
-              <polygon points="0,-54 -20,2 0,2" fill="#000" opacity="0.15" />
+              <rect x="-3" y="44" width="6" height="14" fill="#5a3a1a" />
+              <polygon points="0,-52 -20,0 20,0" fill={t.c} />
+              <polygon points="0,-36 -22,12 22,12" fill={t.c} />
+              <polygon points="0,-18 -24,28 24,28" fill={t.c} />
+              <polygon points="0,-52 -20,0 0,0" fill="#000" opacity="0.12" />
             </g>
           </g>
         ))}
 
-        {/* WIND streaks left to right */}
-        <g stroke="#ffffff" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.4">
-          {[180, 320, 450].map((y, i) => (
-            <path key={i} d={`M-60 ${y} q40 -12 80 0 q40 12 80 0`}>
-              <animateTransform attributeName="transform" type="translate" values="0 0; 1500 0" dur={`${7 + i * 2}s`} begin={`${i * 2.5}s`} repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0;0.5;0" dur={`${7 + i * 2}s`} begin={`${i * 2.5}s`} repeatCount="indefinite" />
-            </path>
-          ))}
+        {/* Foreground darkening + bottom fade */}
+        <rect width="1280" height="720" fill="url(#vignette)" opacity="0" />
+        <rect x="0" y="600" width="1280" height="120" fill="#0a160a" opacity="0.35" />
+
+        {/* Birds */}
+        <g stroke="#2a3a2a" strokeWidth="2" fill="none" opacity="0.5">
+          <path d="M380 130 q8 -8 16 0 q8 -8 16 0">
+            <animateTransform attributeName="transform" type="translate" values="0 0; 400 -30; 800 10" dur="20s" repeatCount="indefinite" />
+          </path>
         </g>
-
-        {/* GLOWING FIREFLIES near river */}
-        {[[560,560],[700,600],[600,640],[680,520],[640,680],[720,560],[580,500]].map(([x,y],i)=>(
-          <circle key={i} cx={x} cy={y} r="2.5" fill="#fff0a0">
-            <animate attributeName="cy" values={`${y};${y-40};${y}`} dur={`${5+i}s`} repeatCount="indefinite" begin={`${i*0.6}s`} />
-            <animate attributeName="opacity" values="0;1;0" dur={`${3+i*0.4}s`} repeatCount="indefinite" begin={`${i*0.5}s`} />
-            <animate attributeName="r" values="1.5;3;1.5" dur={`${3+i*0.4}s`} repeatCount="indefinite" begin={`${i*0.5}s`} />
-          </circle>
-        ))}
-
-        {/* Bottom fade for text readability */}
-        <rect x="0" y="560" width="1280" height="160" fill="#0a160a" opacity="0.4" />
       </svg>
     </div>
   );
