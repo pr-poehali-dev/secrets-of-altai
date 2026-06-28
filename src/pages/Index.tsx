@@ -129,11 +129,29 @@ function TourCard({ tour }: { tour: typeof tours[0] }) {
   );
 }
 
+const legends = [
+  { symbol: '△', title: 'Врата Шамбалы', text: 'Рерих верил: у подножия Белухи скрыт вход в Шамбалу. Восходящие видят необъяснимое свечение — гора наблюдает за каждым шагом.' },
+  { symbol: '☽', title: 'Голоса предков', text: 'В полнолуние на тропе шамана слышны голоса. Старейшины клянутся: огни над хребтом появляются каждый год в одну и ту же ночь.' },
+  { symbol: '👁', title: 'Алтайская принцесса', text: 'Мумия найдена на плато Укок в 1993 году. Шаманы говорили: её потревожили — и земля содрогнулась. Дух хранит покой плато.' },
+  { symbol: '⟡', title: 'Компасы молчат', text: 'В долине Чулышман компасы теряют ориентацию. Местные проводники ходят по звёздам — приборы здесь бесполезны.' },
+  { symbol: '★', title: 'Золотое озеро', text: 'Телецкое озеро — Алтын-Кёль. На его дне, по преданию, лежат сокровища скифов. Духи воды не подпускают водолазов.' },
+];
+
+const stories = [
+  { symbol: '🌲', title: 'Кедровый лес', text: 'Алтайские кедры живут тысячу лет. Охотники говорят: в старых рощах деревья переговариваются ночью — слышен тихий гул без ветра.' },
+  { symbol: '🔥', title: 'Огонь кочевников', text: 'Традиция жечь костёр на перевале жива по сей день. Каждый путник бросает в огонь ветку — просит у гор прохода и защиты.' },
+  { symbol: '△', title: 'Курганы скифов', text: 'Плато Укок усеяно древними захоронениями. Археологи находят золото, оружие и татуированные мумии в идеальной сохранности.' },
+  { symbol: '☽', title: 'Лунный маршрут', text: 'Раз в год в ночь полнолуния гиды ведут особый маршрут без фонарей. Только луна, горы и тишина, в которой слышен собственный пульс.' },
+  { symbol: '⟡', title: 'Петроглифы', text: 'Наскальные рисунки Алтая насчитывают 10 000 лет. Многие изображения до сих пор не расшифрованы — учёные спорят об их смысле.' },
+];
+
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeLandmark, setActiveLandmark] = useState<number | null>(2);
   const [bgIndex, setBgIndex] = useState(0);
   const [clickCount, setClickCount] = useState(0);
+  const [legendIdx, setLegendIdx] = useState(0);
+  const [storyIdx, setStoryIdx] = useState(0);
 
   const handleLogоClick = () => {
     const next = clickCount + 1;
@@ -186,6 +204,68 @@ export default function Index() {
         <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow pointer-events-none" />
+
+        {/* LEFT PANEL — Legends (desktop only) */}
+        <div className="hero-side-panel hero-side-panel--left">
+          <div className="hero-side-inner">
+            <p className="text-primary uppercase tracking-[0.3em] text-[10px] mb-3 font-body">Легенды гор</p>
+            <div className="hero-side-card animate-fade-in" key={legendIdx}>
+              <span className="text-2xl mb-2 block">{legends[legendIdx].symbol}</span>
+              <h4 className="font-display text-primary text-lg mb-2 leading-tight">{legends[legendIdx].title}</h4>
+              <p className="text-foreground/75 text-sm leading-relaxed">{legends[legendIdx].text}</p>
+            </div>
+            <div className="flex items-center justify-between mt-4">
+              <button
+                onClick={() => setLegendIdx(i => (i - 1 + legends.length) % legends.length)}
+                className="text-primary/60 hover:text-primary transition-colors p-1"
+              >
+                <Icon name="ChevronLeft" size={18} />
+              </button>
+              <div className="flex gap-1">
+                {legends.map((_, i) => (
+                  <span key={i} className={`block rounded-full transition-all ${i === legendIdx ? 'w-4 h-1.5 bg-primary' : 'w-1.5 h-1.5 bg-primary/30'}`} />
+                ))}
+              </div>
+              <button
+                onClick={() => setLegendIdx(i => (i + 1) % legends.length)}
+                className="text-primary/60 hover:text-primary transition-colors p-1"
+              >
+                <Icon name="ChevronRight" size={18} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT PANEL — Stories (desktop only) */}
+        <div className="hero-side-panel hero-side-panel--right">
+          <div className="hero-side-inner">
+            <p className="text-primary uppercase tracking-[0.3em] text-[10px] mb-3 font-body">Истории</p>
+            <div className="hero-side-card animate-fade-in" key={storyIdx}>
+              <span className="text-2xl mb-2 block">{stories[storyIdx].symbol}</span>
+              <h4 className="font-display text-primary text-lg mb-2 leading-tight">{stories[storyIdx].title}</h4>
+              <p className="text-foreground/75 text-sm leading-relaxed">{stories[storyIdx].text}</p>
+            </div>
+            <div className="flex items-center justify-between mt-4">
+              <button
+                onClick={() => setStoryIdx(i => (i - 1 + stories.length) % stories.length)}
+                className="text-primary/60 hover:text-primary transition-colors p-1"
+              >
+                <Icon name="ChevronLeft" size={18} />
+              </button>
+              <div className="flex gap-1">
+                {stories.map((_, i) => (
+                  <span key={i} className={`block rounded-full transition-all ${i === storyIdx ? 'w-4 h-1.5 bg-primary' : 'w-1.5 h-1.5 bg-primary/30'}`} />
+                ))}
+              </div>
+              <button
+                onClick={() => setStoryIdx(i => (i + 1) % stories.length)}
+                className="text-primary/60 hover:text-primary transition-colors p-1"
+              >
+                <Icon name="ChevronRight" size={18} />
+              </button>
+            </div>
+          </div>
+        </div>
 
         <div className="hero-content relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in">
           <img
