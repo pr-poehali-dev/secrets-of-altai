@@ -214,7 +214,7 @@ export default function Index() {
 
         {/* LEFT PANEL — Legends (desktop only) */}
         <div className="hero-side-panel hero-side-panel--left">
-          <div className="hero-side-inner hero-side-inner--left">
+          <div className="hero-side-inner">
             <p className="text-primary uppercase tracking-[0.3em] text-[10px] mb-3 font-body">Легенды гор</p>
             <div className="hero-side-card animate-fade-in" key={legendIdx}>
               <span className="text-2xl mb-2 block">{legends[legendIdx].symbol}</span>
@@ -245,7 +245,7 @@ export default function Index() {
 
         {/* RIGHT PANEL — Stories (desktop only) */}
         <div className="hero-side-panel hero-side-panel--right">
-          <div className="hero-side-inner hero-side-inner--right">
+          <div className="hero-side-inner">
             <p className="text-primary uppercase tracking-[0.3em] text-[10px] mb-3 font-body">Истории</p>
             <div className="hero-side-card animate-fade-in" key={storyIdx}>
               <span className="text-2xl mb-2 block">{stories[storyIdx].symbol}</span>
