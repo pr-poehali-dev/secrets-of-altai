@@ -31,6 +31,16 @@ export default function HeroAtmosphere() {
     sway: i % 2 === 0 ? 6 : -5,
   }));
 
+  // Golden floating dust covering the whole hero
+  const dust = Array.from({ length: 40 }, (_, i) => ({
+    left: `${(i * 17 + 3) % 100}%`,
+    top: `${(i * 29 + 7) % 100}%`,
+    size: 1 + (i % 3) * 0.8,
+    dur: 7 + (i % 6) * 2,
+    delay: (i % 9) * 0.9,
+    drift: i % 2 === 0 ? 10 : -8,
+  }));
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
 
@@ -90,6 +100,24 @@ export default function HeroAtmosphere() {
         ))}
       </div>
 
+      {/* Golden floating dust */}
+      {dust.map((d, i) => (
+        <span
+          key={`dust-${i}`}
+          className="absolute rounded-full"
+          style={{
+            left: d.left,
+            top: d.top,
+            width: d.size,
+            height: d.size,
+            background: 'rgba(245, 210, 130, 0.8)',
+            boxShadow: '0 0 4px 1px rgba(245,197,66,0.5)',
+            ['--ddrift' as string]: `${d.drift}px`,
+            animation: `dustFloat ${d.dur}s ease-in-out ${d.delay}s infinite`,
+          }}
+        />
+      ))}
+
       {/* Fireflies */}
       {fireflies.map((f, i) => (
         <span
@@ -132,6 +160,13 @@ export default function HeroAtmosphere() {
           0%, 100% { transform: rotate(0deg); }
           30% { transform: rotate(var(--sway)); }
           60% { transform: rotate(calc(var(--sway) * -0.5)); }
+        }
+        @keyframes dustFloat {
+          0% { opacity: 0; transform: translate(0, 0); }
+          20% { opacity: 0.7; }
+          50% { opacity: 0.9; transform: translate(var(--ddrift), -18px); }
+          80% { opacity: 0.6; }
+          100% { opacity: 0; transform: translate(0, -36px); }
         }
       `}</style>
     </div>
