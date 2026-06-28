@@ -227,12 +227,7 @@ export default function Index() {
           style={{ boxShadow: 'inset 0 0 200px 60px hsl(155 30% 6% / 0.75)' }}
         />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow pointer-events-none" />
-        {/* Time-of-day badge */}
-        <div className="absolute top-24 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
-          <span className="text-primary/70 text-xs tracking-[0.3em] uppercase font-body transition-all duration-1000">
-            {TIME_LABEL[timeOfDay]}
-          </span>
-        </div>
+
 
         {/* LEFT PANEL — Legends (desktop only) */}
         <div className="hero-side-panel hero-side-panel--left">
