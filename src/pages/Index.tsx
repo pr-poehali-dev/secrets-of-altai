@@ -13,7 +13,7 @@ import {
 const HERO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/34bd7e24-fd3e-43d7-8eae-57cc1a1eff34.jpg';
 const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';
 const TOUR_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/0a186228-adb5-49dd-9f7a-76ce5509bb6a.jpg';
-const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a0866a50-0f76-46ef-9457-7044cf4ad0f9.png';
+const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/82e4363e-4520-48ab-9564-1c624825319d.png';
 
 const landmarks = [
   { id: 1, name: 'Гора Белуха', x: 50, y: 48, desc: 'Священная вершина, обитель богини Умай. Высочайшая точка Сибири — 4509 м.' },
