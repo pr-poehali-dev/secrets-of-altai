@@ -324,7 +324,7 @@
   bottom: auto;
   width: calc((100vw - 1400px) / 2);
   pointer-events: auto;
-  z-index: 1;
+  z-index: 30;
   overflow: hidden;
   cursor: default;
 }
