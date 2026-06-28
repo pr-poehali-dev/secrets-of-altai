@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AltaiBg from '@/components/AltaiBg';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -138,10 +139,10 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* HEADER */}
-      <header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-background/70 border-b border-border">
+      <header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-[#0d1f14]/80 border-b border-white/10">
         <div className="container flex items-center justify-between py-3">
           <a href="#" className="flex items-center gap-3 group">
-            <img src={LOGO_IMG} alt="Тайны Алтая" className="h-12 w-auto object-contain drop-shadow-lg transition-transform group-hover:scale-105" />
+            <img src={LOGO_IMG} alt="Тайны Алтая" className="h-12 w-auto object-contain transition-transform group-hover:scale-105" style={{ mixBlendMode: 'multiply', filter: 'contrast(1.05) saturate(1.1)' }} />
             <span className="hidden sm:block font-display text-base text-foreground/70 leading-tight max-w-[140px]">
               Мистические экспедиции по Горному Алтаю
             </span>
@@ -159,27 +160,34 @@ export default function Index() {
       </header>
 
       {/* HERO */}
-      <section className="relative h-screen flex items-end justify-center">
-        <img src={HERO_IMG} alt="Горный Алтай в сумерках" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow" />
+      <section className="relative h-screen flex items-end justify-center overflow-hidden">
+        <AltaiBg />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0d1f14]/80 pointer-events-none" />
         <div className="relative z-10 text-center px-6 pb-24 animate-fade-in">
-          <p className="text-primary uppercase tracking-[0.4em] text-xs mb-5">Авторские экспедиции</p>
-          <img src={LOGO_IMG} alt="Тайны Алтая" className="w-72 sm:w-[420px] mx-auto mb-6 drop-shadow-2xl animate-float" />
+          <p className="text-[#f0d878] uppercase tracking-[0.4em] text-xs mb-4 drop-shadow font-semibold">Авторские экспедиции</p>
+          <div className="relative inline-block mb-6">
+            <div className="absolute inset-0 rounded-full bg-[#f0d878]/10 blur-3xl scale-150 animate-glow" />
+            <img
+              src={LOGO_IMG}
+              alt="Тайны Алтая"
+              className="w-64 sm:w-[380px] mx-auto relative z-10 animate-float"
+              style={{ mixBlendMode: 'multiply', filter: 'contrast(1.05) saturate(1.1)' }}
+            />
+          </div>
           <h1 className="sr-only">Тайны Алтая</h1>
-          <p className="max-w-xl mx-auto text-foreground/80 text-lg mb-8">
-            Шаманские маршруты, древние плато и мистические озёра. Прикоснись к легендам, что старше времён.
+          <p className="max-w-xl mx-auto text-white/90 text-lg mb-8 drop-shadow-md">
+            Шаманские маршруты, древние плато и мистические озёра.<br/>Прикоснись к легендам, что старше времён.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8">
+            <Button size="lg" onClick={() => setModalOpen(true)} className="bg-[#c8a030] text-[#1a2a10] hover:bg-[#d4b040] font-bold text-base px-8 shadow-lg">
               <Icon name="Compass" size={18} /> Выбрать маршрут
             </Button>
-            <Button size="lg" variant="outline" asChild className="border-primary/40 text-foreground hover:bg-primary/10 text-base px-8">
+            <Button size="lg" variant="outline" asChild className="border-white/40 text-white hover:bg-white/10 text-base px-8 backdrop-blur-sm">
               <a href="#map"><Icon name="Map" size={18} /> Открыть карту</a>
             </Button>
           </div>
         </div>
-        <a href="#map" className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary animate-float">
+        <a href="#map" className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[#f0d878] animate-float z-10">
           <Icon name="ChevronDown" size={28} />
         </a>
       </section>
