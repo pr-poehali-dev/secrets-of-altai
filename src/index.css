@@ -335,16 +335,11 @@
   right: 0;
 }
 
-.side-decor-img {
+.side-decor-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  opacity: 0.18;
+  inset: 0;
+  opacity: 0.55;
+  background-attachment: local;
 }
 
 /* Fade: transparent on outer edge, solid bg on inner edge — kills the seam */
