@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const RUNES = [
   { rune: 'ᚦ', hint: 'Турс — руна великанов и древних сил гор' },
@@ -21,30 +21,60 @@ type ActiveRune = {
 
 export default function FloatingRunes() {
   const [active, setActive] = useState<ActiveRune | null>(null);
+  const hoveredRef = useRef(false);
+  const dismissRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const spawnRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const scheduleNext = () => {
+    spawnRef.current = setTimeout(spawn, 5000 + Math.random() * 6000);
+  };
+
+  const scheduleDismiss = () => {
+    dismissRef.current = setTimeout(() => {
+      // Only hide if user isn't hovering
+      if (!hoveredRef.current) {
+        setActive(null);
+        scheduleNext();
+      } else {
+        // Keep checking every second until mouse leaves
+        dismissRef.current = setTimeout(() => scheduleDismiss(), 1000);
+      }
+    }, 18000);
+  };
+
+  const spawn = () => {
+    const data = RUNES[Math.floor(Math.random() * RUNES.length)];
+    const side: 'left' | 'right' = Math.random() < 0.5 ? 'left' : 'right';
+    const edgePct = 3 + Math.random() * 9;
+    const left = side === 'left' ? edgePct : 100 - edgePct;
+    const top = 18 + Math.random() * 64;
+
+    setActive({ rune: data.rune, hint: data.hint, top, left, side });
+    scheduleDismiss();
+  };
 
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-
-    const spawn = () => {
-      const data = RUNES[Math.floor(Math.random() * RUNES.length)];
-      // Pick a safe band near the left or right edge (avoids central content)
-      const side: 'left' | 'right' = Math.random() < 0.5 ? 'left' : 'right';
-      const edgePct = 3 + Math.random() * 9; // 3%–12% from edge
-      const left = side === 'left' ? edgePct : 100 - edgePct;
-      const top = 18 + Math.random() * 64; // 18%–82% vertically
-
-      setActive({ rune: data.rune, hint: data.hint, top, left, side });
-
-      // Stay on screen much longer, then schedule next
-      timeoutId = setTimeout(() => {
-        setActive(null);
-        timeoutId = setTimeout(spawn, 5000 + Math.random() * 6000);
-      }, 18000);
+    spawnRef.current = setTimeout(spawn, 3000);
+    return () => {
+      if (spawnRef.current) clearTimeout(spawnRef.current);
+      if (dismissRef.current) clearTimeout(dismissRef.current);
     };
-
-    timeoutId = setTimeout(spawn, 3000);
-    return () => clearTimeout(timeoutId);
   }, []);
+
+  const handleMouseEnter = () => {
+    hoveredRef.current = true;
+    // Cancel pending dismiss while hovered
+    if (dismissRef.current) clearTimeout(dismissRef.current);
+  };
+
+  const handleMouseLeave = () => {
+    hoveredRef.current = false;
+    // Dismiss shortly after mouse leaves
+    dismissRef.current = setTimeout(() => {
+      setActive(null);
+      scheduleNext();
+    }, 2000);
+  };
 
   if (!active) return null;
 
@@ -53,8 +83,9 @@ export default function FloatingRunes() {
       <div
         className="floating-rune"
         style={{ top: `${active.top}%`, left: `${active.left}%` }}
-        title={active.hint}
         role="note"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <span className="floating-rune__glyph">{active.rune}</span>
         <span className={`floating-rune__tip floating-rune__tip--${active.side}`}>
