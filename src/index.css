@@ -166,18 +166,22 @@
   width: 240px;
 }
 
+/* Anchored to the centered 1400px image, not the screen edges,
+   so panels never shift apart when the window stretches. */
 .hero-side-panel--left {
-  left: clamp(16px, 2vw, 40px);
+  left: 50%;
+  margin-left: min(-700px, -50vw + 20px);
 }
 .hero-side-panel--right {
-  right: clamp(16px, 2vw, 40px);
+  right: 50%;
+  margin-right: min(-700px, -50vw + 20px);
 }
 
 .hero-side-inner {
-  background: rgba(15, 38, 22, 0.62);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(245, 197, 66, 0.18);
+  background: rgba(15, 38, 22, 0.32);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 197, 66, 0.14);
   border-radius: 16px;
   padding: 20px;
 }
@@ -195,12 +199,6 @@
 @media (min-width: 1440px) {
   .hero-side-panel {
     width: 270px;
-  }
-  .hero-side-panel--left {
-    left: clamp(32px, 3vw, 60px);
-  }
-  .hero-side-panel--right {
-    right: clamp(32px, 3vw, 60px);
   }
 }
 
