@@ -1,0 +1,80 @@
+export const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';
+export const TOUR_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/0a186228-adb5-49dd-9f7a-76ce5509bb6a.jpg';
+export const HERO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/34bd7e24-fd3e-43d7-8eae-57cc1a1eff34.jpg';
+export const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/cd3faae0-b27f-4483-be0b-fc3b795f31df.png';
+
+export const landmarks = [
+  { id: 1, name: 'Гора Белуха', x: 50, y: 48, desc: 'Священная вершина, обитель богини Умай. Высочайшая точка Сибири — 4509 м. Рерих называл её вратами Шамбалы.' },
+  { id: 2, name: 'Телецкое озеро', x: 28, y: 36, desc: 'Алтын-Кёль — «Золотое озеро». Глубины хранят легенды о затонувших сокровищах и духах воды.' },
+  { id: 3, name: 'Плато Укок', x: 78, y: 78, desc: 'Зона покоя. Здесь нашли мумию «Алтайской принцессы». Шаманы запрещают тревожить эти земли.' },
+  { id: 4, name: 'Горно-Алтайск', x: 26, y: 22, desc: 'Столица республики и врата в мир тайн. Начало большинства маршрутов.' },
+  { id: 5, name: 'Долина Чулышман', x: 40, y: 66, desc: 'Каменные грибы и древние писаницы. Место силы шаманов. Здесь не работают компасы.' },
+];
+
+export const tours = [
+  {
+    title: 'Тропа Шамана',
+    days: '7 дней',
+    price: '54 900 ₽',
+    cover: TOUR_IMG,
+    secret: '☽ Духи сопровождают каждого',
+    legend: 'В полнолуние тот, кто пройдёт тропой до конца, услышит голоса предков. Местные старейшины клянутся: огни над хребтом появляются каждый год в одну и ту же ночь.',
+    route: 'Горно-Алтайск → Чемал → Долина Чулышман → Телецкое озеро',
+    includes: ['Эко-юрты', 'Питание 3×', 'Внедорожник', 'Гид-этнограф'],
+  },
+  {
+    title: 'Загадки Укока',
+    days: '9 дней',
+    price: '78 500 ₽',
+    cover: HERO_IMG,
+    secret: '△ Принцесса смотрит на тебя',
+    legend: 'Плато Укок — «Второй слой небес». Здесь находят курганы скифов и фиксируют НЛО. Дух Принцессы до сих пор охраняет покой мёртвых.',
+    route: 'Горно-Алтайск → Кош-Агач → Плато Укок',
+    includes: ['Палаточный лагерь', 'Полевая кухня', 'Вездеход', 'Проводник'],
+  },
+  {
+    title: 'Сокровища Белухи',
+    days: '12 дней',
+    price: '96 000 ₽',
+    cover: HERO_IMG,
+    secret: '★ Шамбала ждёт достойных',
+    legend: 'Рерих верил, что у подножия Белухи скрыт вход в Шамбалу. Восходящие видят необъяснимое свечение. Гора наблюдает за каждым шагом.',
+    route: 'Тюнгур → Аккемское озеро → Белуха → 7 Озёр',
+    includes: ['Горные приюты', 'Усиленное питание', 'Снаряжение', 'Инструктор'],
+  },
+];
+
+export const faqs = [
+  { q: 'Нужна ли подготовка?', a: 'Большинство маршрутов — для людей с базовой физической формой. Восхождения отмечены отдельно.' },
+  { q: 'Что взять с собой?', a: 'После предоплаты мы пришлём подробный гайд-дневник со списком снаряжения.' },
+  { q: 'Безопасно ли это?', a: 'Все туры сопровождают опытные гиды. Группы застрахованы, маршруты согласованы с МЧС.' },
+  { q: 'Можно ли попасть на Укок?', a: 'Да, при наличии пропуска в пограничную зону. Мы оформляем все документы заранее.' },
+];
+
+export const symbols = ['△', '☽', '★', '🌲', '👁', '⟡', '✦'];
+
+export function GlowingEye({ style }: { style: React.CSSProperties }) {
+  return (
+    <div className="absolute pointer-events-none animate-eye-appear" style={style}>
+      <svg width="32" height="20" viewBox="0 0 32 20">
+        <ellipse cx="16" cy="10" rx="15" ry="9" fill="none" stroke="#f5c542" strokeWidth="1.5" opacity="0.8" />
+        <circle cx="16" cy="10" r="5" fill="#f5c542" opacity="0.9" />
+        <circle cx="18" cy="8" r="1.5" fill="#0a160a" />
+        <ellipse cx="16" cy="10" rx="15" ry="9" fill="none" stroke="#f5c542" strokeWidth="0.5" opacity="0.4">
+          <animate attributeName="ry" values="9;0.5;9" dur="4s" repeatCount="indefinite" />
+        </ellipse>
+      </svg>
+    </div>
+  );
+}
+
+export function CrypticSymbol({ char, style }: { char: string; style: React.CSSProperties }) {
+  return (
+    <span
+      className="absolute text-[#f5c542] opacity-20 pointer-events-none animate-shimmer select-none"
+      style={{ fontSize: 24, fontFamily: 'serif', ...style }}
+    >
+      {char}
+    </span>
+  );
+}
