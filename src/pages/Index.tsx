@@ -11,7 +11,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-const HERO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/ca6202b5-4554-40e4-8e52-f5423515c62d.jpg';
+const HERO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/02978227-8939-41e3-899b-696c6e4bc615.jpg';
 const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';
 const TOUR_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/0a186228-adb5-49dd-9f7a-76ce5509bb6a.jpg';
 const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/82e4363e-4520-48ab-9564-1c624825319d.png';
@@ -161,7 +161,7 @@ export default function Index() {
 
       {/* HERO */}
       <section className="relative h-screen flex items-end justify-center">
-        <img src={HERO_IMG} alt="Горный Алтай в сумерках" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={HERO_IMG} alt="Горный Алтай в сумерках" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: 'center 30%' }} />
         <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow" />

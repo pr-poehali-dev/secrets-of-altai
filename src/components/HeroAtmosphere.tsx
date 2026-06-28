@@ -19,7 +19,6 @@ export default function HeroAtmosphere() {
     { left: '-4%', bottom: '14%', w: 480, h: 210, op: 0.11, dur: 44, delay: 7, blur: 50 },
   ];
 
-  // Sky clouds — drifting slowly across the upper part
   const clouds = [
     { top: '8%', w: 260, h: 70, op: 0.18, dur: 90, delay: 0, blur: 18 },
     { top: '14%', w: 340, h: 90, op: 0.14, dur: 120, delay: 20, blur: 22 },
@@ -27,7 +26,6 @@ export default function HeroAtmosphere() {
     { top: '20%', w: 290, h: 75, op: 0.1, dur: 110, delay: 10, blur: 20 },
   ];
 
-  // Shooting stars
   const stars = Array.from({ length: 6 }, (_, i) => ({
     top: `${8 + i * 6}%`,
     left: `${10 + i * 13}%`,
@@ -36,14 +34,6 @@ export default function HeroAtmosphere() {
     len: 120 + i * 30,
   }));
 
-  // Birds — simple SVG silhouettes gliding across the sky
-  const birds = [
-    { top: '18%', dur: 28, delay: 2, scale: 1 },
-    { top: '22%', dur: 36, delay: 10, scale: 0.7 },
-    { top: '15%', dur: 44, delay: 20, scale: 0.85 },
-  ];
-
-  // Wind grass blades at the bottom edge
   const blades = Array.from({ length: 18 }, (_, i) => ({
     left: `${(i * 5.8 + 1) % 100}%`,
     h: 28 + (i % 5) * 10,
@@ -89,24 +79,6 @@ export default function HeroAtmosphere() {
             animation: `shootingStar ${s.dur}s ease-in ${s.delay}s infinite`,
           }}
         />
-      ))}
-
-      {/* Birds */}
-      {birds.map((b, i) => (
-        <div
-          key={i}
-          className="absolute"
-          style={{
-            top: b.top,
-            left: '-8%',
-            transform: `scale(${b.scale})`,
-            animation: `birdFly ${b.dur}s linear ${b.delay}s infinite`,
-          }}
-        >
-          <svg width="48" height="20" viewBox="0 0 48 20" fill="none">
-            <path d="M24 10 Q18 4 10 7 Q14 9 24 10 Q34 9 38 7 Q30 4 24 10Z" fill="rgba(20,20,30,0.55)" />
-          </svg>
-        </div>
       ))}
 
       {/* Wind grass blades */}
@@ -203,12 +175,6 @@ export default function HeroAtmosphere() {
           5% { opacity: 1; }
           30% { opacity: 0; transform: rotate(-30deg) translateX(180px); }
           100% { opacity: 0; transform: rotate(-30deg) translateX(180px); }
-        }
-        @keyframes birdFly {
-          0% { transform: translateX(0) scale(var(--s, 1)); opacity: 0; }
-          3% { opacity: 1; }
-          95% { opacity: 1; }
-          100% { transform: translateX(115vw) scale(var(--s, 1)); opacity: 0; }
         }
         @keyframes windSway {
           0%, 100% { transform: rotate(0deg); }
