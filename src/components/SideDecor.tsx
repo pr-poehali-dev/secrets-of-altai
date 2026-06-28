@@ -52,8 +52,26 @@ function Panel({ side, legend, img }: { side: 'left' | 'right'; legend: string; 
             transition: 'opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s',
           }}
         >
-          <span style={{ display: 'block', fontSize: 34, marginBottom: 16, filter: 'drop-shadow(0 0 8px rgba(245,197,66,0.7))' }}>
-            {side === 'left' ? '🌑' : '☀️'}
+          <span style={{ display: 'block', marginBottom: 16 }}>
+            {side === 'left' ? (
+              <span style={{ fontSize: 34, filter: 'drop-shadow(0 0 8px rgba(245,197,66,0.7))' }}>🌑</span>
+            ) : (
+              <svg width="36" height="36" viewBox="0 0 36 36" style={{ display: 'inline-block', filter: 'drop-shadow(0 0 8px rgba(245,197,66,0.8))' }}>
+                <circle cx="18" cy="18" r="9" fill="#f5c542" />
+                {[0,45,90,135,180,225,270,315].map((deg, i) => (
+                  <line
+                    key={i}
+                    x1={18 + Math.cos(deg * Math.PI / 180) * 12}
+                    y1={18 + Math.sin(deg * Math.PI / 180) * 12}
+                    x2={18 + Math.cos(deg * Math.PI / 180) * 16}
+                    y2={18 + Math.sin(deg * Math.PI / 180) * 16}
+                    stroke="#f5c542"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
+                ))}
+              </svg>
+            )}
           </span>
           <p style={{
             color: 'hsl(45 40% 90%)',
