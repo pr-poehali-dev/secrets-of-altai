@@ -2,6 +2,7 @@ import { useState } from 'react';
 import HeroAtmosphere from '@/components/HeroAtmosphere';
 import SideDecor from '@/components/SideDecor';
 import RuneWhisper from '@/components/RuneWhisper';
+import FloatingRunes from '@/components/FloatingRunes';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
@@ -171,6 +172,7 @@ export default function Index() {
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
       <SideDecor />
+      <FloatingRunes />
 
       {/* HEADER */}
       <header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-background/70 border-b border-border">
