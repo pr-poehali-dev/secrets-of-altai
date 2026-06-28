@@ -185,10 +185,10 @@
   object-fit: cover;
   object-position: center top;
   display: block;
-  opacity: 0.35;
+  opacity: 0.18;
 }
 
-/* Soft inner edge so image blends into the main content */
+/* Fade: transparent on outer edge, solid bg on inner edge — kills the seam */
 .side-decor-fade {
   position: absolute;
   inset: 0;
@@ -197,15 +197,15 @@
 .side-decor-fade--left {
   background: linear-gradient(
     to right,
-    rgba(17, 40, 25, 0.25) 0%,
-    rgba(17, 40, 25, 0.6) 100%
+    rgba(17, 40, 25, 0) 0%,
+    hsl(155 28% 14%) 100%
   );
 }
 .side-decor-fade--right {
   background: linear-gradient(
     to left,
-    rgba(17, 40, 25, 0.25) 0%,
-    rgba(17, 40, 25, 0.6) 100%
+    rgba(17, 40, 25, 0) 0%,
+    hsl(155 28% 14%) 100%
   );
 }
 
