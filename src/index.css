@@ -181,11 +181,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  /* tall enough to cover the full page */
   height: 100%;
   object-fit: cover;
   object-position: center top;
   display: block;
+  opacity: 0.35;
 }
 
 /* Soft inner edge so image blends into the main content */
