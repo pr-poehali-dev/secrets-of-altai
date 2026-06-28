@@ -158,6 +158,32 @@
 
 /* ─── Breakpoints ─── */
 
+/* Desktop (≥1200px) — optimized for 1920×1080 */
+@media (min-width: 1200px) {
+  .hero-section {
+    height: 100svh;
+    min-height: 600px;
+  }
+  .hero-content {
+    padding-bottom: clamp(80px, 10vh, 160px);
+  }
+  .tours-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .site-container {
+    max-width: 1400px;
+  }
+}
+
+/* Wide screens (≥1600px) */
+@media (min-width: 1600px) {
+  .site-container {
+    max-width: 1500px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
 /* Tablet (768–1199px) */
 @media (min-width: 768px) and (max-width: 1199px) {
   .hero-section {

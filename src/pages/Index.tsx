@@ -181,7 +181,7 @@ export default function Index() {
           src={HERO_IMGS[bgIndex]}
           alt="Горный Алтай в сумерках"
           className="absolute inset-0 w-full h-full transition-opacity duration-1000"
-          style={{ objectFit: 'cover', objectPosition: 'center center' }}
+          style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
         />
         <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
