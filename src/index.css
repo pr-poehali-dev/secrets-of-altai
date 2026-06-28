@@ -160,9 +160,10 @@
 .side-decor {
   display: none;
   position: absolute;
-  /* starts below the fixed header (~68px) */
+  /* starts below the fixed header, only on the first screen */
   top: 68px;
-  bottom: 0;
+  height: calc(100vh - 68px);
+  bottom: auto;
   width: calc((100vw - 1400px) / 2);
   pointer-events: none;
   z-index: 1;
