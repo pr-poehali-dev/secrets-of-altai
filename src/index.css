@@ -156,6 +156,78 @@
   align-items: stretch;
 }
 
+/* ─── Side decor with Altai symbols (wide screens) ─── */
+.side-decor {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: calc((100vw - 1400px) / 2);
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+.side-decor--left {
+  left: 0;
+}
+.side-decor--right {
+  right: 0;
+}
+
+.side-decor-symbols {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat-y;
+  background-size: 130% auto;
+  opacity: 0.55;
+  z-index: 1;
+}
+
+.side-decor-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.side-decor-vignette--left {
+  background:
+    linear-gradient(
+      to bottom,
+      hsl(155 28% 14%) 0%,
+      transparent 14%,
+      transparent 86%,
+      hsl(155 28% 14%) 100%
+    ),
+    linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 50%,
+      hsl(155 28% 14% / 0.85) 100%
+    );
+}
+.side-decor-vignette--right {
+  background:
+    linear-gradient(
+      to bottom,
+      hsl(155 28% 14%) 0%,
+      transparent 14%,
+      transparent 86%,
+      hsl(155 28% 14%) 100%
+    ),
+    linear-gradient(
+      to left,
+      transparent 0%,
+      transparent 50%,
+      hsl(155 28% 14% / 0.85) 100%
+    );
+}
+
+@media (min-width: 1500px) {
+  .side-decor {
+    display: block;
+  }
+}
+
 /* ─── Hero side panels ─── */
 .hero-side-panel {
   display: none;
