@@ -156,6 +156,96 @@
   align-items: stretch;
 }
 
+/* ─── Scroll reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ─── Whispering runes (legend hints) ─── */
+.rune-whisper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: help;
+  color: hsl(var(--primary));
+  opacity: 0.55;
+  font-size: 22px;
+  line-height: 1;
+  transition:
+    opacity 0.3s ease,
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
+  animation: runeBreathe 4s ease-in-out infinite;
+}
+.rune-whisper:hover {
+  opacity: 1;
+  transform: scale(1.15);
+  text-shadow: 0 0 12px hsl(var(--gold) / 0.8);
+}
+.rune-whisper__tip {
+  position: absolute;
+  bottom: 135%;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  width: max-content;
+  max-width: 240px;
+  padding: 10px 14px;
+  background: rgba(12, 30, 18, 0.94);
+  border: 1px solid rgba(245, 197, 66, 0.25);
+  border-radius: 10px;
+  color: hsl(var(--foreground));
+  font-family: var(--font-body, inherit);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  z-index: 50;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+.rune-whisper__tip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(12, 30, 18, 0.94);
+}
+.rune-whisper:hover .rune-whisper__tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+@keyframes runeBreathe {
+  0%,
+  100% {
+    text-shadow: 0 0 4px hsl(var(--gold) / 0.2);
+  }
+  50% {
+    text-shadow: 0 0 10px hsl(var(--gold) / 0.5);
+  }
+}
+
 /* ─── Side decor: absolute panels outside 1400px content ─── */
 .side-decor {
   display: none;

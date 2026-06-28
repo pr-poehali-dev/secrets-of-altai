@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import HeroAtmosphere from '@/components/HeroAtmosphere';
 import SideDecor from '@/components/SideDecor';
+import RuneWhisper from '@/components/RuneWhisper';
+import useScrollReveal from '@/hooks/useScrollReveal';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -153,6 +155,8 @@ export default function Index() {
   const [clickCount, setClickCount] = useState(0);
   const [legendIdx, setLegendIdx] = useState(0);
   const [storyIdx, setStoryIdx] = useState(0);
+
+  useScrollReveal();
 
   const handleLogоClick = () => {
     const next = clickCount + 1;
@@ -310,10 +314,14 @@ export default function Index() {
 
       {/* MAP */}
       <section id="map" className="section-py bg-fog">
-        <div className="site-container">
+        <div className="site-container reveal">
           <div className="text-center mb-12">
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Карта странствий</p>
-            <h2 className="font-display font-semibold mb-4" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>Земля легенд</h2>
+            <h2 className="font-display font-semibold mb-4 flex items-center justify-center gap-3" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
+              <RuneWhisper rune="ᚦ" hint="Турс — руна великанов и древних сил гор" />
+              Земля легенд
+              <RuneWhisper rune="ᛉ" hint="Альгиз — оберег путника, защита духов" />
+            </h2>
             <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
 
@@ -370,10 +378,13 @@ export default function Index() {
 
       {/* TOURS */}
       <section id="tours" className="section-py">
-        <div className="site-container">
+        <div className="site-container reveal">
           <div className="mb-10">
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Экспедиции</p>
-            <h2 className="font-display font-semibold" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>Маршруты тайн</h2>
+            <h2 className="font-display font-semibold flex items-center gap-3" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
+              <RuneWhisper rune="ᚱ" hint="Райдо — руна странствий и верной дороги" />
+              Маршруты тайн
+            </h2>
           </div>
           <div className="tours-grid">
             {tours.map((t) => (
@@ -385,11 +396,12 @@ export default function Index() {
 
       {/* ABOUT */}
       <section id="about" className="section-py bg-secondary/40">
-        <div className="site-container grid md:grid-cols-2 gap-12 items-center">
+        <div className="site-container reveal grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">О проекте</p>
-            <h2 className="font-display font-semibold mb-6" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
-              Хранители<br />алтайских легенд
+            <h2 className="font-display font-semibold mb-6 flex items-start gap-3" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
+              <span>Хранители<br />алтайских легенд</span>
+              <RuneWhisper rune="ᛟ" hint="Одал — руна рода, наследия и связи с предками" />
             </h2>
             <p className="text-foreground/80 leading-relaxed mb-4" style={{ fontSize: 'clamp(14px, 1.4vw, 17px)' }}>
               «Тайны Алтая» — это не просто туры. Мы собираем предания старейшин, изучаем древние писаницы и ведём путешественников туда, где обычные карты заканчиваются.
@@ -417,7 +429,7 @@ export default function Index() {
 
       {/* FAQ */}
       <section id="faq" className="section-py">
-        <div className="site-container" style={{ maxWidth: '760px' }}>
+        <div className="site-container reveal" style={{ maxWidth: '760px' }}>
           <h2 className="font-display font-semibold text-center mb-12" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>Частые вопросы</h2>
           <div className="space-y-4">
             {faqs.map((f) => (
@@ -436,7 +448,7 @@ export default function Index() {
       <section className="section-py relative overflow-hidden">
         <div className="absolute inset-0 bg-fog" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-primary/20 animate-glow pointer-events-none" />
-        <div className="site-container relative text-center" style={{ maxWidth: '640px' }}>
+        <div className="site-container reveal relative text-center" style={{ maxWidth: '640px' }}>
           <Icon name="PhoneCall" size={36} className="text-primary mx-auto mb-5" />
           <h2 className="font-display font-semibold mb-5" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>Консультация по туру</h2>
           <p className="text-foreground/80 mb-8 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.6vw, 20px)' }}>
