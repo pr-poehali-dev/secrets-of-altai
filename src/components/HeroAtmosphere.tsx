@@ -22,30 +22,33 @@ export default function HeroAtmosphere() {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Soft fog base near the valley floor */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-2/5"
-        style={{
-          background: 'linear-gradient(to top, rgba(220,228,235,0.35), rgba(220,228,235,0.12) 50%, transparent)',
-        }}
-      />
-
-      {/* Rolling fog puffs */}
-      {puffs.map((p, i) => (
+      {/* Fog group with smooth reveal on load */}
+      <div className="absolute inset-0" style={{ animation: 'fogReveal 4s ease-out forwards' }}>
+        {/* Soft fog base near the valley floor */}
         <div
-          key={i}
-          className="absolute rounded-full"
+          className="absolute inset-x-0 bottom-0 h-2/5"
           style={{
-            left: p.left,
-            bottom: p.bottom,
-            width: p.w,
-            height: p.h,
-            background: `radial-gradient(ellipse at center, rgba(228,235,240,${p.op}) 0%, rgba(212,222,232,${p.op * 0.55}) 45%, transparent 72%)`,
-            filter: `blur(${p.blur}px)`,
-            animation: `fogRoll${i % 2} ${p.dur}s ease-in-out ${p.delay}s infinite`,
+            background: 'linear-gradient(to top, rgba(220,228,235,0.35), rgba(220,228,235,0.12) 50%, transparent)',
           }}
         />
-      ))}
+
+        {/* Rolling fog puffs */}
+        {puffs.map((p, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              left: p.left,
+              bottom: p.bottom,
+              width: p.w,
+              height: p.h,
+              background: `radial-gradient(ellipse at center, rgba(228,235,240,${p.op}) 0%, rgba(212,222,232,${p.op * 0.55}) 45%, transparent 72%)`,
+              filter: `blur(${p.blur}px)`,
+              animation: `fogRoll${i % 2} ${p.dur}s ease-in-out ${p.delay}s infinite`,
+            }}
+          />
+        ))}
+      </div>
 
       {/* Fireflies */}
       {fireflies.map((f, i) => (
@@ -66,6 +69,10 @@ export default function HeroAtmosphere() {
       ))}
 
       <style>{`
+        @keyframes fogReveal {
+          0% { opacity: 0; transform: translateY(30px) scale(1.06); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
         @keyframes fogRoll0 {
           0%, 100% { transform: translateX(-8%) scale(1); opacity: 0.7; }
           50% { transform: translateX(8%) scale(1.12); opacity: 1; }
