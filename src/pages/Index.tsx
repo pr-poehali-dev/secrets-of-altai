@@ -11,15 +11,16 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/34bd7e24-fd3e-43d7-8eae-57cc1a1eff34.jpg';
-const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/9162f703-f283-46f0-8b57-91fed01f3756.jpg';
+const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';
 const TOUR_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/0a186228-adb5-49dd-9f7a-76ce5509bb6a.jpg';
+const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a0866a50-0f76-46ef-9457-7044cf4ad0f9.png';
 
 const landmarks = [
-  { id: 1, name: 'Гора Белуха', x: 28, y: 72, desc: 'Священная вершина, обитель богини Умай. Высочайшая точка Сибири — 4509 м.' },
-  { id: 2, name: 'Телецкое озеро', x: 62, y: 38, desc: 'Алтын-Кёль — «Золотое озеро». Глубины хранят легенды о затонувших сокровищах.' },
-  { id: 3, name: 'Плато Укок', x: 18, y: 88, desc: 'Зона покоя. Здесь нашли мумию «Алтайской принцессы» — хранительницы покоя миров.' },
-  { id: 4, name: 'Горно-Алтайск', x: 70, y: 22, desc: 'Столица республики и врата в мир тайн. Начало большинства маршрутов.' },
-  { id: 5, name: 'Долина Чулышман', x: 50, y: 55, desc: 'Каменные грибы и древние писаницы. Место силы шаманов.' },
+  { id: 1, name: 'Гора Белуха', x: 50, y: 48, desc: 'Священная вершина, обитель богини Умай. Высочайшая точка Сибири — 4509 м.' },
+  { id: 2, name: 'Телецкое озеро', x: 28, y: 36, desc: 'Алтын-Кёль — «Золотое озеро». Глубины хранят легенды о затонувших сокровищах.' },
+  { id: 3, name: 'Плато Укок', x: 78, y: 78, desc: 'Зона покоя. Здесь нашли мумию «Алтайской принцессы» — хранительницы покоя миров.' },
+  { id: 4, name: 'Горно-Алтайск', x: 26, y: 22, desc: 'Столица республики и врата в мир тайн. Начало большинства маршрутов.' },
+  { id: 5, name: 'Долина Чулышман', x: 40, y: 66, desc: 'Каменные грибы и древние писаницы. Место силы шаманов.' },
 ];
 
 const tours = [
@@ -45,7 +46,7 @@ const tours = [
     title: 'Сокровища Белухи',
     days: '12 дней',
     price: '96 000 ₽',
-    cover: MAP_IMG,
+    cover: HERO_IMG,
     legend: 'Рерих верил, что у подножия Белухи скрыт вход в Шамбалу. Восходящие к вершине говорят о необъяснимом свечении и чувстве, будто гора наблюдает за каждым шагом.',
     route: 'Тюнгур → Аккемское озеро → Подножие Белухи → Долина Семи Озёр',
     includes: ['Горные приюты', 'Усиленное питание', 'Снаряжение', 'Сертифицированный инструктор'],
@@ -139,18 +140,12 @@ export default function Index() {
       {/* HEADER */}
       <header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-background/70 border-b border-border">
         <div className="container flex items-center justify-between py-3">
-          <div className="flex items-center gap-3">
-            <div className="relative w-11 h-11 shrink-0">
-              <svg viewBox="0 0 44 44" className="w-full h-full">
-                <path d="M4 36 L14 16 L20 26 L28 10 L40 36 Z" fill="hsl(155 45% 20%)" stroke="hsl(45 70% 55%)" strokeWidth="1" />
-                <path d="M22 36 L17 24 L22 27 L27 24 Z" fill="hsl(150 40% 10%)" />
-              </svg>
-            </div>
-            <div className="leading-none">
-              <p className="font-display text-xl font-semibold text-primary tracking-wide">ТАЙНЫ</p>
-              <p className="font-display text-xl font-semibold text-foreground/80 tracking-[0.3em] -mt-1">АЛТАЯ</p>
-            </div>
-          </div>
+          <a href="#" className="flex items-center gap-3 group">
+            <img src={LOGO_IMG} alt="Тайны Алтая" className="h-12 w-auto object-contain drop-shadow-lg transition-transform group-hover:scale-105" />
+            <span className="hidden sm:block font-display text-base text-foreground/70 leading-tight max-w-[140px]">
+              Мистические экспедиции по Горному Алтаю
+            </span>
+          </a>
           <nav className="hidden md:flex items-center gap-7 text-sm text-foreground/70">
             <a href="#map" className="hover:text-primary transition-colors">Карта</a>
             <a href="#tours" className="hover:text-primary transition-colors">Туры</a>
@@ -170,9 +165,8 @@ export default function Index() {
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow" />
         <div className="relative z-10 text-center px-6 pb-24 animate-fade-in">
           <p className="text-primary uppercase tracking-[0.4em] text-xs mb-5">Авторские экспедиции</p>
-          <h1 className="font-display text-6xl sm:text-8xl font-semibold text-glow-gold mb-6 leading-none">
-            Тайны<br />Алтая
-          </h1>
+          <img src={LOGO_IMG} alt="Тайны Алтая" className="w-72 sm:w-[420px] mx-auto mb-6 drop-shadow-2xl animate-float" />
+          <h1 className="sr-only">Тайны Алтая</h1>
           <p className="max-w-xl mx-auto text-foreground/80 text-lg mb-8">
             Шаманские маршруты, древние плато и мистические озёра. Прикоснись к легендам, что старше времён.
           </p>
@@ -200,8 +194,8 @@ export default function Index() {
           </div>
 
           <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-center">
-            <div className="relative rounded-2xl overflow-hidden border-2 border-primary/20 shadow-2xl shadow-black/50">
-              <img src={MAP_IMG} alt="Карта Алтая" className="w-full aspect-[4/3] object-cover" />
+            <div className="relative rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-black/50 bg-[hsl(40_30%_80%)]">
+              <img src={MAP_IMG} alt="Карта Алтая" className="w-full object-contain" />
               {landmarks.map((lm) => (
                 <button
                   key={lm.id}

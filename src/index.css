@@ -4,37 +4,37 @@
 
 @layer base {
   :root {
-    --background: 150 30% 5%;
-    --foreground: 45 30% 90%;
+    --background: 155 28% 14%;
+    --foreground: 45 40% 92%;
 
-    --card: 150 25% 8%;
-    --card-foreground: 45 30% 90%;
+    --card: 155 24% 18%;
+    --card-foreground: 45 40% 92%;
 
-    --popover: 150 30% 6%;
-    --popover-foreground: 45 30% 90%;
+    --popover: 155 26% 16%;
+    --popover-foreground: 45 40% 92%;
 
-    --primary: 45 65% 52%;
-    --primary-foreground: 150 40% 8%;
+    --primary: 40 78% 58%;
+    --primary-foreground: 155 40% 12%;
 
-    --secondary: 155 25% 14%;
-    --secondary-foreground: 45 30% 90%;
+    --secondary: 155 22% 22%;
+    --secondary-foreground: 45 40% 92%;
 
-    --muted: 155 20% 12%;
-    --muted-foreground: 150 12% 60%;
+    --muted: 155 18% 24%;
+    --muted-foreground: 145 15% 72%;
 
-    --accent: 45 65% 52%;
-    --accent-foreground: 150 40% 8%;
+    --accent: 40 78% 58%;
+    --accent-foreground: 155 40% 12%;
 
-    --destructive: 0 70% 45%;
-    --destructive-foreground: 45 30% 90%;
+    --destructive: 4 72% 52%;
+    --destructive-foreground: 45 40% 92%;
 
-    --border: 155 25% 18%;
-    --input: 155 25% 16%;
-    --ring: 45 65% 52%;
+    --border: 155 20% 28%;
+    --input: 155 20% 26%;
+    --ring: 40 78% 58%;
 
-    --gold: 45 70% 55%;
-    --emerald: 155 45% 22%;
-    --bloodred: 0 72% 48%;
+    --gold: 40 80% 60%;
+    --emerald: 150 45% 32%;
+    --bloodred: 4 74% 54%;
 
     --radius: 0.5rem;
 
@@ -120,7 +120,7 @@
   .bg-fog {
     background-image: radial-gradient(
       ellipse at top,
-      hsl(155 40% 12% / 0.8),
+      hsl(150 35% 26% / 0.7),
       transparent 70%
     );
   }
