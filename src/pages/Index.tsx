@@ -379,12 +379,20 @@ export default function Index() {
       {/* TOURS */}
       <section id="tours" className="section-py">
         <div className="site-container reveal">
-          <div className="mb-10">
-            <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Экспедиции</p>
-            <h2 className="font-display font-semibold flex items-center gap-3" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
-              <RuneWhisper rune="ᚱ" hint="Райдо — руна странствий и верной дороги" />
-              Маршруты тайн
-            </h2>
+          <div className="mb-10 flex items-center gap-5">
+            <img
+              src="https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/44ed9bc2-348a-4ab9-b299-b0b26d63bfe3.png"
+              alt="Эмблема Тайны гор"
+              className="shrink-0 drop-shadow-lg animate-float"
+              style={{ width: 'clamp(64px, 9vw, 110px)', height: 'auto' }}
+            />
+            <div>
+              <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Экспедиции</p>
+              <h2 className="font-display font-semibold flex items-center gap-3" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
+                Маршруты «Тайна гор»
+                <RuneWhisper rune="ᚱ" hint="Райдо — руна странствий и верной дороги" />
+              </h2>
+            </div>
           </div>
           <div className="tours-grid">
             {tours.map((t) => (
