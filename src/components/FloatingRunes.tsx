@@ -19,6 +19,8 @@ type ActiveRune = {
   side: 'left' | 'right';
 };
 
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
 export default function FloatingRunes() {
   const [active, setActive] = useState<ActiveRune | null>(null);
   const hoveredRef = useRef(false);
@@ -54,6 +56,7 @@ export default function FloatingRunes() {
   };
 
   useEffect(() => {
+    if (isMobile) return;
     spawnRef.current = setTimeout(spawn, 3000);
     return () => {
       if (spawnRef.current) clearTimeout(spawnRef.current);
@@ -76,7 +79,7 @@ export default function FloatingRunes() {
     }, 2000);
   };
 
-  if (!active) return null;
+  if (isMobile || !active) return null;
 
   return (
     <div className="floating-rune-layer">
