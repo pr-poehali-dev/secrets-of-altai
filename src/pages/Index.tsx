@@ -194,12 +194,19 @@ export default function Index() {
 
       {/* HERO */}
       <section className="hero-section relative overflow-hidden">
-        {/* Background: cover, no stretch */}
-        <img
-          src={HERO_IMGS[bgIndex]}
-          alt="Горный Алтай в сумерках"
-          className="absolute inset-0 w-full h-full transition-opacity duration-1000"
-          style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
+        {/* Bg color fills the sides on wide screens */}
+        <div className="absolute inset-0 bg-background" />
+        {/* Image centered, max 1400px wide, never stretches */}
+        <div
+          className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 transition-all duration-1000"
+          style={{
+            width: 'min(100%, 1400px)',
+            backgroundImage: `url(${HERO_IMGS[bgIndex]})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 20%',
+            backgroundRepeat: 'no-repeat',
+          }}
+          aria-label="Горный Алтай в сумерках"
         />
         <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
