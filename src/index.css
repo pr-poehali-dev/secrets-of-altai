@@ -349,18 +349,16 @@
   pointer-events: none;
 }
 .side-decor-fade--left {
-  background: linear-gradient(
-    to right,
-    rgba(17, 40, 25, 0) 0%,
-    hsl(155 28% 14%) 100%
-  );
+  background:
+    /* uniform dark overlay */
+    rgba(12, 28, 18, 0.45),
+    /* soft blend into main content on the inner edge */
+      linear-gradient(to right, transparent 60%, hsl(155 28% 14%) 100%);
 }
 .side-decor-fade--right {
-  background: linear-gradient(
-    to left,
-    rgba(17, 40, 25, 0) 0%,
-    hsl(155 28% 14%) 100%
-  );
+  background:
+    rgba(12, 28, 18, 0.45),
+    linear-gradient(to left, transparent 60%, hsl(155 28% 14%) 100%);
 }
 
 @media (min-width: 1500px) {
