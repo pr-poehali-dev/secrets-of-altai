@@ -340,25 +340,30 @@
 .side-decor-bg {
   position: absolute;
   inset: 0;
-  opacity: 0.55;
-  background-attachment: local;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 
-/* Fade: transparent on outer edge, solid bg on inner edge — kills the seam */
+/* Uniform dark overlay */
+.side-decor-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 22, 14, 0.38);
+  pointer-events: none;
+}
+
+/* Only inner edge blend — no extra darkening on outer edge */
 .side-decor-fade {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 .side-decor-fade--left {
-  background:
-    rgba(10, 22, 14, 0.35),
-    linear-gradient(to right, transparent 65%, hsl(155 28% 14%) 100%);
+  background: linear-gradient(to right, transparent 60%, hsl(155 28% 14%) 100%);
 }
 .side-decor-fade--right {
-  background:
-    rgba(10, 22, 14, 0.35),
-    linear-gradient(to left, transparent 65%, hsl(155 28% 14%) 100%);
+  background: linear-gradient(to left, transparent 60%, hsl(155 28% 14%) 100%);
 }
 
 @media (min-width: 1500px) {
