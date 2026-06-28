@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import HeroAtmosphere from '@/components/HeroAtmosphere';
 import SideDecor from '@/components/SideDecor';
+import FloatingRunes from '@/components/FloatingRunes';
 import useScrollReveal from '@/hooks/useScrollReveal';
 import { useTimeOfDay, TIME_IMG_INDEX, TIME_LABEL } from '@/hooks/useTimeOfDay';
 import useScrollBg from '@/hooks/useScrollBg';
@@ -174,6 +175,7 @@ export default function Index() {
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
       <SideDecor />
+      <FloatingRunes />
 
       {/* HEADER */}
       <header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-background/70 border-b border-border">
@@ -203,15 +205,34 @@ export default function Index() {
 
       {/* HERO */}
       <section className="hero-section relative overflow-hidden">
-        {/* Full-width background image, no green sides */}
+        {/* Mobile: full-width image */}
         <img
           src={HERO_IMGS[bgIndex]}
           alt="Горный Алтай"
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 md:hidden"
           style={{ objectPosition: 'center 20%' }}
+        />
+        {/* Desktop: centered 1400px image with bg sides */}
+        <div className="absolute inset-0 bg-background hidden md:block" />
+        <div
+          className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 transition-all duration-1000 hidden md:block"
+          style={{
+            width: 'min(100%, 1400px)',
+            backgroundImage: `url(${HERO_IMGS[bgIndex]})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 20%',
+            backgroundRepeat: 'no-repeat',
+          }}
+          aria-label="Горный Алтай в сумерках"
         />
         <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
+        {/* Desktop-only: vignette and glow */}
+        <div
+          className="absolute inset-0 pointer-events-none hidden md:block"
+          style={{ boxShadow: 'inset 0 0 200px 60px hsl(155 30% 6% / 0.75)' }}
+        />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow pointer-events-none hidden md:block" />
 
 
         {/* LEFT PANEL — Legends (desktop only) */}
