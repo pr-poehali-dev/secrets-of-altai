@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ValleyScene from '@/components/ValleyScene';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -160,8 +161,8 @@ export default function Index() {
 
       {/* HERO */}
       <section className="relative h-screen flex items-end justify-center">
-        <img src={HERO_IMG} alt="Горный Алтай в сумерках" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
+        <ValleyScene />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-transparent to-background" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow" />
         <div className="relative z-10 text-center px-6 pb-24 animate-fade-in">
           <p className="text-primary uppercase tracking-[0.4em] text-xs mb-5">Авторские экспедиции</p>
