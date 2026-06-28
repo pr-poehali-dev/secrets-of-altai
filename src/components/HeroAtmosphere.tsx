@@ -8,7 +8,6 @@ export default function HeroAtmosphere() {
     drift: i % 2 === 0 ? 14 : -12,
   }));
 
-  // Soft fog puffs — big blurred blobs that look like rolling clouds
   const puffs = [
     { left: '2%', bottom: '2%', w: 620, h: 280, op: 0.18, dur: 30, delay: 0, blur: 55 },
     { left: '28%', bottom: '-2%', w: 760, h: 320, op: 0.22, dur: 38, delay: 4, blur: 65 },
@@ -20,19 +19,124 @@ export default function HeroAtmosphere() {
     { left: '-4%', bottom: '14%', w: 480, h: 210, op: 0.11, dur: 44, delay: 7, blur: 50 },
   ];
 
+  // Sky clouds — drifting slowly across the upper part
+  const clouds = [
+    { top: '8%', w: 260, h: 70, op: 0.18, dur: 90, delay: 0, blur: 18 },
+    { top: '14%', w: 340, h: 90, op: 0.14, dur: 120, delay: 20, blur: 22 },
+    { top: '5%', w: 200, h: 55, op: 0.12, dur: 100, delay: 45, blur: 16 },
+    { top: '20%', w: 290, h: 75, op: 0.1, dur: 110, delay: 10, blur: 20 },
+  ];
+
+  // Shooting stars
+  const stars = Array.from({ length: 6 }, (_, i) => ({
+    top: `${8 + i * 6}%`,
+    left: `${10 + i * 13}%`,
+    dur: 1.2 + i * 0.3,
+    delay: 4 + i * 7,
+    len: 120 + i * 30,
+  }));
+
+  // Birds — simple SVG silhouettes gliding across the sky
+  const birds = [
+    { top: '18%', dur: 28, delay: 2, scale: 1 },
+    { top: '22%', dur: 36, delay: 10, scale: 0.7 },
+    { top: '15%', dur: 44, delay: 20, scale: 0.85 },
+  ];
+
+  // Wind grass blades at the bottom edge
+  const blades = Array.from({ length: 18 }, (_, i) => ({
+    left: `${(i * 5.8 + 1) % 100}%`,
+    h: 28 + (i % 5) * 10,
+    dur: 2.2 + (i % 4) * 0.4,
+    delay: (i % 6) * 0.3,
+    sway: i % 2 === 0 ? 6 : -5,
+  }));
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Fog group with smooth reveal on load */}
+
+      {/* Sky clouds */}
+      {clouds.map((c, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            top: c.top,
+            left: '-30%',
+            width: c.w,
+            height: c.h,
+            background: `radial-gradient(ellipse at center, rgba(255,255,255,${c.op}) 0%, rgba(230,238,245,${c.op * 0.5}) 50%, transparent 75%)`,
+            filter: `blur(${c.blur}px)`,
+            animation: `cloudDrift ${c.dur}s linear ${c.delay}s infinite`,
+          }}
+        />
+      ))}
+
+      {/* Shooting stars */}
+      {stars.map((s, i) => (
+        <div
+          key={i}
+          className="absolute"
+          style={{
+            top: s.top,
+            left: s.left,
+            width: s.len,
+            height: 1.5,
+            background: 'linear-gradient(to right, transparent, rgba(255,255,220,0.9), transparent)',
+            borderRadius: 2,
+            transform: 'rotate(-30deg)',
+            opacity: 0,
+            animation: `shootingStar ${s.dur}s ease-in ${s.delay}s infinite`,
+          }}
+        />
+      ))}
+
+      {/* Birds */}
+      {birds.map((b, i) => (
+        <div
+          key={i}
+          className="absolute"
+          style={{
+            top: b.top,
+            left: '-8%',
+            transform: `scale(${b.scale})`,
+            animation: `birdFly ${b.dur}s linear ${b.delay}s infinite`,
+          }}
+        >
+          <svg width="48" height="20" viewBox="0 0 48 20" fill="none">
+            <path d="M24 10 Q18 4 10 7 Q14 9 24 10 Q34 9 38 7 Q30 4 24 10Z" fill="rgba(20,20,30,0.55)" />
+          </svg>
+        </div>
+      ))}
+
+      {/* Wind grass blades */}
+      <div className="absolute inset-x-0 bottom-0 h-16">
+        {blades.map((bl, i) => (
+          <div
+            key={i}
+            className="absolute bottom-0"
+            style={{
+              left: bl.left,
+              width: 2,
+              height: bl.h,
+              background: 'linear-gradient(to top, rgba(80,110,60,0.55), rgba(120,160,80,0.25), transparent)',
+              borderRadius: 2,
+              transformOrigin: 'bottom center',
+              ['--sway' as string]: `${bl.sway}deg`,
+              animation: `windSway ${bl.dur}s ease-in-out ${bl.delay}s infinite`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Fog group */}
       <div className="absolute inset-0" style={{ animation: 'fogReveal 4s ease-out forwards' }}>
-        {/* Soft fog base near the valley floor */}
         <div
           className="absolute inset-x-0 bottom-0 h-2/5"
           style={{
             background: 'linear-gradient(to top, rgba(220,228,235,0.14), rgba(220,228,235,0.05) 50%, transparent)',
           }}
         />
-
-        {/* Rolling fog puffs */}
         {puffs.map((p, i) => (
           <div
             key={i}
@@ -87,6 +191,29 @@ export default function HeroAtmosphere() {
           50% { transform: translate(var(--drift), -40px) scale(1.1); opacity: 0.9; }
           75% { opacity: 0.7; }
           100% { opacity: 0; transform: translate(0, -80px) scale(0.6); }
+        }
+        @keyframes cloudDrift {
+          0% { transform: translateX(0); opacity: 0; }
+          5% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateX(160vw); opacity: 0; }
+        }
+        @keyframes shootingStar {
+          0% { opacity: 0; transform: rotate(-30deg) translateX(0); }
+          5% { opacity: 1; }
+          30% { opacity: 0; transform: rotate(-30deg) translateX(180px); }
+          100% { opacity: 0; transform: rotate(-30deg) translateX(180px); }
+        }
+        @keyframes birdFly {
+          0% { transform: translateX(0) scale(var(--s, 1)); opacity: 0; }
+          3% { opacity: 1; }
+          95% { opacity: 1; }
+          100% { transform: translateX(115vw) scale(var(--s, 1)); opacity: 0; }
+        }
+        @keyframes windSway {
+          0%, 100% { transform: rotate(0deg); }
+          30% { transform: rotate(var(--sway)); }
+          60% { transform: rotate(calc(var(--sway) * -0.5)); }
         }
       `}</style>
     </div>
