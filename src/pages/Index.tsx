@@ -70,21 +70,19 @@ function TourCard({ tour }: { tour: typeof tours[0] }) {
   const slides = ['Обложка', 'Маршрут', 'Легенда', 'Программа'];
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-2xl shadow-black/50 flex flex-col">
-      <div className="relative overflow-hidden" style={{ height: '220px' }}>
+    <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-2xl shadow-black/50 flex flex-col h-full">
+      <div className="relative overflow-hidden shrink-0" style={{ height: 'clamp(180px, 22vw, 260px)' }}>
         {slide === 0 && (
-          <img src={tour.cover} alt={tour.title} className="w-full h-full object-cover animate-scale-in" />
+          <img src={tour.cover} alt={tour.title} className="w-full h-full object-cover object-center animate-scale-in" />
         )}
         {slide === 1 && (
-          <div className="w-full h-full parchment relative flex items-center justify-center animate-scale-in">
-            <div className="absolute inset-0 flex items-center justify-center p-6">
-              <p className="text-[hsl(150_40%_15%)] text-sm font-medium text-center leading-relaxed">{tour.route}</p>
-            </div>
+          <div className="w-full h-full parchment flex items-center justify-center animate-scale-in p-6">
+            <p className="text-[hsl(150_40%_15%)] text-sm font-medium text-center leading-relaxed">{tour.route}</p>
           </div>
         )}
         {slide === 2 && (
           <div className="w-full h-full bg-fog bg-secondary p-5 flex items-center animate-scale-in">
-            <p className="text-foreground/90 text-sm italic leading-relaxed font-display text-lg">«{tour.legend}»</p>
+            <p className="text-foreground/90 text-sm italic leading-relaxed font-display" style={{ fontSize: 'clamp(14px, 1.5vw, 18px)' }}>«{tour.legend}»</p>
           </div>
         )}
         {slide === 3 && (
@@ -92,9 +90,9 @@ function TourCard({ tour }: { tour: typeof tours[0] }) {
             <p className="text-primary text-xs uppercase tracking-widest mb-2">Маршрут</p>
             <p className="text-foreground/80 text-sm mb-3">{tour.route}</p>
             <ul className="space-y-1.5">
-              {tour.includes.map((i) => (
-                <li key={i} className="flex items-center gap-2 text-sm text-foreground/80">
-                  <Icon name="Check" size={14} className="text-primary shrink-0" />{i}
+              {tour.includes.map((item) => (
+                <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
+                  <Icon name="Check" size={14} className="text-primary shrink-0" />{item}
                 </li>
               ))}
             </ul>
@@ -106,9 +104,9 @@ function TourCard({ tour }: { tour: typeof tours[0] }) {
       </div>
 
       <div className="p-5 flex flex-col gap-3 flex-1">
-        <div className="flex items-baseline justify-between">
-          <h3 className="font-display text-2xl text-primary">{tour.title}</h3>
-          <span className="text-sm text-muted-foreground">{tour.days}</span>
+        <div className="flex items-baseline justify-between gap-2">
+          <h3 className="font-display text-primary" style={{ fontSize: 'clamp(18px, 2vw, 24px)' }}>{tour.title}</h3>
+          <span className="text-sm text-muted-foreground shrink-0">{tour.days}</span>
         </div>
         <div className="flex gap-1.5">
           {slides.map((s, i) => (
@@ -121,13 +119,8 @@ function TourCard({ tour }: { tour: typeof tours[0] }) {
           ))}
         </div>
         <div className="flex items-center justify-between mt-auto pt-2">
-          <span className="text-xl text-primary font-display font-semibold">{tour.price}</span>
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => setSlide((slide + 1) % 4)}
-            className="text-foreground/70 hover:text-primary"
-          >
+          <span className="font-display font-semibold text-primary" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>{tour.price}</span>
+          <Button size="sm" variant="ghost" onClick={() => setSlide((slide + 1) % 4)} className="text-foreground/70 hover:text-primary">
             Далее <Icon name="ChevronRight" size={16} />
           </Button>
         </div>
@@ -157,15 +150,15 @@ export default function Index() {
 
       {/* HEADER */}
       <header className="fixed top-0 inset-x-0 z-40 backdrop-blur-md bg-background/70 border-b border-border">
-        <div className="container flex items-center justify-between py-3">
-          <a href="#" className="flex items-center gap-3 group">
+        <div className="site-container flex items-center justify-between py-3">
+          <a href="#" className="flex items-center gap-3 group shrink-0">
             <img
               src={LOGO_IMG}
               alt="Тайны Алтая"
               className="w-auto object-contain drop-shadow-lg transition-transform group-hover:scale-105"
-              style={{ maxHeight: '52px' }}
+              style={{ maxHeight: '52px', width: 'auto' }}
             />
-            <span className="hidden sm:block font-display text-base text-foreground/70 leading-tight max-w-[140px]">
+            <span className="hidden sm:block font-display text-base text-foreground/70 leading-tight" style={{ maxWidth: '140px' }}>
               Мистические экспедиции по Горному Алтаю
             </span>
           </a>
@@ -175,65 +168,66 @@ export default function Index() {
             <a href="#about" className="hover:text-primary transition-colors">О проекте</a>
             <a href="#faq" className="hover:text-primary transition-colors">Вопросы</a>
           </nav>
-          <Button onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium">
+          <Button onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium shrink-0">
             Оставить заявку
           </Button>
         </div>
       </header>
 
       {/* HERO */}
-      <section className="relative overflow-hidden" style={{ height: '100svh', minHeight: '500px' }}>
+      <section className="hero-section relative overflow-hidden">
+        {/* Background: cover, no stretch */}
         <img
           src={HERO_IMGS[bgIndex]}
           alt="Горный Алтай в сумерках"
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-          style={{ objectPosition: 'center 30%' }}
+          className="absolute inset-0 w-full h-full transition-opacity duration-1000"
+          style={{ objectFit: 'cover', objectPosition: 'center center' }}
         />
         <HeroAtmosphere />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow" />
-        <div
-          className="relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in"
-          style={{ paddingBottom: 'clamp(60px, 8vh, 120px)', paddingLeft: 'clamp(16px, 5vw, 80px)', paddingRight: 'clamp(16px, 5vw, 80px)' }}
-        >
-          <p className="text-primary uppercase tracking-[0.4em] text-xs mb-5">Авторские экспедиции</p>
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow pointer-events-none" />
+
+        <div className="hero-content relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in">
+          <p className="text-primary uppercase tracking-[0.4em] text-xs mb-4">Авторские экспедиции</p>
           <img
             src={LOGO_IMG}
             alt="Тайны Алтая"
             className="mx-auto mb-6 drop-shadow-2xl animate-float cursor-pointer select-none"
-            style={{ width: 'clamp(200px, 30vw, 420px)', maxWidth: '420px' }}
+            style={{ width: 'clamp(160px, 28vw, 420px)', maxWidth: '420px', height: 'auto', objectFit: 'contain' }}
             onClick={handleLogоClick}
           />
           <h1 className="sr-only">Тайны Алтая</h1>
-          <p className="max-w-xl mx-auto text-foreground/80 mb-8" style={{ fontSize: 'clamp(15px, 1.8vw, 20px)' }}>
+          <p className="mx-auto text-foreground/80 mb-8 leading-relaxed" style={{ maxWidth: '560px', fontSize: 'clamp(14px, 1.6vw, 20px)' }}>
             Шаманские маршруты, древние плато и мистические озёра. Прикоснись к легендам, что старше времён.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8">
+            <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8" style={{ fontSize: 'clamp(14px, 1.4vw, 16px)' }}>
               <Icon name="Compass" size={18} /> Выбрать маршрут
             </Button>
-            <Button size="lg" variant="outline" asChild className="border-primary/40 text-foreground hover:bg-primary/10 text-base px-8">
+            <Button size="lg" variant="outline" asChild className="border-primary/40 text-foreground hover:bg-primary/10 px-8" style={{ fontSize: 'clamp(14px, 1.4vw, 16px)' }}>
               <a href="#map"><Icon name="Map" size={18} /> Открыть карту</a>
             </Button>
           </div>
         </div>
+
         <a href="#map" className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary animate-float z-10">
           <Icon name="ChevronDown" size={28} />
         </a>
       </section>
 
-      {/* INTERACTIVE MAP */}
-      <section id="map" className="py-20 sm:py-28 bg-fog">
-        <div className="container">
+      {/* MAP */}
+      <section id="map" className="section-py bg-fog">
+        <div className="site-container">
           <div className="text-center mb-12">
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Карта странствий</p>
-            <h2 className="font-display font-semibold mb-4" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Земля легенд</h2>
+            <h2 className="font-display font-semibold mb-4" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>Земля легенд</h2>
             <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
 
           <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-start">
-            <div className="relative rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-black/50 bg-[hsl(40_30%_80%)]" style={{ aspectRatio: '4/3' }}>
-              <img src={MAP_IMG} alt="Карта Алтая" className="w-full h-full object-contain" />
+            {/* Map image — aspect-ratio 4/3, object-fit contain */}
+            <div className="relative rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-black/50 bg-[hsl(40_30%_80%)] w-full" style={{ aspectRatio: '4/3' }}>
+              <img src={MAP_IMG} alt="Карта Алтая" className="w-full h-full" style={{ objectFit: 'contain', display: 'block' }} />
               {landmarks.map((lm) => (
                 <button
                   key={lm.id}
@@ -248,14 +242,14 @@ export default function Index() {
               ))}
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-7 min-h-[200px]">
+            <div className="rounded-2xl border border-border bg-card p-7" style={{ minHeight: '200px' }}>
               {activeLandmark ? (
                 (() => {
                   const lm = landmarks.find((l) => l.id === activeLandmark)!;
                   return (
                     <div className="animate-fade-in">
                       <div className="flex items-center gap-2 mb-3">
-                        <Icon name="MapPin" size={20} className="text-bloodred" />
+                        <Icon name="MapPin" size={20} className="text-bloodred shrink-0" />
                         <h3 className="font-display text-2xl text-primary">{lm.name}</h3>
                       </div>
                       <p className="text-foreground/80 leading-relaxed">{lm.desc}</p>
@@ -281,16 +275,14 @@ export default function Index() {
         </div>
       </section>
 
-      {/* TOURS GRID */}
-      <section id="tours" className="py-20 sm:py-28">
-        <div className="container">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Экспедиции</p>
-              <h2 className="font-display font-semibold" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Маршруты тайн</h2>
-            </div>
+      {/* TOURS */}
+      <section id="tours" className="section-py">
+        <div className="site-container">
+          <div className="mb-10">
+            <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Экспедиции</p>
+            <h2 className="font-display font-semibold" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>Маршруты тайн</h2>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="tours-grid">
             {tours.map((t) => (
               <TourCard key={t.title} tour={t} />
             ))}
@@ -299,15 +291,17 @@ export default function Index() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-20 sm:py-28 bg-secondary/40">
-        <div className="container grid md:grid-cols-2 gap-12 items-center">
+      <section id="about" className="section-py bg-secondary/40">
+        <div className="site-container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">О проекте</p>
-            <h2 className="font-display font-semibold mb-6" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Хранители<br />алтайских легенд</h2>
-            <p className="text-foreground/80 leading-relaxed mb-4">
+            <h2 className="font-display font-semibold mb-6" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
+              Хранители<br />алтайских легенд
+            </h2>
+            <p className="text-foreground/80 leading-relaxed mb-4" style={{ fontSize: 'clamp(14px, 1.4vw, 17px)' }}>
               «Тайны Алтая» — это не просто туры. Мы собираем предания старейшин, изучаем древние писаницы и ведём путешественников туда, где обычные карты заканчиваются.
             </p>
-            <p className="text-foreground/80 leading-relaxed">
+            <p className="text-foreground/80 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.4vw, 17px)' }}>
               Каждый маршрут проверен, согласован и сопровождается гидом-этнографом. Тайна — рядом.
             </p>
           </div>
@@ -320,7 +314,7 @@ export default function Index() {
             ].map((s) => (
               <div key={s.label} className="rounded-2xl border border-border bg-card p-6 text-center">
                 <Icon name={s.icon} size={28} className="text-primary mx-auto mb-3" />
-                <p className="font-display text-3xl font-semibold text-primary">{s.val}</p>
+                <p className="font-display font-semibold text-primary" style={{ fontSize: 'clamp(22px, 3vw, 32px)' }}>{s.val}</p>
                 <p className="text-sm text-muted-foreground">{s.label}</p>
               </div>
             ))}
@@ -329,16 +323,16 @@ export default function Index() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="py-20 sm:py-28">
-        <div className="container max-w-3xl">
-          <h2 className="font-display font-semibold text-center mb-12" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Частые вопросы</h2>
+      <section id="faq" className="section-py">
+        <div className="site-container" style={{ maxWidth: '760px' }}>
+          <h2 className="font-display font-semibold text-center mb-12" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>Частые вопросы</h2>
           <div className="space-y-4">
             {faqs.map((f) => (
               <div key={f.q} className="rounded-xl border border-border bg-card p-6">
-                <h3 className="text-xl text-primary mb-2 flex items-center gap-2">
-                  <Icon name="HelpCircle" size={20} /> {f.q}
+                <h3 className="text-primary mb-2 flex items-center gap-2" style={{ fontSize: 'clamp(15px, 1.6vw, 20px)' }}>
+                  <Icon name="HelpCircle" size={20} className="shrink-0" /> {f.q}
                 </h3>
-                <p className="text-foreground/75 leading-relaxed">{f.a}</p>
+                <p className="text-foreground/75 leading-relaxed" style={{ fontSize: 'clamp(13px, 1.3vw, 16px)' }}>{f.a}</p>
               </div>
             ))}
           </div>
@@ -346,16 +340,16 @@ export default function Index() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 sm:py-28 relative overflow-hidden">
+      <section className="section-py relative overflow-hidden">
         <div className="absolute inset-0 bg-fog" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-primary/20 animate-glow" />
-        <div className="container relative text-center max-w-2xl">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-primary/20 animate-glow pointer-events-none" />
+        <div className="site-container relative text-center" style={{ maxWidth: '640px' }}>
           <Icon name="PhoneCall" size={36} className="text-primary mx-auto mb-5" />
-          <h2 className="font-display font-semibold mb-5" style={{ fontSize: 'clamp(28px, 4vw, 48px)' }}>Консультация по туру</h2>
-          <p className="text-foreground/80 mb-8" style={{ fontSize: 'clamp(15px, 1.8vw, 20px)' }}>
+          <h2 className="font-display font-semibold mb-5" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>Консультация по туру</h2>
+          <p className="text-foreground/80 mb-8 leading-relaxed" style={{ fontSize: 'clamp(14px, 1.6vw, 20px)' }}>
             Расскажем о маршрутах, подберём даты и ответим на любые вопросы. Менеджер свяжется с вами в течение часа.
           </p>
-          <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-10 h-14">
+          <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 px-10 h-14" style={{ fontSize: 'clamp(14px, 1.4vw, 16px)' }}>
             Заказать звонок
           </Button>
         </div>
@@ -363,15 +357,15 @@ export default function Index() {
 
       {/* FOOTER */}
       <footer className="border-t border-border py-12">
-        <div className="container grid sm:grid-cols-3 gap-8 text-sm">
+        <div className="site-container grid sm:grid-cols-3 gap-8 text-sm">
           <div>
             <p className="font-display text-2xl font-semibold text-primary mb-3">Тайны Алтая</p>
             <p className="text-muted-foreground">Авторские мистические экспедиции по Горному Алтаю.</p>
           </div>
           <div className="space-y-2 text-foreground/70">
-            <p className="flex items-center gap-2"><Icon name="Phone" size={15} className="text-primary" /> +7 (913) 000-00-00</p>
-            <p className="flex items-center gap-2"><Icon name="Mail" size={15} className="text-primary" /> hello@taynyaltaya.ru</p>
-            <p className="flex items-center gap-2"><Icon name="MapPin" size={15} className="text-primary" /> Горно-Алтайск</p>
+            <p className="flex items-center gap-2"><Icon name="Phone" size={15} className="text-primary shrink-0" /> +7 (913) 000-00-00</p>
+            <p className="flex items-center gap-2"><Icon name="Mail" size={15} className="text-primary shrink-0" /> hello@taynyaltaya.ru</p>
+            <p className="flex items-center gap-2"><Icon name="MapPin" size={15} className="text-primary shrink-0" /> Горно-Алтайск</p>
           </div>
           <div className="text-muted-foreground">
             <p className="mb-1">ИП Хранитель Легенд А.А.</p>
@@ -383,7 +377,10 @@ export default function Index() {
 
       {/* MODAL */}
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="bg-card border-border max-h-[90vh] overflow-y-auto" style={{ width: '90%', maxWidth: '500px' }}>
+        <DialogContent
+          className="bg-card border-border overflow-y-auto"
+          style={{ width: 'min(500px, 92vw)', maxHeight: '90vh', padding: 'clamp(20px, 3vw, 40px)' }}
+        >
           <DialogHeader>
             <DialogTitle className="font-display text-3xl text-primary text-glow-gold">Оставить заявку</DialogTitle>
           </DialogHeader>
@@ -420,7 +417,6 @@ export default function Index() {
               Отправить заявку
             </Button>
           </form>
-
           <div className="mt-2 pt-5 border-t border-border">
             <p className="text-primary uppercase tracking-widest text-xs mb-4">Как мы работаем</p>
             <ol className="space-y-3">

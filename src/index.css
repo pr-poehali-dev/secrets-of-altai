@@ -111,6 +111,88 @@
   }
 }
 
+/* ─── Layout helpers ─── */
+.site-container {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(16px, 4vw, 60px);
+  padding-right: clamp(16px, 4vw, 60px);
+}
+
+.section-py {
+  padding-top: clamp(48px, 7vw, 112px);
+  padding-bottom: clamp(48px, 7vw, 112px);
+}
+
+/* Hero: always 100vh, never stretch bg */
+.hero-section {
+  width: 100%;
+  height: 100svh;
+  min-height: 500px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  padding-bottom: clamp(60px, 8vh, 120px);
+  padding-left: clamp(16px, 5vw, 80px);
+  padding-right: clamp(16px, 5vw, 80px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+/* Tours: auto-fit grid, same card heights */
+.tours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* ─── Breakpoints ─── */
+
+/* Tablet (768–1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .hero-section {
+    height: 70vh;
+    min-height: 420px;
+  }
+  .tours-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (≤767px) */
+@media (max-width: 767px) {
+  .hero-section {
+    height: 100svh;
+    min-height: 400px;
+  }
+  .hero-content {
+    padding-bottom: clamp(40px, 8vh, 80px);
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .tours-grid {
+    grid-template-columns: 1fr;
+  }
+  .section-py {
+    padding-top: clamp(40px, 8vw, 80px);
+    padding-bottom: clamp(40px, 8vw, 80px);
+  }
+  .site-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 @layer utilities {
   .text-glow-gold {
     text-shadow:
