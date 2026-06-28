@@ -10,14 +10,14 @@ export default function HeroAtmosphere() {
 
   // Soft fog puffs — big blurred blobs that look like rolling clouds
   const puffs = [
-    { left: '2%', bottom: '2%', w: 620, h: 280, op: 0.42, dur: 30, delay: 0, blur: 55 },
-    { left: '28%', bottom: '-2%', w: 760, h: 320, op: 0.5, dur: 38, delay: 4, blur: 65 },
-    { left: '56%', bottom: '0%', w: 700, h: 300, op: 0.44, dur: 34, delay: 2, blur: 60 },
-    { left: '14%', bottom: '12%', w: 520, h: 230, op: 0.32, dur: 42, delay: 6, blur: 50 },
-    { left: '66%', bottom: '10%', w: 560, h: 240, op: 0.3, dur: 36, delay: 3, blur: 54 },
-    { left: '40%', bottom: '22%', w: 460, h: 200, op: 0.24, dur: 46, delay: 8, blur: 48 },
-    { left: '80%', bottom: '4%', w: 540, h: 240, op: 0.36, dur: 40, delay: 5, blur: 56 },
-    { left: '-4%', bottom: '14%', w: 480, h: 210, op: 0.26, dur: 44, delay: 7, blur: 50 },
+    { left: '2%', bottom: '2%', w: 620, h: 280, op: 0.18, dur: 30, delay: 0, blur: 55 },
+    { left: '28%', bottom: '-2%', w: 760, h: 320, op: 0.22, dur: 38, delay: 4, blur: 65 },
+    { left: '56%', bottom: '0%', w: 700, h: 300, op: 0.19, dur: 34, delay: 2, blur: 60 },
+    { left: '14%', bottom: '12%', w: 520, h: 230, op: 0.13, dur: 42, delay: 6, blur: 50 },
+    { left: '66%', bottom: '10%', w: 560, h: 240, op: 0.12, dur: 36, delay: 3, blur: 54 },
+    { left: '40%', bottom: '22%', w: 460, h: 200, op: 0.1, dur: 46, delay: 8, blur: 48 },
+    { left: '80%', bottom: '4%', w: 540, h: 240, op: 0.15, dur: 40, delay: 5, blur: 56 },
+    { left: '-4%', bottom: '14%', w: 480, h: 210, op: 0.11, dur: 44, delay: 7, blur: 50 },
   ];
 
   return (
@@ -28,7 +28,7 @@ export default function HeroAtmosphere() {
         <div
           className="absolute inset-x-0 bottom-0 h-2/5"
           style={{
-            background: 'linear-gradient(to top, rgba(220,228,235,0.35), rgba(220,228,235,0.12) 50%, transparent)',
+            background: 'linear-gradient(to top, rgba(220,228,235,0.14), rgba(220,228,235,0.05) 50%, transparent)',
           }}
         />
 
