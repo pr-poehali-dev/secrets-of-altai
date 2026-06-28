@@ -3,6 +3,8 @@ import HeroAtmosphere from '@/components/HeroAtmosphere';
 import SideDecor from '@/components/SideDecor';
 import FloatingRunes from '@/components/FloatingRunes';
 import useScrollReveal from '@/hooks/useScrollReveal';
+import { useTimeOfDay, TIME_IMG_INDEX, TIME_LABEL } from '@/hooks/useTimeOfDay';
+import useScrollBg from '@/hooks/useScrollBg';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -151,12 +153,14 @@ const stories = [
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeLandmark, setActiveLandmark] = useState<number | null>(2);
-  const [bgIndex, setBgIndex] = useState(0);
+  const timeOfDay = useTimeOfDay();
+  const [bgIndex, setBgIndex] = useState(() => TIME_IMG_INDEX[timeOfDay] ?? 0);
   const [clickCount, setClickCount] = useState(0);
   const [legendIdx, setLegendIdx] = useState(0);
   const [storyIdx, setStoryIdx] = useState(0);
 
   useScrollReveal();
+  useScrollBg();
 
   const handleLogоClick = () => {
     const next = clickCount + 1;
@@ -223,6 +227,12 @@ export default function Index() {
           style={{ boxShadow: 'inset 0 0 200px 60px hsl(155 30% 6% / 0.75)' }}
         />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow pointer-events-none" />
+        {/* Time-of-day badge */}
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+          <span className="text-primary/70 text-xs tracking-[0.3em] uppercase font-body transition-all duration-1000">
+            {TIME_LABEL[timeOfDay]}
+          </span>
+        </div>
 
         {/* LEFT PANEL — Legends (desktop only) */}
         <div className="hero-side-panel hero-side-panel--left">
