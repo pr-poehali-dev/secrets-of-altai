@@ -368,7 +368,7 @@ export default function Index() {
             <div
               ref={mapRef}
               className="relative w-full mx-auto"
-              style={{ aspectRatio: '2400 / 1500', maxHeight: '80vh', maxWidth: 'calc(80vh * 2400 / 1500)', cursor: editMode ? 'crosshair' : 'default' }}
+              style={{ aspectRatio: '2400 / 1500', maxHeight: '88vh', maxWidth: 'calc(88vh * 2400 / 1500)', cursor: editMode ? 'crosshair' : 'default' }}
               onMouseMove={(e) => {
                 if (!editMode || draggingRef.current === null) return;
                 const rect = mapRef.current!.getBoundingClientRect();
