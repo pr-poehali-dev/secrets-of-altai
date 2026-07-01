@@ -456,7 +456,7 @@ export default function Index() {
       {/* CTA */}
       <section className="section-py relative overflow-hidden">
         <div className="absolute inset-0 bg-fog" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-primary/20 animate-glow pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-primary/20 animate-glow pointer-events-none hidden md:block" />
         <div className="site-container reveal relative text-center" style={{ maxWidth: '640px' }}>
           <Icon name="PhoneCall" size={36} className="text-primary mx-auto mb-5" />
           <h2 className="font-display font-semibold mb-5" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>Консультация по туру</h2>
