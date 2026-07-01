@@ -525,6 +525,16 @@
   }
 }
 
+/* Mobile: disable all animations */
+@media (max-width: 767px) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* Mobile (≤767px) */
 @media (max-width: 767px) {
   .hero-section {

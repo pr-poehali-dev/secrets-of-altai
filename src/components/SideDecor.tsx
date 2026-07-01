@@ -29,6 +29,8 @@ function Panel({ side, legend, img }: { side: 'left' | 'right'; legend: string; 
 
       {/* Uniform dark overlay */}
       <div className="side-decor-overlay" />
+      {/* Extra darkening layer */}
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)', zIndex: 2 }} />
 
 
 

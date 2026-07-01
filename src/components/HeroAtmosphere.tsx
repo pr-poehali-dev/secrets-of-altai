@@ -23,14 +23,6 @@ export default function HeroAtmosphere() {
     len: 120 + i * 30,
   }));
 
-  const blades = Array.from({ length: 18 }, (_, i) => ({
-    left: `${(i * 5.8 + 1) % 100}%`,
-    h: 28 + (i % 5) * 10,
-    dur: 2.2 + (i % 4) * 0.4,
-    delay: (i % 6) * 0.3,
-    sway: i % 2 === 0 ? 6 : -5,
-  }));
-
   const dust = Array.from({ length: 40 }, (_, i) => ({
     left: `${(i * 17 + 3) % 100}%`,
     top: `${(i * 29 + 7) % 100}%`,
@@ -79,26 +71,6 @@ export default function HeroAtmosphere() {
         />
       ))}
 
-      {/* Wind grass — desktop only */}
-      <div className="absolute inset-x-0 bottom-0 h-16 atmo-desktop">
-        {blades.map((bl, i) => (
-          <div
-            key={i}
-            className="absolute bottom-0"
-            style={{
-              left: bl.left,
-              width: 2,
-              height: bl.h,
-              background: 'linear-gradient(to top, rgba(80,110,60,0.55), rgba(120,160,80,0.25), transparent)',
-              borderRadius: 2,
-              transformOrigin: 'bottom center',
-              ['--sway' as string]: `${bl.sway}deg`,
-              animation: `windSway ${bl.dur}s ease-in-out ${bl.delay}s infinite`,
-            }}
-          />
-        ))}
-      </div>
-
       {/* Golden dust — desktop only */}
       {dust.map((d, i) => (
         <span
@@ -117,11 +89,11 @@ export default function HeroAtmosphere() {
         />
       ))}
 
-      {/* Fireflies — desktop: all 24, mobile: first 6 only */}
+      {/* Fireflies — desktop only */}
       {fireflies.map((f, i) => (
         <span
           key={i}
-          className={`absolute rounded-full${i >= 6 ? ' atmo-desktop' : ''}`}
+          className="absolute rounded-full atmo-desktop"
           style={{
             left: f.left,
             bottom: f.bottom,
@@ -157,11 +129,6 @@ export default function HeroAtmosphere() {
           5% { opacity: 1; }
           30% { opacity: 0; transform: rotate(-30deg) translateX(180px); }
           100% { opacity: 0; transform: rotate(-30deg) translateX(180px); }
-        }
-        @keyframes windSway {
-          0%, 100% { transform: rotate(0deg); }
-          30% { transform: rotate(var(--sway)); }
-          60% { transform: rotate(calc(var(--sway) * -0.5)); }
         }
         @keyframes dustFloat {
           0% { opacity: 0; transform: translate(0, 0); }
