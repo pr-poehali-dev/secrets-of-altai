@@ -340,7 +340,7 @@ export default function Index() {
             </div>
           )}
 
-          <div className="grid lg:grid-cols-[2fr_1fr] gap-8 items-start">
+          <div className="grid lg:grid-cols-[3fr_1fr] gap-8 items-start">
             {/* Map image */}
             <div
               ref={mapRef}
