@@ -162,6 +162,7 @@ const HERO_QUOTES = [
 
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [toursTab, setToursTab] = useState<'tours' | 'expeditions' | 'excursions'>('tours');
   const [activeLandmark, setActiveLandmark] = useState<number | null>(2);
   const timeOfDay = useTimeOfDay();
   const [bgIndex, setBgIndex] = useState(() => TIME_IMG_INDEX[timeOfDay] ?? 0);
@@ -461,14 +462,36 @@ export default function Index() {
               style={{ width: 'clamp(100px, 14vw, 180px)', height: 'auto' }}
             />
             <div>
-              <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Экспедиции</p>
+              <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Маршруты</p>
               <h2 className="font-display font-semibold" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
                 Маршруты «Тайна гор»
               </h2>
             </div>
           </div>
+
+          {/* Вкладки */}
+          <div className="flex gap-2 mb-8 border-b border-border">
+            {([
+              { key: 'tours', label: 'Туры' },
+              { key: 'expeditions', label: 'Экспедиции' },
+              { key: 'excursions', label: 'Экскурсии' },
+            ] as const).map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => setToursTab(key)}
+                className={`px-5 py-2.5 text-sm font-medium transition-colors border-b-2 -mb-px ${
+                  toursTab === key
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-foreground/50 hover:text-foreground/80'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+
           <div className="tours-grid">
-            {tours.map((t) => (
+            {tours.filter((t) => t.category === toursTab).map((t) => (
               <TourCard key={t.title} tour={t} />
             ))}
           </div>
