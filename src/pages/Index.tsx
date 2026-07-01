@@ -22,6 +22,7 @@ const HERO_IMGS = [
   'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/8d721d83-a9d0-405d-a475-999825de2870.png', // 2 день
   'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/6405b5bc-76b3-4386-b674-e47df96a92e4.png', // 3 утро
   'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/dc0beddd-199c-447c-b383-72237fbe373e.png', // 4 полдень
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/19f53968-12af-47aa-9143-7f60229c4f99.png', // 5 вечереет
 ];
 const HERO_IMG = HERO_IMGS[0];
 const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';
