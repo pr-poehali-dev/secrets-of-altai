@@ -403,57 +403,23 @@ export default function Index() {
               })}
             </div>
 
-            {/* Right panel: searchable list + info */}
-            <div className="lg:sticky lg:top-24 flex flex-col gap-3" style={{ maxHeight: '92vh', overflow: 'hidden' }}>
+            {/* Right panel: dropdown + info */}
+            <div className="lg:sticky lg:top-24 flex flex-col gap-4">
               <div>
                 <label className="block text-xs uppercase tracking-[0.2em] text-primary/70 mb-2">Выбери метку на карте</label>
-                <div className="relative">
-                  <Icon name="Search" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground/40" />
-                  <input
-                    type="text"
-                    value={landmarkQuery}
-                    onChange={(e) => setLandmarkQuery(e.target.value)}
-                    placeholder={`Поиск среди ${landmarks.length} мест…`}
-                    className="w-full rounded-xl border border-border bg-card pl-9 pr-9 py-2.5 text-sm text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-primary transition-colors"
-                  />
-                  {landmarkQuery && (
-                    <button
-                      onClick={() => setLandmarkQuery('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground/40 hover:text-foreground transition-colors"
-                    >
-                      <Icon name="X" size={15} />
-                    </button>
-                  )}
-                </div>
+                <select
+                  value={activeLandmark ?? ''}
+                  onChange={(e) => setActiveLandmark(e.target.value ? Number(e.target.value) : null)}
+                  className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer"
+                >
+                  <option value="">— Все места ({landmarks.length}) —</option>
+                  {landmarks.map((lm) => (
+                    <option key={lm.id} value={lm.id}>{lm.icon} {lm.name}</option>
+                  ))}
+                </select>
               </div>
 
-              {/* Scrollable list */}
-              <div className="rounded-2xl border border-border bg-card/60 p-1.5 overflow-y-auto flex-1 min-h-0">
-                {(() => {
-                  const q = landmarkQuery.trim().toLowerCase();
-                  const filtered = landmarks.filter((lm) => lm.name.toLowerCase().includes(q));
-                  if (filtered.length === 0) {
-                    return <p className="text-muted-foreground text-sm text-center py-6">Ничего не найдено</p>;
-                  }
-                  return filtered.map((lm) => {
-                    const isActive = activeLandmark === lm.id;
-                    return (
-                      <button
-                        key={lm.id}
-                        onClick={() => setActiveLandmark(isActive ? null : lm.id)}
-                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors ${isActive ? 'bg-primary/15 border border-primary/40' : 'border border-transparent hover:bg-secondary/60'}`}
-                      >
-                        <span className="text-xl flex-shrink-0">{lm.icon}</span>
-                        <span className={`text-sm leading-tight ${isActive ? 'text-primary font-semibold' : 'text-foreground/85'}`}>{lm.name}</span>
-                        {isActive && <Icon name="Check" size={15} className="ml-auto text-primary flex-shrink-0" />}
-                      </button>
-                    );
-                  });
-                })()}
-              </div>
-
-              {/* Info card */}
-              <div className="rounded-2xl border border-border bg-card p-4 flex-shrink-0">
+              <div className="rounded-2xl border border-border bg-card p-6" style={{ minHeight: '180px' }}>
                 {activeLandmark ? (() => {
                   const lm = landmarks.find((l) => l.id === activeLandmark)!;
                   return (
