@@ -335,13 +335,12 @@ export default function Index() {
 
       {/* MAP */}
       <section id="map" className="section-py bg-fog">
-        <div className="w-full px-4 reveal">
-          <div className="text-center mb-12">
-            <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Карта странствий</p>
-            <h2 className="font-display font-semibold mb-4" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
+        <div className="site-container reveal">
+          <div className="text-center mb-8">
+            <p className="text-primary uppercase tracking-[0.3em] text-xs mb-2">Карта странствий</p>
+            <h2 className="font-display font-semibold" style={{ fontSize: 'clamp(24px, 3.5vw, 40px)', lineHeight: 1.2 }}>
               Земля легенд
             </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
 
           {canEdit && (
@@ -364,21 +363,7 @@ export default function Index() {
             </div>
           )}
 
-          <div className="max-w-md mx-auto mb-6">
-            <label className="block text-xs uppercase tracking-[0.2em] text-primary/70 mb-2 text-center">Выбери метку на карте</label>
-            <select
-              value={activeLandmark ?? ''}
-              onChange={(e) => setActiveLandmark(e.target.value ? Number(e.target.value) : null)}
-              className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer"
-            >
-              <option value="">— Все места ({landmarks.length}) —</option>
-              {landmarks.map((lm) => (
-                <option key={lm.id} value={lm.id}>{lm.icon} {lm.name}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="relative w-full max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-[1.6fr_1fr] gap-6 items-start">
             {/* Map image */}
             <div
               ref={mapRef}
@@ -423,42 +408,38 @@ export default function Index() {
                   </div>
                 );
               })}
+            </div>
 
-              {/* Popup */}
-              {activeLandmark && (() => {
-                const lm = landmarks.find((l) => l.id === activeLandmark)!;
-                const fromRight = lm.x > 60;
-                const fromBottom = lm.y > 65;
-                return (
-                  <div
-                    className="absolute z-20 animate-fade-in pointer-events-auto"
-                    style={{
-                      left: fromRight ? undefined : `${lm.x}%`,
-                      right: fromRight ? `${100 - lm.x}%` : undefined,
-                      top: fromBottom ? undefined : `${lm.y + 4}%`,
-                      bottom: fromBottom ? `${100 - lm.y + 4}%` : undefined,
-                      maxWidth: '280px',
-                      minWidth: '220px',
-                    }}
-                  >
-                    <div className="rounded-xl border border-border bg-card/95 backdrop-blur-sm shadow-xl p-4">
-                      <div className="flex items-start justify-between gap-2 mb-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-2xl">{lm.icon}</span>
-                          <h3 className="font-display text-base text-primary leading-tight">{lm.name}</h3>
-                        </div>
-                        <button
-                          onClick={() => setActiveLandmark(null)}
-                          className="text-foreground/40 hover:text-foreground transition-colors flex-shrink-0 mt-0.5"
-                        >
-                          ✕
-                        </button>
+            {/* Right panel: selector + info */}
+            <div className="lg:sticky lg:top-24">
+              <label className="block text-xs uppercase tracking-[0.2em] text-primary/70 mb-2">Выбери метку на карте</label>
+              <select
+                value={activeLandmark ?? ''}
+                onChange={(e) => setActiveLandmark(e.target.value ? Number(e.target.value) : null)}
+                className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer"
+              >
+                <option value="">— Все места ({landmarks.length}) —</option>
+                {landmarks.map((lm) => (
+                  <option key={lm.id} value={lm.id}>{lm.icon} {lm.name}</option>
+                ))}
+              </select>
+
+              <div className="mt-4 rounded-2xl border border-border bg-card p-6" style={{ minHeight: '180px' }}>
+                {activeLandmark ? (() => {
+                  const lm = landmarks.find((l) => l.id === activeLandmark)!;
+                  return (
+                    <div className="animate-fade-in">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-3xl">{lm.icon}</span>
+                        <h3 className="font-display text-xl text-primary leading-tight">{lm.name}</h3>
                       </div>
-                      <p className="text-foreground/80 text-xs leading-relaxed">{lm.detail}</p>
+                      <p className="text-foreground/80 text-sm leading-relaxed">{lm.detail}</p>
                     </div>
-                  </div>
-                );
-              })()}
+                  );
+                })() : (
+                  <p className="text-muted-foreground text-sm">Выбери место из списка или нажми на метку на карте, чтобы узнать его тайну.</p>
+                )}
+              </div>
             </div>
           </div>
         </div>
