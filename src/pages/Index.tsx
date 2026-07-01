@@ -348,6 +348,23 @@ export default function Index() {
         </div>
 
         <div className="hero-content relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in">
+          <p
+            className="mx-auto mb-4 leading-relaxed italic font-display px-5 py-3"
+            style={{
+              maxWidth: '580px',
+              fontSize: 'clamp(14px, 1.6vw, 20px)',
+              color: '#fff',
+              textShadow: '0 1px 4px rgba(0,0,0,0.7)',
+              opacity: quoteVisible ? 1 : 0,
+              transition: 'opacity 0.6s ease',
+              background: 'rgba(0,0,0,0.35)',
+              border: '1px solid rgba(255,255,255,0.18)',
+              borderRadius: '12px',
+              backdropFilter: 'blur(6px)',
+            }}
+          >
+            {HERO_QUOTES[quoteIdx]}
+          </p>
           <img
             src={LOGO_IMG}
             alt="Тайны Алтая"
@@ -356,19 +373,6 @@ export default function Index() {
             onClick={handleLogоClick}
           />
           <h1 className="sr-only">Тайны Алтая</h1>
-          <p
-            className="mx-auto mb-8 leading-relaxed italic font-display"
-            style={{
-              maxWidth: '580px',
-              fontSize: 'clamp(15px, 1.7vw, 21px)',
-              color: '#fff',
-              textShadow: '0 1px 6px rgba(0,0,0,0.85), 0 0 24px rgba(0,0,0,0.6)',
-              opacity: quoteVisible ? 1 : 0,
-              transition: 'opacity 0.6s ease',
-            }}
-          >
-            {HERO_QUOTES[quoteIdx]}
-          </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8" style={{ fontSize: 'clamp(14px, 1.4vw, 16px)' }}>
               <Icon name="Compass" size={18} /> Выбрать маршрут
