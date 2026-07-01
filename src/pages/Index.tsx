@@ -32,11 +32,26 @@ const TOUR_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f937
 const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/82e4363e-4520-48ab-9564-1c624825319d.png';
 
 const landmarks = [
-  { id: 1, name: 'Горно-Алтайск', x: 22, y: 14, desc: 'Столица республики и врата в мир тайн. Начало большинства маршрутов.' },
-  { id: 2, name: 'Чемал', x: 30, y: 28, desc: 'Живописное место слияния рек. Здесь начинаются самые мистические тропы Алтая.' },
-  { id: 3, name: 'Телецкое озеро', x: 62, y: 32, desc: 'Алтын-Кёль — «Золотое озеро». Глубины хранят легенды о затонувших сокровищах.' },
-  { id: 4, name: 'Долина Чулышман', x: 38, y: 52, desc: 'Каменные грибы и древние писаницы. Место силы шаманов. Здесь не работают компасы.' },
-  { id: 5, name: 'Плато Укок', x: 72, y: 68, desc: 'Зона покоя. Здесь нашли мумию «Алтайской принцессы» — хранительницы покоя миров.' },
+  {
+    id: 1, icon: '⛰️', name: 'Гора Белуха', x: 75, y: 22,
+    desc: 'Высочайшая вершина Алтая (4506 м). Сакральный центр, где по легендам находится вход в Шамбалу. Место силы и мистических видений.',
+    detail: 'Гора Белуха — высочайшая вершина Сибири (4506 м). Считается сакральным центром Алтая. По легендам, у её подножия скрыт вход в Шамбалу — мистическую страну просветлённых. Многие путешественники отмечают здесь необъяснимое чувство покоя и изменение восприятия времени.',
+  },
+  {
+    id: 2, icon: '🌊', name: 'Телецкое озеро', x: 31, y: 53,
+    desc: 'Алтын-Кёль (Золотое озеро). Глубины до 325 м. Легенды о затонувших сокровищах и подводных духах. Одно из самых живописных озёр России.',
+    detail: 'Алтын-Кёль (Золотое озеро) — одно из глубочайших озёр России (325 м). Легенды гласят, что на дне озера покоятся сокровища древних племён, а в его водах обитает дух-хранитель в виде золотой рыбы. Местные жители верят, что озеро живёт своей жизнью и может менять цвет и настроение.',
+  },
+  {
+    id: 3, icon: '🏕️', name: 'Плато Укок', x: 92, y: 61,
+    desc: 'Царство древних курганов и петроглифов. Место захоронения скифских вождей. Зона покоя на стыке четырёх государств.',
+    detail: 'Плато Укок — «зона покоя» на стыке границ России, Монголии, Китая и Казахстана. Место древних захоронений (курганов) и петроглифов. В 1993 году здесь была найдена мумия «Алтайской принцессы», что подтвердило существование развитой скифской культуры в этих местах. Плато считается одним из самых сильных мест силы на Алтае.',
+  },
+  {
+    id: 4, icon: '🌀', name: 'Река Катунь', x: 21, y: 39,
+    desc: 'Главная водная артерия Алтая. Бурные пороги и бирюзовая вода. Берёт начало у подножия Белухи. Популярное место для рафтинга.',
+    detail: 'Катунь — главная река Горного Алтая, берущая начало у подножия Белухи. Её бирюзовые воды, бурные пороги и живописные долины привлекают путешественников со всего мира. Название реки происходит от тюркского «кадын» — «госпожа» или «хозяйка», что подчёркивает её важность для алтайцев.',
+  },
 ];
 
 const faqs = [
@@ -317,11 +332,15 @@ export default function Index() {
                   key={lm.id}
                   onClick={() => setActiveLandmark(lm.id)}
                   style={{ left: `${lm.x}%`, top: `${lm.y}%` }}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 group"
+                  className="absolute -translate-x-1/2 -translate-y-1/2 group flex flex-col items-center gap-0.5"
                   aria-label={lm.name}
                 >
-                  <span className="absolute inset-0 rounded-full bg-bloodred animate-ping-slow" />
-                  <span className={`relative block w-5 h-5 rounded-full border-2 transition-transform group-hover:scale-125 ${activeLandmark === lm.id ? 'bg-bloodred border-white scale-125' : 'bg-bloodred/70 border-white/70'}`} />
+                  <span className="text-xl drop-shadow-lg transition-transform group-hover:scale-125" style={{ filter: activeLandmark === lm.id ? 'drop-shadow(0 0 6px #f5c542)' : undefined }}>
+                    {lm.icon}
+                  </span>
+                  <span className="text-[10px] font-bold text-white bg-black/60 px-1.5 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                    {lm.name}
+                  </span>
                 </button>
               ))}
             </div>
@@ -332,11 +351,11 @@ export default function Index() {
                   const lm = landmarks.find((l) => l.id === activeLandmark)!;
                   return (
                     <div className="animate-fade-in">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Icon name="MapPin" size={20} className="text-bloodred shrink-0" />
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="text-3xl">{lm.icon}</span>
                         <h3 className="font-display text-2xl text-primary">{lm.name}</h3>
                       </div>
-                      <p className="text-foreground/80 leading-relaxed">{lm.desc}</p>
+                      <p className="text-foreground/80 leading-relaxed text-sm">{lm.detail}</p>
                     </div>
                   );
                 })()
