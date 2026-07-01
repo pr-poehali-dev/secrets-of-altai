@@ -335,7 +335,7 @@ export default function Index() {
 
       {/* MAP */}
       <section id="map" className="section-py bg-fog">
-        <div className="site-container reveal">
+        <div className="w-full px-4 sm:px-8 reveal">
           <div className="text-center mb-8">
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-2">Карта странствий</p>
             <h2 className="font-display font-semibold" style={{ fontSize: 'clamp(24px, 3.5vw, 40px)', lineHeight: 1.2 }}>
@@ -363,7 +363,7 @@ export default function Index() {
             </div>
           )}
 
-          <div className="grid lg:grid-cols-[2.4fr_1fr] gap-6 items-start">
+          <div className="grid lg:grid-cols-[3.5fr_1fr] gap-6 items-start">
             {/* Map image */}
             <div
               ref={mapRef}
