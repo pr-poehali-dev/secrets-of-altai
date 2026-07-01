@@ -347,12 +347,16 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="hero-content relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in">
+        {/* Цитата — прибита к верху, под хедером */}
+        <div
+          className="absolute inset-x-0 flex justify-center px-4"
+          style={{ top: 'calc(64px + 16px)', zIndex: 10 }}
+        >
           <p
-            className="mx-auto mb-4 leading-relaxed italic font-display px-5 py-3"
+            className="leading-relaxed italic font-display px-5 py-3 text-center"
             style={{
               maxWidth: '580px',
-              fontSize: 'clamp(14px, 1.6vw, 20px)',
+              fontSize: 'clamp(13px, 1.5vw, 18px)',
               color: '#fff',
               textShadow: '0 1px 4px rgba(0,0,0,0.7)',
               opacity: quoteVisible ? 1 : 0,
@@ -365,6 +369,9 @@ export default function Index() {
           >
             {HERO_QUOTES[quoteIdx]}
           </p>
+        </div>
+
+        <div className="hero-content relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in">
           <img
             src={LOGO_IMG}
             alt="Тайны Алтая"
