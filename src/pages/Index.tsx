@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HeroAtmosphere from '@/components/HeroAtmosphere';
 import SideDecor from '@/components/SideDecor';
 import FloatingRunes from '@/components/FloatingRunes';
@@ -153,6 +153,13 @@ const stories = [
   { symbol: '⟡', title: 'Петроглифы', text: 'Наскальные рисунки Алтая насчитывают 10 000 лет. Многие изображения до сих пор не расшифрованы — учёные спорят об их смысле.' },
 ];
 
+const HERO_QUOTES = [
+  '«Здесь горы помнят звёзды, а реки хранят легенды. Алтай открывается тем, кто ищет тишину и красоту.»',
+  '«Край, где дышит древность. Тайны Алтая — твой следующий шаг.»',
+  '«Там, где заканчиваются карты, начинаются легенды. Алтай зовёт тех, кто готов слушать.»',
+  '«Ветры древних кочевий, шёпот кедров и сияние гор. Алтай — это музыка вечности.»',
+];
+
 export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeLandmark, setActiveLandmark] = useState<number | null>(2);
@@ -163,6 +170,19 @@ export default function Index() {
   const [clickCount, setClickCount] = useState(0);
   const [legendIdx, setLegendIdx] = useState(0);
   const [storyIdx, setStoryIdx] = useState(0);
+  const [quoteIdx, setQuoteIdx] = useState(0);
+  const [quoteVisible, setQuoteVisible] = useState(true);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setQuoteVisible(false);
+      setTimeout(() => {
+        setQuoteIdx(i => (i + 1) % HERO_QUOTES.length);
+        setQuoteVisible(true);
+      }, 600);
+    }, 15000);
+    return () => clearInterval(id);
+  }, []);
 
   useScrollReveal();
   useScrollBg();
@@ -336,8 +356,18 @@ export default function Index() {
             onClick={handleLogоClick}
           />
           <h1 className="sr-only">Тайны Алтая</h1>
-          <p className="mx-auto text-foreground/80 mb-8 leading-relaxed" style={{ maxWidth: '560px', fontSize: 'clamp(14px, 1.6vw, 20px)' }}>
-            Шаманские маршруты, древние плато и мистические озёра. Прикоснись к легендам, что старше времён.
+          <p
+            className="mx-auto mb-8 leading-relaxed italic font-display"
+            style={{
+              maxWidth: '580px',
+              fontSize: 'clamp(15px, 1.7vw, 21px)',
+              color: '#fff',
+              textShadow: '0 1px 6px rgba(0,0,0,0.85), 0 0 24px rgba(0,0,0,0.6)',
+              opacity: quoteVisible ? 1 : 0,
+              transition: 'opacity 0.6s ease',
+            }}
+          >
+            {HERO_QUOTES[quoteIdx]}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8" style={{ fontSize: 'clamp(14px, 1.4vw, 16px)' }}>
