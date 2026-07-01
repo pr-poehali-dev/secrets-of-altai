@@ -350,10 +350,10 @@ export default function Index() {
         {/* Цитата — прибита к верху, под хедером */}
         <div
           className="absolute inset-x-0 flex justify-center px-4"
-          style={{ top: 'calc(64px + 16px)', zIndex: 10 }}
+          style={{ top: 'calc(64px + 21px)', zIndex: 10 }}
         >
           <p
-            className="leading-relaxed italic font-display px-5 py-3 text-center"
+            className="leading-relaxed italic font-body px-5 py-3 text-center"
             style={{
               maxWidth: '580px',
               fontSize: 'clamp(13px, 1.5vw, 18px)',
