@@ -347,13 +347,17 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Цитата — прибита к верху, под хедером */}
-        <div
-          className="absolute inset-x-0 flex justify-center px-4"
-          style={{ top: 'calc(64px + 40px)', zIndex: 10 }}
-        >
+        <div className="hero-content relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in">
+          <img
+            src={LOGO_IMG}
+            alt="Тайны Алтая"
+            className="mx-auto mb-4 drop-shadow-2xl animate-float cursor-pointer select-none"
+            style={{ width: 'clamp(220px, 36vw, 560px)', maxWidth: '560px', height: 'auto', objectFit: 'contain' }}
+            onClick={handleLogоClick}
+          />
+          <h1 className="sr-only">Тайны Алтая</h1>
           <p
-            className="leading-relaxed italic font-body px-5 py-3 text-center"
+            className="mx-auto mb-6 leading-relaxed italic font-body px-5 py-3 text-center"
             style={{
               maxWidth: '580px',
               fontSize: 'clamp(13px, 1.5vw, 18px)',
@@ -361,25 +365,14 @@ export default function Index() {
               textShadow: '0 1px 4px rgba(0,0,0,0.7)',
               opacity: quoteVisible ? 1 : 0,
               transition: 'opacity 0.6s ease',
-              background: 'rgba(0,0,0,0.35)',
-              border: '1px solid rgba(255,255,255,0.18)',
+              background: 'rgba(0,0,0,0.18)',
+              border: '1px solid rgba(255,255,255,0.12)',
               borderRadius: '12px',
-              backdropFilter: 'blur(6px)',
+              backdropFilter: 'blur(4px)',
             }}
           >
             {HERO_QUOTES[quoteIdx]}
           </p>
-        </div>
-
-        <div className="hero-content relative z-10 h-full flex flex-col items-center justify-end text-center animate-fade-in">
-          <img
-            src={LOGO_IMG}
-            alt="Тайны Алтая"
-            className="mx-auto mb-6 drop-shadow-2xl animate-float cursor-pointer select-none"
-            style={{ width: 'clamp(220px, 36vw, 560px)', maxWidth: '560px', height: 'auto', objectFit: 'contain' }}
-            onClick={handleLogоClick}
-          />
-          <h1 className="sr-only">Тайны Алтая</h1>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8" style={{ fontSize: 'clamp(14px, 1.4vw, 16px)' }}>
               <Icon name="Compass" size={18} /> Выбрать маршрут
