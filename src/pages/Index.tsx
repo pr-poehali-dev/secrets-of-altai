@@ -311,7 +311,7 @@ export default function Index() {
 
       {/* MAP */}
       <section id="map" className="section-py bg-fog">
-        <div className="site-container reveal">
+        <div className="w-full px-4 reveal">
           <div className="text-center mb-12">
             <p className="text-primary uppercase tracking-[0.3em] text-xs mb-3">Карта странствий</p>
             <h2 className="font-display font-semibold mb-4" style={{ fontSize: 'clamp(26px, 4vw, 48px)', lineHeight: 1.2 }}>
