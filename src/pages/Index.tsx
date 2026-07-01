@@ -226,13 +226,6 @@ export default function Index() {
           aria-label="Горный Алтай в сумерках"
         />
         <HeroAtmosphere />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
-        {/* Desktop-only: vignette and glow */}
-        <div
-          className="absolute inset-0 pointer-events-none hidden md:block"
-          style={{ boxShadow: 'inset 0 0 200px 60px hsl(155 30% 6% / 0.75)' }}
-        />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-primary/30 animate-glow pointer-events-none hidden md:block" />
 
 
         {/* LEFT PANEL — Legends (desktop only) */}

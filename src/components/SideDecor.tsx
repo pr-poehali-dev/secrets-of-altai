@@ -30,8 +30,7 @@ function Panel({ side, legend, img }: { side: 'left' | 'right'; legend: string; 
       {/* Uniform dark overlay */}
       <div className="side-decor-overlay" />
 
-      {/* Inner edge blend */}
-      <div className={`side-decor-fade side-decor-fade--${side}`} />
+
 
       {/* Legend overlay — React-driven for reliable hover */}
       <div
