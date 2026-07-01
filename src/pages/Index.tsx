@@ -356,6 +356,23 @@ export default function Index() {
             onClick={handleLogоClick}
           />
           <h1 className="sr-only">Тайны Алтая</h1>
+          <p
+            className="mx-auto mb-6 leading-relaxed italic font-body px-5 py-3 text-center hidden md:block"
+            style={{
+              maxWidth: '580px',
+              fontSize: 'clamp(13px, 1.5vw, 18px)',
+              color: '#fff',
+              textShadow: '0 1px 4px rgba(0,0,0,0.7)',
+              opacity: quoteVisible ? 1 : 0,
+              transition: 'opacity 0.6s ease',
+              background: 'rgba(0,0,0,0.18)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              borderRadius: '12px',
+              backdropFilter: 'blur(4px)',
+            }}
+          >
+            {HERO_QUOTES[quoteIdx]}
+          </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button size="lg" onClick={() => setModalOpen(true)} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8" style={{ fontSize: 'clamp(14px, 1.4vw, 16px)' }}>
               <Icon name="Compass" size={18} /> Выбрать маршрут
