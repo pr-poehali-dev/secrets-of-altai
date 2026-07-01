@@ -399,24 +399,7 @@ export default function Index() {
             <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
 
-          <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-start">
-            {/* Map image */}
-            <div className="relative w-full" style={{ aspectRatio: '4/3' }}>
-              <img src={MAP_IMG} alt="Карта Алтая" className="w-full h-full" style={{ objectFit: 'contain', display: 'block' }} />
-              {landmarks.map((lm) => (
-                <button
-                  key={lm.id}
-                  onClick={() => setActiveLandmark(lm.id)}
-                  style={{ left: `${lm.x}%`, top: `${lm.y}%` }}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 group"
-                  aria-label={lm.name}
-                >
-                  <span className="absolute inset-0 rounded-full bg-bloodred animate-ping-slow" />
-                  <span className={`relative block w-5 h-5 rounded-full border-2 transition-transform group-hover:scale-125 ${activeLandmark === lm.id ? 'bg-bloodred border-white scale-125' : 'bg-bloodred/70 border-white/70'}`} />
-                </button>
-              ))}
-            </div>
-
+          <div className="grid gap-8 items-start">
             <div className="rounded-2xl border border-border bg-card p-7" style={{ minHeight: '200px' }}>
               {activeLandmark ? (
                 (() => {
