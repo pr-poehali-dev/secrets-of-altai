@@ -33,7 +33,7 @@ export default function HeroAtmosphere() {
   }));
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 3 }}>
 
       {/* Sky clouds — desktop only */}
       {clouds.map((c, i) => (

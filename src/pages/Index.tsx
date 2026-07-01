@@ -158,6 +158,8 @@ export default function Index() {
   const [activeLandmark, setActiveLandmark] = useState<number | null>(2);
   const timeOfDay = useTimeOfDay();
   const [bgIndex, setBgIndex] = useState(() => TIME_IMG_INDEX[timeOfDay] ?? 0);
+  const [prevIndex, setPrevIndex] = useState<number | null>(null);
+  const [fading, setFading] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [legendIdx, setLegendIdx] = useState(0);
   const [storyIdx, setStoryIdx] = useState(0);
@@ -165,10 +167,18 @@ export default function Index() {
   useScrollReveal();
   useScrollBg();
 
+  const changeBg = (next: number) => {
+    if (next === bgIndex) return;
+    setPrevIndex(bgIndex);
+    setBgIndex(next);
+    setFading(true);
+    setTimeout(() => { setFading(false); setPrevIndex(null); }, 1200);
+  };
+
   const handleLogоClick = () => {
     const next = clickCount + 1;
     if (next >= 4) {
-      setBgIndex(i => (i + 1) % HERO_IMGS.length);
+      changeBg((bgIndex + 1) % HERO_IMGS.length);
       setClickCount(0);
     } else {
       setClickCount(next);
@@ -208,25 +218,49 @@ export default function Index() {
 
       {/* HERO */}
       <section className="hero-section relative overflow-hidden">
-        {/* Mobile: full-width image */}
+        {/* Mobile: crossfade layers */}
+        {prevIndex !== null && (
+          <img
+            src={HERO_IMGS[prevIndex]}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover md:hidden"
+            style={{ objectPosition: 'center 20%', opacity: fading ? 1 : 0, transition: 'opacity 1.2s ease', zIndex: 1 }}
+          />
+        )}
         <img
           src={HERO_IMGS[bgIndex]}
           alt="Горный Алтай"
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 md:hidden"
-          style={{ objectPosition: 'center 20%' }}
+          className="absolute inset-0 w-full h-full object-cover md:hidden"
+          style={{ objectPosition: 'center 20%', opacity: 1, zIndex: 2 }}
         />
-        {/* Desktop: centered 1400px image with bg sides */}
-        <div className="absolute inset-0 bg-background hidden md:block" />
+        {/* Desktop: crossfade layers */}
+        <div className="absolute inset-0 bg-background hidden md:block" style={{ zIndex: 0 }} />
+        {prevIndex !== null && (
+          <div
+            className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 hidden md:block"
+            style={{
+              width: 'min(100%, 1400px)',
+              backgroundImage: `url(${HERO_IMGS[prevIndex]})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 20%',
+              backgroundRepeat: 'no-repeat',
+              opacity: fading ? 1 : 0,
+              transition: 'opacity 1.2s ease',
+              zIndex: 1,
+            }}
+          />
+        )}
         <div
-          className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 transition-all duration-1000 hidden md:block"
+          className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 hidden md:block"
           style={{
             width: 'min(100%, 1400px)',
             backgroundImage: `url(${HERO_IMGS[bgIndex]})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center 20%',
             backgroundRepeat: 'no-repeat',
+            zIndex: 2,
           }}
-          aria-label="Горный Алтай в сумерках"
+          aria-label="Горный Алтай"
         />
         <HeroAtmosphere />
 
