@@ -18,7 +18,7 @@ import {
 
 const HERO_IMGS = [
   'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/ab910eff-21c0-42df-b7c8-beb6863386a5.png',
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/fc8d0789-1348-4ecb-97d9-9a1ac0813e60.jpg',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/f9134551-7f2e-4d9e-ba45-02919c9a6a8d.png',
   'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/5ad82dd7-1b41-4c34-87a0-175bd0f59957.jpg',
 ];
 const HERO_IMG = HERO_IMGS[0];
