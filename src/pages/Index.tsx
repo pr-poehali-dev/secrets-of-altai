@@ -404,7 +404,7 @@ export default function Index() {
             </div>
 
             {/* Right panel: searchable list + info */}
-            <div className="lg:sticky lg:top-24 flex flex-col gap-4" style={{ maxHeight: 'calc(92vh)' }}>
+            <div className="lg:sticky lg:top-24 flex flex-col gap-3" style={{ maxHeight: '92vh', overflow: 'hidden' }}>
               <div>
                 <label className="block text-xs uppercase tracking-[0.2em] text-primary/70 mb-2">Выбери метку на карте</label>
                 <div className="relative">
@@ -428,7 +428,7 @@ export default function Index() {
               </div>
 
               {/* Scrollable list */}
-              <div className="rounded-2xl border border-border bg-card/60 p-1.5 overflow-y-auto" style={{ maxHeight: '38vh' }}>
+              <div className="rounded-2xl border border-border bg-card/60 p-1.5 overflow-y-auto flex-1 min-h-0">
                 {(() => {
                   const q = landmarkQuery.trim().toLowerCase();
                   const filtered = landmarks.filter((lm) => lm.name.toLowerCase().includes(q));
@@ -453,7 +453,7 @@ export default function Index() {
               </div>
 
               {/* Info card */}
-              <div className="rounded-2xl border border-border bg-card p-6" style={{ minHeight: '160px' }}>
+              <div className="rounded-2xl border border-border bg-card p-4 flex-shrink-0">
                 {activeLandmark ? (() => {
                   const lm = landmarks.find((l) => l.id === activeLandmark)!;
                   return (
