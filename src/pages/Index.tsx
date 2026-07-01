@@ -17,9 +17,10 @@ import {
 } from '@/components/ui/dialog';
 
 const HERO_IMGS = [
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/ab910eff-21c0-42df-b7c8-beb6863386a5.png',
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/f9134551-7f2e-4d9e-ba45-02919c9a6a8d.png',
-  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/8d721d83-a9d0-405d-a475-999825de2870.png',
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/ab910eff-21c0-42df-b7c8-beb6863386a5.png', // 0 вечер
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/f9134551-7f2e-4d9e-ba45-02919c9a6a8d.png', // 1 ночь
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/8d721d83-a9d0-405d-a475-999825de2870.png', // 2 день
+  'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/6405b5bc-76b3-4386-b674-e47df96a92e4.png', // 3 утро
 ];
 const HERO_IMG = HERO_IMGS[0];
 const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/a355bd30-b025-4d0c-b93f-2af29bb760a7.png';

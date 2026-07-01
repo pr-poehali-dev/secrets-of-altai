@@ -24,11 +24,12 @@ export function useTimeOfDay() {
 }
 
 // Map time → hero image index
+// 0 = вечер, 1 = ночь, 2 = день (орлы), 3 = утро (рассвет)
 export const TIME_IMG_INDEX: Record<TimeOfDay, number> = {
-  night: 1, // dark/night image
-  dawn:  2, // sunrise image
-  day:   0, // daytime/dusk image
-  dusk:  0, // evening image
+  night: 1,
+  dawn:  3,
+  day:   2,
+  dusk:  0,
 };
 
 export const TIME_LABEL: Record<TimeOfDay, string> = {
