@@ -77,7 +77,20 @@ export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [toursTab, setToursTab] = useState<'tours' | 'expeditions' | 'excursions'>('tours');
   const [activeLandmark, setActiveLandmark] = useState<number | null>(null);
+  const [editMode, setEditMode] = useState(false);
+  const [positions, setPositions] = useState<Record<number, { x: number; y: number }>>(
+    () => Object.fromEntries(landmarks.map(lm => [lm.id, { x: lm.x, y: lm.y }]))
+  );
+  const draggingRef = useRef<number | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.altKey && e.shiftKey && e.code === 'KeyE') setEditMode(m => !m);
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
   const timeOfDay = useTimeOfDay();
   const [bgIndex, setBgIndex] = useState(() => TIME_IMG_INDEX[timeOfDay] ?? 0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
@@ -314,26 +327,51 @@ export default function Index() {
             <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
 
+          {editMode && (
+            <div className="mb-4 p-4 rounded-xl border border-primary/30 bg-primary/5 text-xs text-foreground/70 space-y-1">
+              <p className="font-semibold text-primary mb-2">🗺️ Режим редактирования (Alt+Shift+E — выкл). Перетаскивай метки:</p>
+              {landmarks.map(lm => (
+                <p key={lm.id}>{lm.icon} {lm.name}: x={positions[lm.id].x.toFixed(1)}, y={positions[lm.id].y.toFixed(1)}</p>
+              ))}
+            </div>
+          )}
+
           <div className="grid lg:grid-cols-[2fr_1fr] gap-8 items-start">
             {/* Map image */}
-            <div ref={mapRef} className="relative w-full" style={{ aspectRatio: '2400 / 1500' }}>
+            <div
+              ref={mapRef}
+              className="relative w-full"
+              style={{ aspectRatio: '2400 / 1500', cursor: editMode ? 'crosshair' : 'default' }}
+              onMouseMove={(e) => {
+                if (!editMode || draggingRef.current === null) return;
+                const rect = mapRef.current!.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                setPositions(prev => ({ ...prev, [draggingRef.current!]: { x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) } }));
+              }}
+              onMouseUp={() => { draggingRef.current = null; }}
+              onMouseLeave={() => { draggingRef.current = null; }}
+            >
               <img src={MAP_IMG} alt="Карта Алтая" className="w-full h-full" style={{ objectFit: 'contain', display: 'block' }} />
-              {landmarks.map((lm) => (
-                <button
-                  key={lm.id}
-                  style={{ left: `${lm.x}%`, top: `${lm.y}%` }}
-                  className="absolute -translate-x-1/2 -translate-y-1/2 group flex flex-col items-center gap-0.5 select-none cursor-pointer"
-                  onClick={() => setActiveLandmark(lm.id)}
-                  aria-label={lm.name}
-                >
-                  <span className="text-xl drop-shadow-lg transition-transform group-hover:scale-125" style={{ filter: activeLandmark === lm.id ? 'drop-shadow(0 0 6px #f5c542)' : undefined }}>
-                    {lm.icon}
-                  </span>
-                  <span className="text-[10px] font-bold text-white bg-black/60 px-1.5 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
-                    {lm.name}
-                  </span>
-                </button>
-              ))}
+              {landmarks.map((lm) => {
+                const pos = editMode ? positions[lm.id] : lm;
+                return (
+                  <div
+                    key={lm.id}
+                    style={{ left: `${pos.x}%`, top: `${pos.y}%`, cursor: editMode ? 'grab' : 'pointer' }}
+                    className="absolute -translate-x-1/2 -translate-y-1/2 group flex flex-col items-center gap-0.5 select-none"
+                    onMouseDown={(e) => { if (editMode) { e.preventDefault(); draggingRef.current = lm.id; } }}
+                    onClick={() => { if (!editMode) setActiveLandmark(lm.id); }}
+                  >
+                    <span className="text-xl drop-shadow-lg transition-transform group-hover:scale-125" style={{ filter: activeLandmark === lm.id ? 'drop-shadow(0 0 6px #f5c542)' : undefined }}>
+                      {lm.icon}
+                    </span>
+                    <span className={`text-[10px] font-bold text-white bg-black/60 px-1.5 py-0.5 rounded whitespace-nowrap transition-opacity ${editMode ? 'opacity-100 bg-primary/80' : 'opacity-0 group-hover:opacity-100'}`}>
+                      {lm.name}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="rounded-2xl border border-border bg-card p-7" style={{ minHeight: '200px' }}>
