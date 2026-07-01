@@ -400,8 +400,8 @@ export default function Index() {
           </div>
 
           <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-start">
-            {/* Map image — aspect-ratio 4/3, object-fit contain */}
-            <div className="relative rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-black/50 bg-[hsl(40_30%_80%)] w-full" style={{ aspectRatio: '4/3' }}>
+            {/* Map image */}
+            <div className="relative w-full" style={{ aspectRatio: '4/3' }}>
               <img src={MAP_IMG} alt="Карта Алтая" className="w-full h-full" style={{ objectFit: 'contain', display: 'block' }} />
               {landmarks.map((lm) => (
                 <button
