@@ -31,48 +31,17 @@ const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f9372
 const TOUR_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/0a186228-adb5-49dd-9f7a-76ce5509bb6a.jpg';
 const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/82e4363e-4520-48ab-9564-1c624825319d.png';
 
-// координаты x,y — проценты (пиксель / 2400 ширина, / 1500 высота)
 const landmarks = [
-  {
-    id: 1, icon: '⛰️', name: 'Гора Белуха', x: 75, y: 26.67,
-    detail: 'Гора Белуха — высочайшая вершина Сибири (4506 м). Считается сакральным центром Алтая. По легендам, у её подножия скрыт вход в Шамбалу — мистическую страну просветлённых. Многие путешественники отмечают здесь необъяснимое чувство покоя и изменение восприятия времени.',
-  },
-  {
-    id: 2, icon: '🌊', name: 'Телецкое озеро', x: 31.25, y: 63.33,
-    detail: 'Алтын-Кёль (Золотое озеро) — одно из глубочайших озёр России (325 м). Легенды гласят, что на дне озера покоятся сокровища древних племён, а в его водах обитает дух-хранитель в виде золотой рыбы. Местные жители верят, что озеро живёт своей жизнью и может менять цвет и настроение.',
-  },
-  {
-    id: 3, icon: '🏕️', name: 'Плато Укок', x: 91.67, y: 73.33,
-    detail: 'Плато Укок — «зона покоя» на стыке границ России, Монголии, Китая и Казахстана. Место древних захоронений (курганов) и петроглифов. В 1993 году здесь была найдена мумия «Алтайской принцессы», что подтвердило существование развитой скифской культуры в этих местах. Плато считается одним из самых сильных мест силы на Алтае.',
-  },
-  {
-    id: 4, icon: '🌀', name: 'Река Катунь', x: 20.83, y: 46.67,
-    detail: 'Катунь — главная река Горного Алтая, берущая начало у подножия Белухи. Её бирюзовые воды, бурные пороги и живописные долины привлекают путешественников со всего мира. Название реки происходит от тюркского «кадын» — «госпожа» или «хозяйка», что подчёркивает её важность для алтайцев.',
-  },
-  {
-    id: 5, icon: '⛰️', name: 'Перевал Чике-Таман', x: 50, y: 40,
-    detail: 'Чике-Таман — знаменитый перевал на Чуйском тракте (1295 м). Древняя караванная тропа, где каждый путник оставлял ленту на священном дереве, прося у гор безопасной дороги.',
-  },
-  {
-    id: 6, icon: '🏞️', name: 'Долина реки Чулышман', x: 41.67, y: 80,
-    detail: 'Долина Чулышман — величественный каньон с отвесными стенами и водопадами. Здесь находятся каменные грибы и древние писаницы. Место силы шаманов, где, по преданиям, не работают компасы.',
-  },
-  {
-    id: 7, icon: '💧', name: 'Гейзеровое озеро', x: 27.08, y: 73.33,
-    detail: 'Гейзеровое (Голубое) озеро — небольшое озеро с бирюзовой водой, на дне которого бьют термальные источники, рисующие меняющиеся узоры из голубой глины. Уникальное место, не замерзающее зимой.',
-  },
-  {
-    id: 8, icon: '📜', name: 'Петроглифы Калбак-Таш', x: 16.67, y: 60,
-    detail: 'Калбак-Таш — крупнейшее святилище наскального искусства Алтая. Более 5000 рисунков возрастом от неолита до древнетюркской эпохи. Шаманы верят, что образы оживают в новолуние.',
-  },
-  {
-    id: 9, icon: '💦', name: 'Водопад Учар', x: 58.33, y: 86.67,
-    detail: 'Учар (Большой Чульчинский водопад) — крупнейший каскадный водопад Алтая высотой около 160 м. Труднодоступное место, добраться до которого можно только пешком по горной тропе.',
-  },
-  {
-    id: 10, icon: '🏔️', name: 'Каракольские озёра', x: 66.67, y: 53.33,
-    detail: 'Каракольские озёра — семь высокогорных озёр, расположенных каскадом на разной высоте. Каждое имеет свой цвет и характер. Место паломничества любителей нетронутой природы Алтая.',
-  },
+  { id: 1,  icon: '⛰️', name: 'Гора Белуха',             x: 41.8, y: 70.4, detail: 'Гора Белуха — высочайшая вершина Сибири (4506 м). Считается сакральным центром Алтая. По легендам, у её подножия скрыт вход в Шамбалу — мистическую страну просветлённых. Многие путешественники отмечают здесь необъяснимое чувство покоя и изменение восприятия времени.' },
+  { id: 2,  icon: '🌊', name: 'Телецкое озеро',           x: 57.7, y: 29.4, detail: 'Алтын-Кёль (Золотое озеро) — одно из глубочайших озёр России (325 м). Легенды гласят, что на дне озера покоятся сокровища древних племён, а в его водах обитает дух-хранитель в виде золотой рыбы. Местные жители верят, что озеро живёт своей жизнью и может менять цвет и настроение.' },
+  { id: 3,  icon: '🏕️', name: 'Плато Укок',               x: 58.7, y: 78.7, detail: 'Плато Укок — «зона покоя» на стыке границ России, Монголии, Китая и Казахстана. Место древних захоронений (курганов) и петроглифов. В 1993 году здесь была найдена мумия «Алтайской принцессы». Плато считается одним из самых сильных мест силы на Алтае.' },
+  { id: 4,  icon: '🌀', name: 'Река Катунь',              x: 39.8, y: 42.8, detail: 'Катунь — главная река Горного Алтая, берущая начало у подножия Белухи. Её бирюзовые воды, бурные пороги и живописные долины привлекают путешественников со всего мира. Название реки происходит от тюркского «кадын» — «госпожа» или «хозяйка».' },
+  { id: 5,  icon: '⛰️', name: 'Перевал Чике-Таман',      x: 80.8, y: 70.0, detail: 'Чике-Таман — знаменитый перевал на Чуйском тракте (1295 м). Древняя караванная тропа, где каждый путник оставлял ленту на священном дереве, прося у гор безопасной дороги.' },
+  { id: 6,  icon: '🏞️', name: 'Долина реки Чулышман',    x: 62.2, y: 37.7, detail: 'Долина Чулышман — величественный каньон с отвесными стенами и водопадами. Здесь находятся каменные грибы и древние писаницы. Место силы шаманов, где, по преданиям, не работают компасы.' },
+  { id: 7,  icon: '💧', name: 'Гейзеровое озеро',         x: 48.8, y: 67.3, detail: 'Гейзеровое (Голубое) озеро — небольшое озеро с бирюзовой водой, на дне которого бьют термальные источники, рисующие меняющиеся узоры из голубой глины. Уникальное место, не замерзающее зимой.' },
+  { id: 8,  icon: '📜', name: 'Петроглифы Калбак-Таш',   x: 23.8, y: 48.0, detail: 'Калбак-Таш — крупнейшее святилище наскального искусства Алтая. Более 5000 рисунков возрастом от неолита до древнетюркской эпохи. Шаманы верят, что образы оживают в новолуние.' },
+  { id: 9,  icon: '💦', name: 'Водопад Учар',             x: 67.9, y: 46.4, detail: 'Учар (Большой Чульчинский водопад) — крупнейший каскадный водопад Алтая высотой около 160 м. Труднодоступное место, добраться до которого можно только пешком по горной тропе.' },
+  { id: 10, icon: '🏔️', name: 'Каракольские озёра',      x: 45.9, y: 33.1, detail: 'Каракольские озёра — семь высокогорных озёр, расположенных каскадом на разной высоте. Каждое имеет свой цвет и характер. Место паломничества любителей нетронутой природы Алтая.' },
 ];
 
 const faqs = [
@@ -108,12 +77,7 @@ export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [toursTab, setToursTab] = useState<'tours' | 'expeditions' | 'excursions'>('tours');
   const [activeLandmark, setActiveLandmark] = useState<number | null>(null);
-  const [editMode, setEditMode] = useState(false);
-  const [positions, setPositions] = useState<Record<number, { x: number; y: number }>>(
-    () => Object.fromEntries(landmarks.map(lm => [lm.id, { x: lm.x, y: lm.y }]))
-  );
   const mapRef = useRef<HTMLDivElement>(null);
-  const draggingRef = useRef<number | null>(null);
   const timeOfDay = useTimeOfDay();
   const [bgIndex, setBgIndex] = useState(() => TIME_IMG_INDEX[timeOfDay] ?? 0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
@@ -350,64 +314,26 @@ export default function Index() {
             <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
 
-          <div className="mb-4 flex justify-end">
-            <button
-              onClick={() => setEditMode(e => !e)}
-              className={`text-xs px-4 py-2 rounded-lg border font-medium transition-colors ${editMode ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-foreground/60 hover:border-primary/50'}`}
-            >
-              {editMode ? '✓ Готово' : '✏️ Переместить метки'}
-            </button>
-          </div>
-
-          {editMode && (
-            <div className="mb-4 p-4 rounded-xl border border-primary/30 bg-primary/5 text-xs text-foreground/70 space-y-1">
-              <p className="font-semibold text-primary mb-2">Текущие координаты (%):</p>
-              {landmarks.map(lm => (
-                <p key={lm.id}>{lm.icon} {lm.name}: x={positions[lm.id].x.toFixed(1)}, y={positions[lm.id].y.toFixed(1)}</p>
-              ))}
-            </div>
-          )}
-
           <div className="grid lg:grid-cols-[2fr_1fr] gap-8 items-start">
             {/* Map image */}
-            <div
-              ref={mapRef}
-              className="relative w-full"
-              style={{ aspectRatio: '2400 / 1500', cursor: editMode ? 'crosshair' : 'default' }}
-              onMouseMove={(e) => {
-                if (!editMode || draggingRef.current === null) return;
-                const rect = mapRef.current!.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
-                setPositions(prev => ({ ...prev, [draggingRef.current!]: { x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) } }));
-              }}
-              onMouseUp={() => { draggingRef.current = null; }}
-              onMouseLeave={() => { draggingRef.current = null; }}
-            >
+            <div ref={mapRef} className="relative w-full" style={{ aspectRatio: '2400 / 1500' }}>
               <img src={MAP_IMG} alt="Карта Алтая" className="w-full h-full" style={{ objectFit: 'contain', display: 'block' }} />
-              {landmarks.map((lm) => {
-                const pos = positions[lm.id];
-                return (
-                  <div
-                    key={lm.id}
-                    style={{ left: `${pos.x}%`, top: `${pos.y}%`, cursor: editMode ? 'grab' : 'pointer' }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 group flex flex-col items-center gap-0.5 select-none"
-                    onMouseDown={(e) => {
-                      if (!editMode) return;
-                      e.preventDefault();
-                      draggingRef.current = lm.id;
-                    }}
-                    onClick={() => { if (!editMode) setActiveLandmark(lm.id); }}
-                  >
-                    <span className="text-xl drop-shadow-lg transition-transform group-hover:scale-125" style={{ filter: activeLandmark === lm.id ? 'drop-shadow(0 0 6px #f5c542)' : undefined }}>
-                      {lm.icon}
-                    </span>
-                    <span className={`text-[10px] font-bold text-white bg-black/60 px-1.5 py-0.5 rounded whitespace-nowrap transition-opacity ${editMode ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
-                      {lm.name}
-                    </span>
-                  </div>
-                );
-              })}
+              {landmarks.map((lm) => (
+                <button
+                  key={lm.id}
+                  style={{ left: `${lm.x}%`, top: `${lm.y}%` }}
+                  className="absolute -translate-x-1/2 -translate-y-1/2 group flex flex-col items-center gap-0.5 select-none cursor-pointer"
+                  onClick={() => setActiveLandmark(lm.id)}
+                  aria-label={lm.name}
+                >
+                  <span className="text-xl drop-shadow-lg transition-transform group-hover:scale-125" style={{ filter: activeLandmark === lm.id ? 'drop-shadow(0 0 6px #f5c542)' : undefined }}>
+                    {lm.icon}
+                  </span>
+                  <span className="text-[10px] font-bold text-white bg-black/60 px-1.5 py-0.5 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                    {lm.name}
+                  </span>
+                </button>
+              ))}
             </div>
 
             <div className="rounded-2xl border border-border bg-card p-7" style={{ minHeight: '200px' }}>
