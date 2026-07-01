@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { tours } from '@/components/altai/shared';
+import { TourCard } from '@/components/altai/TourCard';
 import HeroAtmosphere from '@/components/HeroAtmosphere';
 import SideDecor from '@/components/SideDecor';
 import FloatingRunes from '@/components/FloatingRunes';
@@ -37,105 +39,11 @@ const landmarks = [
   { id: 5, name: 'Долина Чулышман', x: 40, y: 66, desc: 'Каменные грибы и древние писаницы. Место силы шаманов.' },
 ];
 
-const tours = [
-  {
-    title: 'Тропа Шамана',
-    days: '7 дней',
-    price: '54 900 ₽',
-    cover: TOUR_IMG,
-    legend: 'Местные старейшины рассказывают: тот, кто пройдёт древней тропой в полнолуние, услышит голоса предков и увидит огни над хребтом. Здесь сходятся миры живых и духов.',
-    route: 'Горно-Алтайск → Чемал → Долина Чулышман → Телецкое озеро',
-    includes: ['Проживание в эко-юртах', 'Питание 3 раза в день', 'Трансфер на внедорожниках', 'Гид-этнограф'],
-  },
-  {
-    title: 'Загадки Укока',
-    days: '9 дней',
-    price: '78 500 ₽',
-    cover: HERO_IMG,
-    legend: 'Плато Укок называют «Вторым слоем небес». Археологи находят здесь курганы скифов, а очевидцы — странные огни в ночном небе. Принцесса всё ещё хранит покой плато.',
-    route: 'Горно-Алтайск → Кош-Агач → Плато Укок → Граница миров',
-    includes: ['Палаточный лагерь', 'Полевая кухня', 'Полноприводный транспорт', 'Гид + проводник'],
-  },
-  {
-    title: 'Сокровища Белухи',
-    days: '12 дней',
-    price: '96 000 ₽',
-    cover: HERO_IMG,
-    legend: 'Рерих верил, что у подножия Белухи скрыт вход в Шамбалу. Восходящие к вершине говорят о необъяснимом свечении и чувстве, будто гора наблюдает за каждым шагом.',
-    route: 'Тюнгур → Аккемское озеро → Подножие Белухи → Долина Семи Озёр',
-    includes: ['Горные приюты', 'Усиленное питание', 'Снаряжение', 'Сертифицированный инструктор'],
-  },
-];
-
 const faqs = [
   { q: 'Нужна ли специальная подготовка?', a: 'Большинство маршрутов рассчитаны на людей с базовой физической формой. Восхождения отмечены отдельно.' },
   { q: 'Что взять с собой?', a: 'После предоплаты мы пришлём подробный гайд со списком снаряжения для вашего тура.' },
   { q: 'Безопасно ли это?', a: 'Все туры сопровождают опытные гиды. Группы застрахованы, маршруты согласованы с МЧС.' },
 ];
-
-function TourCard({ tour }: { tour: typeof tours[0] }) {
-  const [slide, setSlide] = useState(0);
-  const slides = ['Обложка', 'Маршрут', 'Легенда', 'Программа'];
-
-  return (
-    <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-2xl shadow-black/50 flex flex-col h-full">
-      <div className="relative overflow-hidden shrink-0" style={{ height: 'clamp(180px, 22vw, 260px)' }}>
-        {slide === 0 && (
-          <img src={tour.cover} alt={tour.title} className="w-full h-full object-cover object-center animate-scale-in" />
-        )}
-        {slide === 1 && (
-          <div className="w-full h-full parchment flex items-center justify-center animate-scale-in p-6">
-            <p className="text-[hsl(150_40%_15%)] text-sm font-medium text-center leading-relaxed">{tour.route}</p>
-          </div>
-        )}
-        {slide === 2 && (
-          <div className="w-full h-full bg-fog bg-secondary p-5 flex items-center animate-scale-in">
-            <p className="text-foreground/90 text-sm italic leading-relaxed font-display" style={{ fontSize: 'clamp(14px, 1.5vw, 18px)' }}>«{tour.legend}»</p>
-          </div>
-        )}
-        {slide === 3 && (
-          <div className="w-full h-full bg-secondary p-5 animate-scale-in overflow-y-auto scrollbar-hide">
-            <p className="text-primary text-xs uppercase tracking-widest mb-2">Маршрут</p>
-            <p className="text-foreground/80 text-sm mb-3">{tour.route}</p>
-            <ul className="space-y-1.5">
-              {tour.includes.map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
-                  <Icon name="Check" size={14} className="text-primary shrink-0" />{item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        <div className="absolute top-3 left-3 bg-bloodred/90 text-white text-xs px-3 py-1 rounded-full font-medium">
-          {slides[slide]}
-        </div>
-      </div>
-
-      <div className="p-5 flex flex-col gap-3 flex-1">
-        <div className="flex items-baseline justify-between gap-2">
-          <h3 className="font-display text-primary" style={{ fontSize: 'clamp(18px, 2vw, 24px)' }}>{tour.title}</h3>
-          <span className="text-sm text-muted-foreground shrink-0">{tour.days}</span>
-        </div>
-        <div className="flex gap-1.5">
-          {slides.map((s, i) => (
-            <button
-              key={s}
-              onClick={() => setSlide(i)}
-              className={`h-1.5 rounded-full transition-all ${slide === i ? 'w-8 bg-primary' : 'w-3 bg-border'}`}
-              aria-label={s}
-            />
-          ))}
-        </div>
-        <div className="flex items-center justify-between mt-auto pt-2">
-          <span className="font-display font-semibold text-primary" style={{ fontSize: 'clamp(16px, 1.8vw, 22px)' }}>{tour.price}</span>
-          <Button size="sm" variant="ghost" onClick={() => setSlide((slide + 1) % 4)} className="text-foreground/70 hover:text-primary">
-            Далее <Icon name="ChevronRight" size={16} />
-          </Button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 const legends = [
   { symbol: '△', title: 'Врата Шамбалы', text: 'Рерих верил: у подножия Белухи скрыт вход в Шамбалу. Восходящие видят необъяснимое свечение — гора наблюдает за каждым шагом.' },
