@@ -344,7 +344,7 @@ export default function Index() {
             <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
 
-          <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 items-start">
+          <div className="grid lg:grid-cols-[2fr_1fr] gap-8 items-start">
             {/* Map image */}
             <div className="relative w-full" style={{ aspectRatio: '2400 / 1500' }}>
               <img src={MAP_IMG} alt="Карта Алтая" className="w-full h-full" style={{ objectFit: 'contain', display: 'block' }} />
