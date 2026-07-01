@@ -559,6 +559,124 @@
   }
 }
 
+/* ─── Map markers: pulsing dots + selection ring ─── */
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+.map-marker__dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: hsl(var(--gold));
+  box-shadow:
+    0 0 0 2px rgba(12, 30, 18, 0.55),
+    0 1px 4px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s ease;
+}
+/* soft continuous pulse halo */
+.map-marker__dot::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  background: hsl(var(--gold) / 0.35);
+  animation: markerPulse 2.6s ease-out infinite;
+  z-index: -1;
+}
+.map-marker:hover .map-marker__dot {
+  transform: scale(1.25);
+}
+/* animated selection ring */
+.map-marker__ring {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  border: 2px solid hsl(var(--gold));
+  opacity: 0;
+  pointer-events: none;
+}
+.map-marker.is-active .map-marker__dot {
+  background: #fff;
+  box-shadow:
+    0 0 0 2px hsl(var(--gold)),
+    0 0 12px hsl(var(--gold) / 0.9);
+  transform: scale(1.15);
+}
+.map-marker.is-active .map-marker__ring {
+  opacity: 1;
+  animation: markerRing 1.6s ease-out infinite;
+}
+/* icon+label bubble on hover / active */
+.map-marker__label {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background: rgba(12, 30, 18, 0.9);
+  border: 1px solid hsl(var(--gold) / 0.3);
+  color: hsl(var(--foreground));
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  pointer-events: none;
+}
+.map-marker:hover .map-marker__label,
+.map-marker.is-active .map-marker__label {
+  opacity: 1;
+  transform: translateY(0);
+}
+@keyframes markerPulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes markerRing {
+  0% {
+    width: 14px;
+    height: 14px;
+    opacity: 0.9;
+  }
+  100% {
+    width: 42px;
+    height: 42px;
+    opacity: 0;
+  }
+}
+@media (max-width: 767px) {
+  .map-marker__dot::before,
+  .map-marker.is-active .map-marker__ring {
+    animation: none !important;
+  }
+}
+
 @layer utilities {
   .text-glow-gold {
     text-shadow:
