@@ -27,7 +27,7 @@ const HERO_IMGS = [
   'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/19f53968-12af-47aa-9143-7f60229c4f99.png', // 5 вечереет
 ];
 const HERO_IMG = HERO_IMGS[0];
-const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/7c292c87-0d75-4c32-944c-e3ae09617cad.png';
+const MAP_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/7ad988f7-2fd7-48ed-8cff-e7c8608e9758.png';
 const TOUR_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/files/0a186228-adb5-49dd-9f7a-76ce5509bb6a.jpg';
 const LOGO_IMG = 'https://cdn.poehali.dev/projects/709f8aa2-b778-4092-a2a7-3f93727724e2/bucket/82e4363e-4520-48ab-9564-1c624825319d.png';
 
