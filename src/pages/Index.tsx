@@ -77,20 +77,13 @@ export default function Index() {
   const [modalOpen, setModalOpen] = useState(false);
   const [toursTab, setToursTab] = useState<'tours' | 'expeditions' | 'excursions'>('tours');
   const [activeLandmark, setActiveLandmark] = useState<number | null>(null);
+  const canEdit = import.meta.env.DEV;
   const [editMode, setEditMode] = useState(false);
   const [positions, setPositions] = useState<Record<number, { x: number; y: number }>>(
     () => Object.fromEntries(landmarks.map(lm => [lm.id, { x: lm.x, y: lm.y }]))
   );
   const draggingRef = useRef<number | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.altKey && e.shiftKey && e.code === 'KeyE') setEditMode(m => !m);
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, []);
   const timeOfDay = useTimeOfDay();
   const [bgIndex, setBgIndex] = useState(() => TIME_IMG_INDEX[timeOfDay] ?? 0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
@@ -327,9 +320,20 @@ export default function Index() {
             <p className="text-muted-foreground max-w-lg mx-auto">Нажми на метку, чтобы узнать тайну места</p>
           </div>
 
-          {editMode && (
+          {canEdit && (
+            <div className="mb-4 flex justify-end">
+              <button
+                onClick={() => setEditMode(m => !m)}
+                className={`text-xs px-4 py-2 rounded-lg border font-medium transition-colors ${editMode ? 'bg-primary text-primary-foreground border-primary' : 'border-border text-foreground/60 hover:border-primary/50'}`}
+              >
+                {editMode ? '✓ Готово' : '✏️ Переместить метки'}
+              </button>
+            </div>
+          )}
+
+          {canEdit && editMode && (
             <div className="mb-4 p-4 rounded-xl border border-primary/30 bg-primary/5 text-xs text-foreground/70 space-y-1">
-              <p className="font-semibold text-primary mb-2">🗺️ Режим редактирования (Alt+Shift+E — выкл). Перетаскивай метки:</p>
+              <p className="font-semibold text-primary mb-2">🗺️ Перетаскивай метки. Координаты:</p>
               {landmarks.map(lm => (
                 <p key={lm.id}>{lm.icon} {lm.name}: x={positions[lm.id].x.toFixed(1)}, y={positions[lm.id].y.toFixed(1)}</p>
               ))}
